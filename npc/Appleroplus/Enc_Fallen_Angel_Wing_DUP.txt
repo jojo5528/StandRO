@@ -1,0 +1,33 @@
+//===== rAthena Script ==================================
+//===== Translate By: ===================================
+//= LungEsteay
+//================================================
+
+wonderworld,160,160,4	script	ออฟปีกพ่อง#mal	796,{
+
+	disable_items;
+	if (checkweight(1201,1) == 0) {
+		mes "คุณมีไอเทมมากเกินไป เอาไปเก็บก่อน!";
+		close;
+	}
+	if (MaxWeight - Weight < 10000) {
+		mes "คุณมีน้ำหนักมากเกินไป";
+		close;
+	}
+	if(getequipid(EQI_GARMENT) != 2589){
+		mes "มึงต้องใส่ Fallen Angel Wing โว้ย !!!";
+		close;
+	}
+	
+	delequip EQI_GARMENT;
+	
+	mes "[Fallen Angel]";
+	mes "เสียใจด้วย Fallen Angel Wing ถูกทำลายไปแล้ว!";
+	close;
+	
+	specialeffect2 EF_REPAIRWEAPON;
+	progressbar "ffff00",0;
+	
+OnInit: waitingroom "Enc. ปีกพ่อง",0;end;
+}
+
