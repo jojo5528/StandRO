@@ -14,19 +14,19 @@ wonderworld,160,160,4	script	ออฟปีกพ่อง#mal	796,{
 		mes "คุณมีน้ำหนักมากเกินไป";
 		close;
 	}
-	if(getequipid(EQI_GARMENT) != 2589){
-		mes "มึงต้องใส่ Fallen Angel Wing โว้ย !!!";
-		close;
-	}
 	
-	delequip EQI_GARMENT;
-	
-	mes "[Fallen Angel]";
-	mes "เสียใจด้วย Fallen Angel Wing ถูกทำลายไปแล้ว!";
-	close;
+	//set .@enchant,4837; //Expert_Archer6
+	//delequip EQI_GARMENT;
 	
 	specialeffect2 EF_REPAIRWEAPON;
 	progressbar "ffff00",0;
+	
+	//getitem2 2589,1,1,20,0,0,4842,4842,4842; //Fallen Angel_Wing
+	getitem2 22005,1,1,20,0,0,4825,4825,4880;
+	
+	mes "[Fallen Angel]";
+	mes "ได้ของละ...รีบๆไปดิสาส";
+	close;
 	
 OnInit: waitingroom "Enc. ปีกพ่อง",0;end;
 }
