@@ -1,0 +1,29 @@
+
+-	script	openwar	984,{
+OnInit:
+
+disablenpc "Item War#1"; 
+disablenpc "Item War#2";
+disablenpc "Item War#3"; 
+disablenpc "Item War#4"; 
+disablenpc "Item War#5"; 
+end;
+
+OnAgitStart:
+
+disablenpc "Item War#1"; 
+disablenpc "Item War#2";
+disablenpc "Item War#3"; 
+disablenpc "Item War#4"; 
+disablenpc "Item War#5"; 
+end;
+
+OnAgitEnd:
+enablenpc "Item War#1"; 
+enablenpc "Item War#2"; 
+enablenpc "Item War#3"; 
+enablenpc "Item War#4"; 
+enablenpc "Item War#5"; 
+
+end;
+}

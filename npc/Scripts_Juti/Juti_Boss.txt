@@ -1,0 +1,75 @@
+//=========================================================
+
+-	script	MvpBoss	-1,{
+mes "[Warp Boss]";
+mes "ข้าสามารถพาเจ้าวาปไปหา BossMVP ทุกตัว";
+mes "ได้ภายในพริบตา เจ้าสนใจหรือป่าวละ ";
+next;
+menu " ข้าจะไปล่าบอส  MVP",bossfild;
+
+
+bossfild:
+menu 
+"Amonra   (^FF0000 Mpv ^000000)",AMONRA,
+"Atroce   (^FF0000 Mpv ^000000)",ATROCE,
+"Bacsojin   (^FF0000 Mpv ^000000)",BACSOJIN,
+"Baphomet   (^FF0000 Mpv ^000000)",BAPHOMET,
+"Dark Lord   (^FF0000 Mpv ^000000)",DARK_LORD,
+"Doppelganger   (^FF0000 Mpv ^000000)",DOPPELGANGER,
+"Dracula   (^FF0000 Mpv ^000000)",DRACULA,
+"Drake   (^FF0000 Mpv ^000000)",DRAKE,
+"Eddga   (^FF0000 Mpv ^000000)",EDDGA,
+"Goldenthiefbug   (^FF0000 Mpv ^000000)",GOLDEN_THIEF_BUG,
+"Gopinich   (^FF0000 Mpv ^000000)",GOPINICH,
+"Incantation Samurai   (^FF0000 Mpv ^000000)",INCANTATION_SAMURAI,
+"Knight Of  Windstorm   (^FF0000 Mpv ^000000)",KNIGHT_OF_WINDSTORM,
+"Lord Of Death   (^FF0000 Mpv ^000000)",LORD_OF_DEATH,
+"Mistress   (^FF0000 Mpv ^000000)",MISTRESS,
+"Moonlight Flower   (^FF0000 Mpv ^000000)",MOONLIGHT_FLOWER,
+"Orc Hero   (^FF0000 Mpv ^000000)",ORC_HERO,
+"Orc Lord   (^FF0000 Mpv ^000000)",ORC_LORD,
+"Osiris   (^FF0000 Mpv ^000000)",OSIRIS,
+"Pharaoh   (^FF0000 Mpv ^000000)",PHARAOH,
+"Phreeoni   (^FF0000 Mpv ^000000)",PHREEONI,
+"Rsx 0806   (^FF0000 Mpv ^000000)",RSX_0806,
+"Turtle General   (^FF0000 Mpv ^000000)",TURTLE_GENERAL,
+"Vesper   (^FF0000 Mpv ^000000)",VESPER;
+
+
+AMONRA:		warp "moc_pryd06",0,0;	end;
+ATROCE:		warp "ra_fild02",0,0;	end;
+BACSOJIN:		warp "lou_dun03",0,0;	end;
+BAPHOMET:		warp "prt_maze03",0,0;	end;
+DARK_LORD:		warp "gl_church",0,0;	end;
+DOPPELGANGER:		warp "gef_dun02",0,0;	end;
+DRACULA:		warp "gef_dun01",0,0;	end;
+DRAKE:		warp "treasure02",0,0;	end;
+EDDGA:		warp "pay_fild11",0,0;	end;
+GOLDEN_THIEF_BUG:		warp "prt_sewb4",0,0;	end;
+GOPINICH:		warp "mosk_dun03",0,0;	end;
+INCANTATION_SAMURAI:		warp "ama_dun03",0,0;	end;
+KNIGHT_OF_WINDSTORM:		warp "xmas_dun02",0,0;	end;
+LORD_OF_DEATH:		warp "niflheim",0,0;	end;
+MISTRESS:		warp "mjolnir_04",0,0;	end;
+MOONLIGHT_FLOWER:		warp "pay_dun04",0,0;	end;
+ORC_HERO:		warp "gef_fild14",0,0;	end;
+ORC_LORD:		warp "gef_fild10",0,0;	end;
+OSIRIS:		warp "moc_pryd04",0,0;	end;
+PHARAOH:		warp "in_sphinx5",0,0;	end;
+PHREEONI:		warp "moc_fild17",0,0;	end;
+RSX_0806:		warp "ein_dun02",0,0;	end;
+TURTLE_GENERAL:		warp "tur_dun04",0,0;	end;
+VESPER:		warp "jupe_core",0,0;	end;
+
+
+
+
+
+
+
+
+OnInit:
+	waitingroom "ล่าบอส mvp", 0;
+end;
+
+}

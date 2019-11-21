@@ -1,0 +1,51 @@
+-	script	statscheck	-1,{
+OnPCLoadMapEvent:
+//if (!agitcheck())end;
+	getmapxy(@mapname$,@mapx,@mapy,0,strcharinfo(0));
+
+//////////////////// Guild War ///////////////////////////////
+	if (@mapname$ == "prtg_cas03"){
+		if (class >= 4023 && class <= 4043){ end;}
+		if (class >= 4096 && class <= 4108){ end;}
+		warp "SavePoint",0,0; end; 
+	}
+
+	if (@mapname$ == "gefg_cas02"){
+		if (readparam(13) > 200 || readparam(14) > 200 || readparam(15) > 200 || readparam(16) > 200 || readparam(17) > 200 || readparam(18) > 200) 
+		warp "SavePoint",0,0;	
+		end; }
+	if (@mapname$ == "payg_cas03"){
+		if (readparam(13) > 400 || readparam(14) > 400 || readparam(15) > 400 || readparam(16) > 400 || readparam(17) > 400 || readparam(18) > 400) 
+		warp "SavePoint",0,0;	
+		end; }
+	if (@mapname$ == "prtg_cas02"){
+		if (juti_amount > 0)
+		warp "SavePoint",0,0;	
+		end; }
+
+}
+
+
+gefg_cas02	mapflag	loadevent	
+payg_cas03	mapflag	loadevent
+prtg_cas02	mapflag	loadevent
+prtg_cas03	mapflag	loadevent
+
+morocc,136,96,5	script	add storage	87,{
+	if( getgmlevel() < 98 ) end;
+	mes "·èÒ¹ÊÒÁÒÃ¶à¾ÔèÁäÍà·Áà¢éÒ storage ¢Í§¼ÙéàÅè¹·Ñé§server ä´é.";
+	mes "Note: if one storage is full, the storage database will contain an extra line for this storage.";
+	next;
+	if( select( "ãÊèÃËÑÊäÍà·Á", "ÍÍ¡" ) -1 ) close;
+	input .@item_id;
+		mes "ãÊè¨Ó¹Ç¹.";
+	input .@item_amount;
+	if( getiteminfo( .@item_id,0 ) == -1 ) {
+		mes "äÁè¾ºÃËÑÊäÍà·Áª¹Ô´¹Õéã¹server.";
+		close;
+	}
+	query_sql "INSERT INTO `storage` (`id`, `account_id`, `nameid`, `amount`, `equip`, `identify`, `refine`, `attribute`, `card0`, `card1`, `card2`, `card3`, `expire_time`, `unique_id`) "+
+			"SELECT  NULL, `login`.`account_id`, '"+ .@item_id +"', '"+ .@item_amount +"', '0', '1', '0', '0', '0', '0', '0', '0', '0', '0' FROM `login` WHERE `account_id` > 1";
+	mes "Item add. Players must relog to see the item in storage.";
+	close;
+}

@@ -8,7 +8,7 @@ OnPCLoginEvent:
 	if(getgmlevel() >=50) end;
 	if ( vip_status(VIP_STATUS_ACTIVE) )
 	{
-		soundeffect "welcomemro.wav",0;
+		//soundeffect "welcomemro.wav",0;
 		announce "[ระบบ] : ขณะนี้ คุณ [ "+strcharinfo(0)+" ] [ ผู้เล่น VIP ] ได้เข้ามาสู่โลกของเราแล้วจ้า",0,0xFF3399;
 		dispbottom "[ระบบ] : เติมเงินโอนได้ Cash Point โบนัสเพิ่มจากเดิม 30%  พร้อมของสมนาคุณมากมาย";
 		dispbottom "[ระบบ] : เติมเงินจากบัตร True Money วันนี้รับ Cash Point คูณ 10 จากราคาของบัตร";
@@ -30,10 +30,10 @@ OnPCLoginEvent:
 OnPCLoginEvent:
 		if(getgmlevel() > 50 ) {
 		//atcommand "@hide";
-		soundeffect "welcomemro.wav",0;
+		//soundeffect "welcomemro.wav",0;
 		atcommand "@speed 0";
 		atcommand "@size 3";
-		announce "[ระบบ] : ขณะนี้ คุณ [ "+strcharinfo(0)+" ] [ Game Master ]ได้เข้ามาสู่โลกของเราแล้วจ้า",0,0x66FFFF;
+		//announce "[ระบบ] : ขณะนี้ คุณ [ "+strcharinfo(0)+" ] [ Game Master ]ได้เข้ามาสู่โลกของเราแล้วจ้า",0,0x66FFFF;
 		dispbottom "[ระบบ] : เติมเงินโอนได้ Cash Point โบนัสเพิ่มจากเดิม 30%  พร้อมของสมนาคุณมากมาย";
 		dispbottom "[ระบบ] : เติมเงินจากบัตร True Money วันนี้รับ Cash Point คูณ 10 จากราคาของบัตร";
 		dispbottom "[ระบบ] : ขอให้สนุกนะค่ะ และ อย่าลืมชวนเพื่อนๆมาเล่นด้วยกันเยาะๆนะค่ะ โลกของเราจะได้คึกคัก^_^";

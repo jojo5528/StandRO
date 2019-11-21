@@ -1,0 +1,32 @@
+-	script	Guilddun	-1,{
+mes "[ Guild Room ]";
+mes "ท่านผู้กล้าขอเชิญท่านสู่ Guild Dungeon";
+mes "ท่านต้องการไปที่Mapไหนล่ะ?";
+menu 
+"Guild Dungeon Aldebaran ",gdun01,
+"Guild Dungeon Payon ",gdun02,
+"Guild Dungeon Geffen ",gdun03,
+"Guild Dungeon Prontera ",gdun04;
+
+
+gdun01:
+warp "gld_dun02",0,0;
+close;
+
+gdun02: 
+warp "gld_dun01",0,0;
+close; 
+
+gdun03:
+warp "gld_dun04",0,0;
+close; 
+
+gdun04:
+warp "gld_dun03",0,0;
+close; 
+
+
+OnInit:
+Waitingroom " Guild Dungeon " , 0;
+end;
+}

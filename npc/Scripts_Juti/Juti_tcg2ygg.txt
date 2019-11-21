@@ -1,0 +1,202 @@
+//=========================================
+//=========================================
+
+//NPC มี 2 ตัว (ในไฟล์นี้) + 1 function
+//ตัวแรก ขายดอกเหลือง
+//ตัวสอง รับซื้อ
+//function add_comma (สำหรับใส่คอมม่า เวลาแสดงตัวเลข 1000 -> 1,000)
+
+
+//สามารถแก้ไขค่าต่างๆ ได้ที่ OnInit: โดยผมจะมี Config ให้ปรับแต่งอยู่
+//ค่าที่ตั้งไว้ คือค่าที่คุณบอกมาตั้งแต่ต้น สามารถปรับเปลี่ยนเองได้ครับ
+//ปรับเปลี่ยนตำแหน่ง npc ด้วยนะครับ
+//ทุกครั้งที่เปลี่ยนค่า ควร @reloadscript หรือรันเซิฟใหม่เสมอ
+
+
+//================ NPC ตัวแรก ==========================
+
+asgard,193,175,4	script	คนขายดอกเหลือง	783,{
+	mes "^009900[ คนขายดอกเหลือง ]^000000";
+	mes "เจ้าสนใจแลกดอกเหลืองจากข้าไหม";
+	menu ""+callfunc("add_comma",.zeny_use+"")+" แลกได้ 1 อัน",Option1,"1 TCG Card แลกได้ "+.ygg_amount+" อัน",Option2,"ยกเลิก",Cancel;
+
+
+Option1:
+if(Zeny < .zeny_use){
+	mes "เจ้ามีเงินไม่พอนิ กลับไปสะ";
+	mes "อย่างน้อยเจ้าต้องมี "+.zeny_use+"z นะ";
+	close;
+}
+mes "กรุณาใส่จำนวนดอกเหลืองที่ต้องการแลก";
+mes "ใส่ 0 ถ้าต้องการยกเลิก";
+set .@temp,Zeny/.zeny_use;
+mes "สุงสุดได้ "+.@temp+" อัน^000000";
+next;
+Reenter1:
+input .@amount;
+mes "^009900[ คนขายดอกเหลือง ]^000000";
+if(.@amount == 0)
+	goto Cancel;
+if(.@amount*.zeny_use > Zeny){
+	mes "^ff0000กรุณาใส่จำนวนดอกเหลืองใหม่";
+	mes "สุงสุดได้ "+.@temp+" อัน^000000";
+	mes "ใส่ 0 ถ้าต้องการยกเลิก";
+	next;
+	goto Reenter1;
+}
+set Zeny,Zeny - .@amount*.zeny_use;
+getitem 607,.@amount;
+mes "คุณได้รับ "+getitemname(607)+" "+.@amount+" อัน";
+mes "แล้วพบกันใหม่นะ";
+close;
+
+Option2:
+if(countitem(7227) < 1){
+	mes "เจ้าไม่มี TCG Card เลยนื กลับไปสะ";
+	close;
+}
+mes "กรุณาใส่จำนวน TCG Card ที่ต้องการแลกเป็นดอกเหลือง";
+mes " ";
+mes "ใส่ 0 ถ้าต้องการยกเลิก";
+mes "สุงสุดได้ "+countitem(7227)+" อัน^000000";
+next;
+Reenter2:
+input .@amount;
+mes "^009900[ คนขายดอกเหลือง ]^000000";
+if(.@amount == 0)
+	goto Cancel;
+if(.@amount > countitem(7227)){
+	mes "^ff0000กรุณาใส่จำนวน TCG ใหม่";
+	mes "สุงสุดได้ "+countitem(7227)+" อัน^000000";
+	mes "ใส่ 0 ถ้าต้องการยกเลิก";
+	next;
+	goto Reenter2;
+}
+delitem 7227,.@amount;
+getitem 607,.@amount*.ygg_amount;
+mes "คุณได้รับ "+getitemname(607)+" "+(.@amount*.ygg_amount)+" อัน";
+mes "แล้วพบกันใหม่นะ";
+close;
+
+Cancel:
+	mes "แล้วเจอกันใหม่";
+	close;
+
+OnInit:
+	//==================================
+	//============= CONFIG =============
+	//==================================
+	
+	//จำนวน zeny ต่อ 1 ygg (10m แลกได้ 1 ygg)
+	set .zeny_use,10000000;
+
+	//จำนวน ygg ต่อ 1 TCG (1TCG แลกได้ 10ygg)
+	set .ygg_amount,10;
+
+	//==================================
+	//============= END ================
+	//==================================
+
+	waitingroom "คนขายดอกเหลือง",0;
+	end;
+}
+
+
+
+
+//================ NPC ตัวสอง ==========================
+asgard,193,171,4	script	รับซื้อของ	109,{
+	mes "^009900[ คนรับซื้อของ ]^000000";
+	mes "เจ้าต้องการขายอะไร";
+	
+	switch(select("TCG Card 1ea -> "+callfunc("add_comma",.zeny_tcg+"")+"z:Gold Bullion 1ea -> "+callfunc("add_comma",.zeny_gold_bullion+"")+"z:Gemstone 1ea -> "+callfunc("add_comma",.zeny_gem+"")+"z:ยกเลิก")){
+
+		case 1:
+			set .@use,7227;
+			set .@zeny,.zeny_tcg;
+			break;
+		case 2:
+			set .@use,7228;
+			set .@zeny,.zeny_gold_bullion;
+			break;
+		case 3:
+			set .@use,7300;
+			set .@zeny,.zeny_gem;
+			break;
+		default:
+			goto Cancel;
+			break;
+
+	}//end switch
+
+if(countitem(.@use) < 1){
+	mes "^ff0000เจ้าไม่เห็นมี "+getitemname(.@use)+" เลยนิ^000000";
+	goto Cancel;
+}
+
+mes "ใส่จำนวน "+getitemname(.@use)+" ที่ต้องการแลก";
+mes "ใส่ 0 เพื่อยกเลิก";
+mes "สูงสุด "+countitem(.@use)+" อันนะ";
+next;
+Reenter:
+
+input .@amount;
+mes "^009900[ คนรับซื้อของ ]^000000";
+if(.@amount == 0)
+	goto Cancel;
+if(.@amount > countitem(.@use)){
+	mes "^ff0000ใส่จำนวน "+getitemname(.@use)+" ที่ต้องการแลกใหม่";
+	mes "ใส่ 0 เพื่อยกเลิก";
+	mes "สูงสุด "+countitem(.@use)+" อันนะ^000000";
+	next;
+	goto Reenter;
+}
+delitem .@use,.@amount;
+set .@total,.@zeny*.@amount;
+set Zeny,Zeny+.@total;
+mes "เจ้าได้รับ "+callfunc("add_comma",.@total+"")+"z";
+mes "ขอให้โชคดี";
+close;
+
+Cancel:
+	mes "แล้วเจอกันใหม่";
+	close;
+
+OnInit:
+	//==================================
+	//============= CONFIG =============
+	//==================================
+	
+	//จำนวน zeny ต่อไอเทมนั้นๆ
+
+	//TCG
+	set .zeny_tcg,150000000;
+
+	//GOLD BULLION
+	set .zeny_gold_bullion,10000000;
+
+	//GEMSTONE
+	set .zeny_gem,100000;
+
+	//==================================
+	//============= END ================
+	//==================================
+
+	waitingroom "รับซื้อของ",0;
+	end;
+}
+
+
+
+
+//add comma to integer
+function	script	add_comma	{
+	set .@num, atoi(getarg(0));
+	if ( .@num == 0 || .@num >= 2147483647 ) return getarg(0);
+	set .@l, getstrlen(.@num+"");
+	for ( set .@i,0; .@i < .@l; set .@i, .@i + 1 ) {
+		set .@num$, .@num % pow(10,.@i+1) / pow(10,.@i) + .@num$;
+		if ( (.@i+1) % 3 == 0 && .@i+1 != .@l ) set .@num$, ","+ .@num$;
+	}
+	return .@num$;
+}

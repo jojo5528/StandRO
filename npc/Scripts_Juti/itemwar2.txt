@@ -1,0 +1,33 @@
+//=============================================================
+//			-             mOnster studiO Scripts               -
+//				www.monsterstudio.in.th
+//#############################################################
+
+-	script	Msevent::wargefg	-1,{
+set @GID,getcastledata("gefg_cas02",1);
+if (strcharinfo(0) == getguildmaster(@GID)) goto Lpass;
+if (getcharid(2) == @GID) goto Lnotpass;
+mes "[ แจก Item War ]";
+mes "สำหรับ หัวหน้ากิล ที่ชื่อ ^ff0000[" + getguildmaster(@GID) + "]^000000";
+mes "เท่านั้น";
+close;
+Lpass:
+mes "[ แจก Item War#2 ]";
+mes "ท่านเป็นหัวหน้ากิล";
+mes "ข้าจะแจก ไอเท็มให้เจ้า เพราะว่าเจ้าชนะ";
+mes "อย่าลืมเอาไปแจกลูกกิลล่ะ";
+next;
+getitem 30029,1;  //แก้ไขของรางวัลได้ที่ db/item_db/etc_custom.txt รหัส 30029
+
+mes "[ แจก Item War ]";
+mes "แล้วเจอกันใหม่";
+disablenpc "Item War#2";
+close;
+Lnotpass:
+mes "[ แจก Item War ]";
+mes "ข้ารอ หัวหน้ากิลของเจ้า ที่ชื่อ ^5533FF["+ getguildmaster(@GID)+"]^000000";
+mes "เจ้าไม่ใช่หัวหน้ากิล ไปซะ";
+close;
+}
+
+

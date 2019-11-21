@@ -5,7 +5,7 @@
 #define _CONFIG_RENEWAL_HPP_
 
 //quick option to disable all renewal option, used by ./configure
-//#define PRERE
+#define PRERE
 #ifndef PRERE
 /**
  * rAthena configuration file (http://rathena.org)

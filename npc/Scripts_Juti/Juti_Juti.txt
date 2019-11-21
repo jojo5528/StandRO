@@ -1,0 +1,249 @@
+function	script	item_juti	{
+	set JUTI_TCGG,10;
+	set .@JUTI_TCGG,10;
+	set .@JUTI_TCG150,15;
+	set .@juti_fee,50000000;
+	set .@juti_fee150,80000000;
+	
+	//##########################################################################
+	mes "[^FF0000 เทพจุติ ^000000]";
+	mes "ท่านต้องการจะจุติหรือไม่";
+	mes "คุณ [ " + strcharinfo(0) + " ]";
+	//mes "จุติฟรี";
+	mes "จุติ ได้ฟรี "+JUTI_TCGG+" ครั้ง";
+	mes "^0000CC จุติไปแล้ว ^000000 ^FF0000  "+juti_amount+" ^000000 ครั้ง";
+	//mes "ระดับมอนเตอร์ "+ JUTI_TCG+" ครั้ง";
+	next;
+	if(baselevel < 99) goto Lok;
+	if(baselevel > 99) goto Lok150;
+	//menu "จุติเลเวล 99",Lok,"จุติเลเวล 150",Lok150,"จุติจ๊อป",Jok,"ไม่ล่ะ",Lno;
+	
+	//##########################################################################
+	Lok:
+	mes "[^FF0000 เทพจุติ ^000000]";
+	mes "งั้นข้าจะบอกเงื่อนไขนะขอรับ";
+	mes "การจุติเจ้าจะต้องเลเวล 99 เท่านั้น";
+	next;
+	menu "การจุติต้องทำยังไงบ้าง",Lot,"ข้าพร้อมสำหรับการจุติแล้ว",Lyes,"ไม่ล่ะ",Lno;
+	
+	//##########################################################################
+	Lot:
+	mes "[^FF0000 เทพจุติ ^000000]";
+	mes "เจ้าจะต้องเตรียมของดังนี้";
+	mes "1. เงิน "+.@juti_fee+"";
+	mes "2. การ์ด TCG "+.@JUTI_TCGG+" ใบ";
+	mes "ถ้าเจ้าหาครบแล้วให้มาหาข้านะ";
+	close;
+	
+	//##########################################################################
+	Lyes:
+	if(juti_amount < JUTI_TCGG) goto Lfree;
+	if(countitem(7227) < .@JUTI_TCGG) goto Ino;
+	if(baselevel < 99) goto lvno;
+	if(Zeny < .@juti_fee) goto zno;
+	mes "[^FF0000 เทพจุติ ^000000]";
+	mes "อืม... เดี๋ยวข้าจะทำให้เจ้าเดี๋ยวนี่แหละ";
+	next;
+	
+	delitem 7227,.@JUTI_TCGG;
+	set Zeny, Zeny - .@juti_fee;
+	set BaseLevel,BaseLevel - 98;
+	set juti_amount,juti_amount+1;
+	set JUTI_TCG,JUTI_TCG+1;
+	//dispbottom " [ " + strcharinfo(0) + " ]  เพิ่มความเก่งกาจ แล้ว";
+	Announce " [ " + strcharinfo(0) + " ]  จุติอีกระดับ แล้ว",8,0xFF9900;
+	close;
+	
+	//mes "[^FF0000 เทพจุติ ^000000]";
+	//mes "เจ้าเป็นมาสเตอร์ระดับสูงสุดแล้วนะ";
+	//mes "เจ้าไปได้แล้วนะ";
+	//close;
+	
+	//##########################################################################
+	Lfree:
+	if(baselevel < 99) goto lvno;
+	set BaseLevel,BaseLevel - 98;
+	set juti_amount,juti_amount+1;
+	set JUTI_TCG,JUTI_TCG+1;
+	
+	//dispbottom "[ " + strcharinfo(0) + " ]  เพิ่มความเก่งกาจ แล้ว";
+	Announce " [ " + strcharinfo(0) + " ]  เพิ่มความเก่งกาจ อีกระดับ แล้ว",8,0xFF9900;
+	next;
+	
+	mes "[^FF0000 เทพจุติ ^000000]";
+	mes "เจ้าไปได้แล้ว";
+	close;
+	
+	//##########################################################################
+	Lok150:
+	mes "[^FF0000 เทพจุติ ^000000]";
+	mes "งั้นข้าจะบอกเงื่อนไขนะขอรับ";
+	mes "การจุติเจ้าจะต้องเลเวล 150 เท่านั้น";
+	next;
+	menu "การจุติต้องทำยังไงบ้าง",Lot1,"ข้าพร้อมสำหรับการจุติแล้ว",Lyes1,"ไม่ล่ะ",Lno;
+
+	//##########################################################################
+	Lot1:
+	mes "[^FF0000 เทพจุติ ^000000]";
+	mes "เจ้าจะต้องเตรียมของดังนี้";
+	mes "1. เงิน "+.@juti_fee+"";
+	mes "2. การ์ด TCG "+.@JUTI_TCG150+" ใบ";
+	mes "ถ้าเจ้าหาครบแล้วให้มาหาข้านะ";
+	close;
+
+	//##########################################################################
+	Lyes1:
+	if (juti_amount < JUTI_TCGG) goto Lfree1;
+	if (countitem(7227) < .@JUTI_TCG150) goto Ino1;
+	if(baselevel < 150) goto lvno1;
+	if (Zeny < .@juti_fee) goto zno;
+	mes "[^FF0000 เทพจุติ ^000000]";
+	mes "อืม... เดี๋ยวข้าจะทำให้เจ้าเดี๋ยวนี่แหละ";
+	next;
+
+	delitem 7227,15;
+	set Zeny, Zeny - 50000000;
+
+	set BaseLevel,BaseLevel - 149;
+	set juti_amount,juti_amount+1;
+	set JUTI_TCG,JUTI_TCG+1;
+
+	//dispbottom "[ " + strcharinfo(0) + " ]  เพิ่มความเก่งกาจ แล้ว";
+	Announce " [ " + strcharinfo(0) + " ]  เพิ่มความเก่งกาจ อีกระดับ แล้ว",8,0xFF9900;
+	close;
+	
+	//mes "[^FF0000 เทพจุติ ^000000]";
+	//mes "เจ้าเป็นมาสเตอร์ระดับสูงสุดแล้วนะ";
+	//mes "เจ้าไปได้แล้วนะ";
+	//close;
+
+	//##########################################################################
+	Lfree1:
+	if(baselevel < 150) goto lvno1;
+	set BaseLevel,BaseLevel - 149;
+	set juti_amount,juti_amount+1;
+	set JUTI_TCG,JUTI_TCG+1;
+
+	//dispbottom "[ " + strcharinfo(0) + " ]  เพิ่มความเก่งกาจ แล้ว";
+	Announce " [ " + strcharinfo(0) + " ]  เพิ่มความเก่งกาจ อีกระดับ แล้ว",8,0xFF9900;
+	next;
+
+	mes "[^FF0000 เทพจุติ ^000000]";
+	mes "เจ้าไปได้แล้ว";
+	close;
+
+	//##########################################################################
+	Ino1:
+	mes "[^FF0000 เทพจุติ ^000000]";
+	mes "เจ้า ยังหาของมาไม่ครบนี่น่า";
+	mes "ไปซะ ไปให้พ้น";
+	close;
+
+	//##########################################################################
+	lvno1:
+	mes "[^FF0000 เทพจุติ ^000000]";
+	mes "เจ้าเลเวล ไม่ถึง 150 นี่นา";
+	mes "ไปซะ ไปให้พ้น";
+	close;
+
+	//##########################################################################
+	Ino:
+	mes "[^FF0000 เทพจุติ ^000000]";
+	mes "เจ้า ยังหาของมาไม่ครบนี่น่า";
+	mes "ไปซะ ไปให้พ้น";
+	close;
+
+	//##########################################################################
+	lvno:
+	mes "[^FF0000 เทพจุติ ^000000]";
+	mes "เจ้าเลเวล ไม่ถึง 99 นี่นา";
+	mes "ไปซะ ไปให้พ้น";
+	close;
+
+	//##########################################################################
+	zno:
+	mes "[^FF0000 เทพจุติ ^000000]";
+	mes "เจ้ามีเงินไม่ถึงนี่น่า";
+	mes "ไปซะ ไปให้พ้น";
+	close;
+
+	//##########################################################################
+	Lno:
+	mes "[^FF0000 เทพจุติ ^000000]";
+	mes "งั้นคราวหลังมาใหม่ล่ะกันนะ";
+	close;
+
+	//##########################################################################
+	Jok:
+	mes "[^80FF00 เทพจุติ^000000]";
+	mes "งั้นข้าจะบอกเงื่อนไขนะขอรับ";
+	mes "การจุติจะเจ้าจะต้องจ๊อป 70 เท่านั้น";
+	mes "ใช้การ์ด TCG 10 ใบ";
+	mes "จุติไปเพียง 5 เลเวล";
+	next;
+	menu "ข้าพร้อมจุติจ๊อปแล้ว",Jyes,"ไม่ล่ะ",Lno;
+	end;
+	
+	Jyes:
+	if((Class==4023) || (Class==4024) || (Class==4025) || (Class==4026) || (Class==4027) || (Class==4028) || (Class==4029) || (Class==4030) || (Class==4031) || (Class==4032) || (Class==4033) || (Class==4034) || (Class==4035) || (Class==4036) || (Class==4037) || (Class==4038) || (Class==4039) || (Class==4040) || (Class==4041) || (Class==4042) || (Class==4043) || (Class==4044) || (Class==4045)) goto Jyesbaby;
+	if(juti_amount < JUTI_TCGG) goto Ljobfree;
+	if(countitem(7227) < 10) goto Ino;
+	if(joblevel < 70) goto lvno;
+	mes "[^80FF00 เทพจุติ^000000]";
+	mes "อืม... เจ้าหาของมาได้แล้วหรือนี่";
+	mes "เด๋วข้าจะทำให้เจ้าเดี๋ยวนี่แหละ";
+	next;
+
+	delitem 7227,10;
+	set JobLevel,JobLevel + -5;
+	close;
+	end;
+
+	Jyesbaby:
+	if(juti_amount < JUTI_TCGG) goto Ljobfreebaby;
+	if(countitem(7227) < 10) goto Ino;
+	if(joblevel < 50) goto lvno;
+	mes "[^80FF00 เทพจุติ^000000]";
+	mes "อืม... เจ้าหาของมาได้แล้วหรือนี่";
+	mes "เด๋วข้าจะทำให้เจ้าเดี๋ยวนี่แหละ";
+	next;
+
+	delitem 7227,10;
+	set JobLevel,JobLevel + -5;
+	close;
+	end;
+
+	Ljobfree:
+	//if (juti_amount < JUTI_TCGG) goto Ljobfree;
+	//if (countitem(7227) < 10) goto Ino;
+	if(joblevel < 70) goto jbno;
+	mes "[^80FF00 เทพจุติ^000000]";
+	mes "เด๋วข้าจะทำให้เจ้าเดี๋ยวนี่แหละ";
+	next;
+	set JobLevel,JobLevel + -5;
+	close;
+	end;
+
+	Ljobfreebaby:
+	//if (juti_amount < JUTI_TCGG) goto Ljobfree;
+	//if (countitem(7227) < 10) goto Ino;
+	if(joblevel < 50) goto jbno;
+	mes "[^80FF00 เทพจุติ^000000]";
+	mes "เด๋วข้าจะทำให้เจ้าเดี๋ยวนี่แหละ";
+	next;
+	set JobLevel,JobLevel + -5;
+	close;
+	end;
+
+	jbno:
+	mes "[^80FF00 เทพจุติ^000000]";
+	mes "เจ้ายังเลเวลไม่ถึง 70 นี่น่า";
+	close;
+	end;
+
+}
+
+-	script	juti::MSjuti	-1,{
+		callfunc "item_juti";
+		close;
+	}
