@@ -1,0 +1,36 @@
+//==============================================
+// - Script By : M-Ro Online
+// - Script City : Thailand 
+// - Script Support Server : Hercules & rAthena
+//==============================================
+
+//==============================================
+//ที่ตั้งNPC
+//==============================================
+wonderworld,156,137,4	script	#Clock0	111,{
+end;
+//==============================================
+OnTimer1000:
+set $@Count,$@Count+1;
+set $@Clock$,gettimestr("%H:%M:%S",19);
+delwaitingroom "#Clock0";
+if($@Count >= 10) goto Sick1;
+waitingroom "เวลา["+$@Clock$+" น.]",0;
+stopnpctimer;
+initnpctimer;
+end;
+
+Sick1:
+set $@Count,0;
+set $@Day$,gettimestr("%d / %m / %Y",21);
+waitingroom "วันที่ ["+$@Day$+"]",0;
+stopnpctimer;
+sleep 5000;
+initnpctimer;
+end;
+
+OnInit:
+initnpctimer;
+waitingroom "—["+$@Clock$+" น.]—",0; 
+end;
+}

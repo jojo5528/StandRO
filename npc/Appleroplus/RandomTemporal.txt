@@ -1,0 +1,36 @@
+function	script	randomTemporal	{
+setarray .OTH_ITEMLIST[0],22000,22001,22002,22003,22004,22005;
+setarray .COSN_ITEMLIST[0],61001;
+setarray .RARE_ITEMLIST[0],61001;
+setarray .min_amount,1;
+setarray .max_amount,1;
+ 
+    set .rand, rand(0,100);
+    switch(.rand){
+        case 54:
+            set .Random, rand( getarraysize( .RARE_ITEMLIST ) );
+            getitem .RARE_ITEMLIST[ .Random ], 1;
+            //announce "ผู้เล่น ["+strcharinfo(0)+"] เปิดไข่ Temporal Egg ได้รับ "+getitemname(.RARE_ITEMLIST[ .Random ])+" ",bc_all,0xFF0000;
+        break;
+       
+       
+        case 19: case 71: case 24:
+            set .Random, rand( getarraysize( .COSN_ITEMLIST ) );
+            getitem .COSN_ITEMLIST[ .Random ], 1;
+            //announce "ผู้เล่น ["+strcharinfo(0)+"] เปิดไข่ Temporal Egg ได้รับ "+getitemname(.COSN_ITEMLIST[ .Random ])+" ",bc_all,0xFF0000;
+        break;
+       
+        default:
+            set .@amount,rand( .min_amount[.@random],.max_amount[.@random] );
+            set .Random, rand( getarraysize( .OTH_ITEMLIST ) );
+        if ( .OTH_ITEMLIST[ .Random ] == 22000 || .OTH_ITEMLIST[ .Random ] == 22001 || .OTH_ITEMLIST[ .Random ] == 22002 || .OTH_ITEMLIST[ .Random ] == 22003 || .OTH_ITEMLIST[ .Random ] == 22004 || .OTH_ITEMLIST[ .Random ] == 22005 ) {
+            getitem .OTH_ITEMLIST[ .Random ], 1;
+            announce "ผู้เล่น ["+strcharinfo(0)+"] เปิดไข่ Temporal Egg ได้รับ "+getitemname(.OTH_ITEMLIST[ .Random ])+" ",bc_all,0xFF0000;
+            } else {
+            getitem .OTH_ITEMLIST[ .Random ], .@amount;
+            //announce "ผู้เล่น ["+strcharinfo(0)+"] เปิดไข่ Temporal Egg Egg ได้รับ "+getitemname(.OTH_ITEMLIST[ .Random ])+" จำนวน "+.@amount+" ea. ",bc_all,0xFF0099;
+        }
+        break;
+    }
+ 
+}

@@ -1,0 +1,7 @@
+-	script	KillPlayerAutoDrop	-1,{ 
+OnPCKillEvent: 
+if (killedrid==getcharid(0)) 
+end; 
+getitem 25055,1; 
+end; 
+}

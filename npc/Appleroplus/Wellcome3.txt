@@ -1,0 +1,12 @@
+wonderworld,162,133,6	script	Wellcome2	111,{
+	end;
+OnInit:
+	set .message$,"ยินดีต้อนรับสู่ Apple-Ro ";
+	while(1)
+	{
+	 set .message$,delchar(.message$+charat(.message$,0),0);
+	 delwaitingroom;
+	 waitingroom .message$,0;
+	 sleep 500;
+	}
+}

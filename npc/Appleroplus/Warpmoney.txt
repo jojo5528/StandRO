@@ -1,0 +1,38 @@
+//===== Developers Script ===================================
+//= Server Rate
+//===== Current Version =====================================
+//= 1.0
+//===== Description =========================================
+//= Server Rate
+//===== Additional Comments =================================
+//= 1.0 Start Version
+//= 1.1 Edit By Ragnarok PVP GVG
+//===========================================================
+
+wonderworld,143,132,4	script	Warp หาเงิน	573,{
+
+mes "เราจะพาท่านไปที่แมพ ล่า เงิน Zeny";
+mes "โปรดเลือกสถานที่ต่างๆที่จะไป";
+next;
+menu 
+"- ล่า Zeny Map 1 [ "+getmapusers("tha_t10")+" ]",zenyy,
+"- ล่า Zeny Map 2 [ "+getmapusers("tha_t12")+" ]",zenyyyy,
+"- ยกเลิก",cancel;
+
+zenyy:
+warp "tha_t10",0,0;
+announce "[ระบบ] ขณะนี้ คุณ [ "+strcharinfo(0)+" ] ได้เข้าสู่  ห้อง ล่า Zeny Map 1 แล้วจ้า ขณะนี้มีผู้เล่นทั้งหมด [ "+getmapusers("tha_t10")+" ] คน",0,0x66FF00;
+close;
+
+zenyyyy:
+warp "tha_t12",0,0;
+announce "[ระบบ] ขณะนี้ คุณ [ "+strcharinfo(0)+" ] ได้เข้าสู่  ห้อง ล่า Zeny Map 2 แล้วจ้า ขณะนี้มีผู้เล่นทั้งหมด [ "+getmapusers("tha_t12")+" ] คน",0,0x66FF00;
+close;
+
+cancel:
+close;
+
+OnInit:
+waitingroom "วาปหาเงิน Zeny",0;
+end; 
+}

@@ -1,0 +1,65 @@
+//==============================================
+// - Script By : M-Ro Online
+// - Script City : Thailand 
+// - Script Support Server : Hercules & rAthena
+//==============================================
+-	script	PlayBoxTimer6	-1,{
+OnClock0035:
+OnClock0135:
+OnClock0235:
+OnClock0335:
+OnClock0435:
+OnClock0535:
+OnClock0635:
+OnClock0735:
+OnClock0835:
+OnClock0935:
+OnClock1035:
+OnClock1135:
+OnClock1235:
+OnClock1335:
+OnClock1435:
+OnClock1535:
+OnClock1635:
+OnClock1735:
+OnClock1835:
+OnClock1935:
+OnClock2035:
+OnClock2135:
+OnClock2235:
+OnClock2335:
+set $@PB_Count3,0;
+announce "[กิจกรรมใบกันแตกคอสตูม100%] : ขณะนี้มอนเตอร์ Tamadora ได้เกิดขึ้นที่เมืองหลวง จำนวน 50 ตัว มีเวลาในการกำจัด 5 นาที !!",0;
+monster "wonderworld",0,0,"Tamadora",3306,50,"PlayBoxTimer6::OnBox6";
+initnpctimer;
+end;
+
+OnBox6:
+//getitem 61014,1;
+set $@PB_Count3,$@PB_Count3+1;
+announce "[กิจกรรมใบกันแตกคอสตูม100%] : มอนเตอร์ตัวที่ [ "+$@PB_Count3+"/50 ] ถูกพบโดยคุณ [ "+strcharinfo(0)+" ]",0;
+end;
+
+OnTimer60000:
+if($@PB_Count3==30){ stopnpctimer; set $@PB_Count3,0; }
+announce "[กิจกรรมใบกันแตกคอสตูม100%] : มีเวลาในการกำจัดอีก 4 นาที",0;
+end;
+OnTimer120000:
+if($@PB_Count3==30){ stopnpctimer; set $@PB_Count3,0; }
+announce "[กิจกรรมใบกันแตกคอสตูม100%] : มีเวลาในการกำจัดอีก 3 นาที",0;
+end;
+OnTimer180000:
+if($@PB_Count3==30){ stopnpctimer; set $@PB_Count3,0; }
+announce "[กิจกรรมใบกันแตกคอสตูม100%] : มีเวลาในการกำจัดอีก 2 นาที",0;
+end;
+OnTimer240000:
+if($@PB_Count3==30){ stopnpctimer; set $@PB_Count3,0; }
+announce "[กิจกรรมใบกันแตกคอสตูม100%] : มีเวลาในการกำจัดอีก 1 นาที",0;
+end;
+OnTimer300000:
+announce "[กิจกรรมใบกันแตกคอสตูม100%] : หมดเวลากิจกรรมแล้ว",0;
+stopnpctimer;
+set $@PB_Count3,0;
+killmonsterall "wonderworld";
+end;
+}

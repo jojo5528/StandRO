@@ -1,0 +1,36 @@
+-	script	Example_VIP	FAKE_NPC,{
+/*
+ฟังก์ชั่นการตรวจสอบสถานะ vip มี 3 ฟังก์ชั่นหลัก
+1. VIP_STATUS_ACTIVE			เงื่อนใขการตรวจสอบว่าเป็น จริง หรือ เท็จ
+2. VIP_STATUS_EXPIRE			เงื่อนใขการตรวจสอบเวลาการหมดอายุ
+3. VIP_STATUS_REMAINING			เงื่อนใขการตรวจสอบระยะเวลา
+*/
+
+	switch(select("ตรวจสอบระยะเวลาคงเหลือ:ยกเลิกการสนทนา"))
+	{
+		case 1:
+			/* ตรวจสอบระยะเวลาคงเหลือ */
+			if ( !vip_status(VIP_STATUS_ACTIVE) )
+			{
+				mes "[ Expire ]";
+				mes "คุณไม่ใช่บัญชี VIP";
+				close;
+			}
+			else
+			{
+				mes "[ Expire ]";
+				mes "เวลาคงเหลือ : "+ gettimestr("%H:%M:%S",21,vip_status(VIP_STATUS_REMAINING));
+				mes "เวลาหมดอายุ : "+ gettimestr("%Y-%m-%d %H:%M:%S",21,vip_status(VIP_STATUS_EXPIRE));
+				close;
+			}
+		
+		default: end;
+	}
+	end;
+	
+OnInit:
+	waitingroom "ดูระยะเวลา VIP",0;
+	end;
+}
+
+wonderworld,183,111,4	duplicate(Example_VIP)	ตรวจสอบระยะเวลา vip	860

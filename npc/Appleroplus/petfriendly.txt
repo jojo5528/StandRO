@@ -1,0 +1,11 @@
+-	script	homfriendlyy	-1,{
+
+mes "ได้เพิ่มการ สนิทสนม ของสัตว์เลี้ยงคุณเรียบร้อยแล้ว";
+atcommand "@petfriendly 1000";
+close;
+OnInit:
+waitingroom "เพิ่มความสนิทสนมสัตว์เลี้ยง",0;
+end;
+}
+
+wonderworld,169,151,5	duplicate(homfriendlyy)	เพิ่มสนิทสนมสัตว์เลี้ยง#01	581

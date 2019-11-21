@@ -1,0 +1,243 @@
+wonderworld,182,160,4	script	ตีบวกคอส Shadows	872,{
+	callfunc "shadows","ตีบวกคอส Shadows",0;
+	end;
+	
+OnInit:
+	waitingroom "ตีบวกคอส Shadows",0;
+	end;
+}
+
+function	script	shadows	{
+	disable_items;
+	set .Unbreak,0;
+	.@npc_name$ = getarg(0);
+	set .@features,getarg(1);
+	mes "["+ .@npc_name$ +"]";
+	mes "ฉันคือ Armsmith.";
+	mes "ฉันสามารถที่จะปรับแต่งอาวุธ, ชุดเกราะ และ เครื่องนุ่งห่ม, ดังนั้น";
+	mes "บอกฉันว่าคุณต้องการที่จะปรับแต่งอุปกรณ์ชนิดใด.";
+	next;
+
+	if ( countitem(60008) > 0 )
+	{
+		mes "["+ .@npc_name$ +"]";
+		mes "คุณมีไอเท็มที่สามารถป้องกันการสูญเสียไอเท็มเมื่ออัพเกรดล้มเหลว";
+		mes "คุณต้องการที่จะใช้หรือไม่ ?";
+		next;
+		switch(select("ใช้บัตรป้องกันแตก:ยังไม่ต้องใช้บัตรป้องกันแตก"))
+		{
+			case 1: set .Unbreak,1; break;
+			default: break;
+		}
+	}
+	
+	setarray .@positions[1], EQI_SHADOW_ARMOR, EQI_SHADOW_WEAPON, EQI_SHADOW_SHIELD, EQI_SHADOW_SHOES, EQI_SHADOW_ACC_R, EQI_SHADOW_ACC_L;
+	for(set .@i,1; .@i<getarraysize(.@positions); set .@i,.@i+1) {
+		if(getequipisequiped(.@positions[.@i])) {
+			set .@menu$, .@menu$ + F_getpositionname(.@positions[.@i]) + " - [ " + getequipname(.@positions[.@i]) + " ]";
+			set .@equipped,1;
+		}
+		set .@menu$, .@menu$ + ":";
+	}
+	if (.@equipped == 0) {
+		mes "["+ .@npc_name$ +"]";
+		mes "ฉันคิดว่าฉันไม่สามารถที่จะปรับแต่งอุปกรณ์ใดๆที่คุณไม่ได้สวมใส่มันเลย...";
+		close;
+	}
+	set .@part, .@positions[select(.@menu$)];
+
+	if(!getequipisequiped(.@part)) {
+		mes "["+ .@npc_name$ +"]";
+		mes "คุณไม่ได้สวมใส่";
+		mes "อะไรที่";
+		mes "ฉันสามารถที่จะปรับแต่งได้.";
+		emotion e_an;
+		close;
+	}
+
+	if(getequiprefinerycnt(.@part) >= 10) {
+		mes "["+ .@npc_name$ +"]";
+		mes "ฉันไม่สามารถที่จะปรับแต่งอุปกรณ์";
+		mes "เพิ่มเติมได้กว่านี้อีกแล้ว";
+		close;
+	}
+	set .@refineitemid, getequipid(.@part);
+	set .@refinerycnt, getequiprefinerycnt(.@part);
+	switch(getequipweaponlv(.@part)){
+	case 0:
+		set .@price,2000;
+		set .@material,985;
+		set .@safe,4;
+		break;
+	case 1:
+		set .@price,50;
+		set .@material,1010;
+		set .@safe,7;
+		break;
+	case 2:
+		set .@price,200;
+		set .@material,1011;
+		set .@safe,6;
+		break;
+	case 3:
+		set .@price,5000;
+		set .@material,984;
+		set .@safe,5;
+		break;
+	case 4:
+		set .@price,20000;
+		set .@material,984;
+		set .@safe,4;
+		break;
+	case 5:
+		set .@price,2000;
+		set .@material,985;
+		set .@safe,4;
+		break;
+	}
+
+	if (VIP_SCRIPT && !vip_status(1)) {
+		switch(getequipweaponlv(.@part)) {
+			case 0: set .@price, .@price * 10; break;
+			case 1: set .@price, .@price * 40; break;
+			case 2: set .@price, .@price * 50; break;
+			case 3: set .@price, .@price * 2; break;
+			case 4: set .@price, .@price * 2; break;
+			case 5: set .@price, .@price * 10; break;
+		}
+	}
+
+	if(.@features != 1) {
+		mes "["+ .@npc_name$ +"]";
+		mes "เพื่อการปรับแต่งอุปกรณ์ฉันต้องการ";
+		mes "^003366"+getitemname(.@material)+"^000000 และ";
+		mes "ค่าธรรมเนียมการใช้บริการ " + .@price + " Zeny.";
+		mes "คุณต้องการที่จะดำเนินการต่อหรือไม่ ?";
+		next;
+		if(select("ใช่:ไม่") == 2){
+			mes "["+ .@npc_name$ +"]";
+			mes "ใช่...";
+			mes "คุณไม่จำเป็นที่จะต้องรีบ";
+			mes "โปรดใช้เวลาคิดสำหรับคุณให้มากๆ.";
+			close;
+		}
+		if(getequippercentrefinery(.@part) < 100) {
+			mes "["+ .@npc_name$ +"]";
+			mes "โอ้ ไม่ ! ถ้าฉันดำเนินการปรับแต่งอุปกรณ์ต่อ";
+			mes "มันจะมีความเสี่ยง, แต่ฉันก็สามารถทำได้";
+			switch(.@material) {
+			case 985:
+				mes "ถูกทำลาย ! นั่นมันหมายความว่า ^FF0000อุปกรณ์^000000, และ ^FF0000การ์ด^000000 หรือ คุณสมบัติพิเศษใดๆของชุดเกราะ, ^FF0000จะหายไป^000000.";
+				break;
+			default:
+				mes "ถูกทำลาย, และ คุณ ^FF0000จะสูญเสียอาวุธ^000000, และ ^FF0000การ์ดใดๆที่อยู่ในอาวุธ^000000,";
+				mes "หรือ ความสามารถพิเศษจะหายไป.";
+				break;
+			}
+			next;
+			mes "["+getarg(0)+"]";
+			mes "ฉันไม่สามารถที่จะทำให้มันชัดเจนได้.";
+			mes "เมื่ออาวุธถูกทำลายไปมันจะไม่สามารถกลับมาได้อีก,";
+			mes "จริงแล้วคุณมีโอกาศที่จะ";
+			mes "^FF0000สูญเสียอาวุธ^000000 ไปตลอดการ.";
+			mes "คุณยังต้องการที่จะดำเนินการปรับแต่งหรือไม่ ?";
+			next;
+			if(select("ใช่:ไม่") == 2){
+				mes "["+ .@npc_name$ +"]";
+				mes "ฉันเห็นด้วยอย่างยิ่ง...";
+				mes "ฉันอาจจะปรับแต่งอุปกรณ์ได้ดี, แต่บางครั้งก็ฉันอาจจะทำผิดพลาด.";
+				close;
+			}
+		}
+		if((countitem(.@material) < 1) || (Zeny < .@price)) {
+			mes "["+ .@npc_name$ +"]";
+			mes "คุณไม่ได้ดูเหมือน";
+			mes "จะมีจำนวนเงินเพียงพอ หรือ "+getitemname(.@material)+"...";
+			mes "กลับไปหาให้มันมากขึ้น. ฉันจะอยู่ที่นี่ทุกวัน";
+			mes "ถ้าคุณต้องการฉัน.";
+			close;
+		}
+		if ( .Unbreak == 1 && countitem(60008) < 1 ) { mes "["+ .@npc_name$ +"]"; mes "คุณไม่ได้มีไอเท็มที่ไว้สำหรับป้องกันการสูญเสียไอเท็ม"; close; }
+		set Zeny, Zeny-.@price;
+		delitem .@material,1;
+		if ( .Unbreak == 1 ) { delitem 60008,1; }
+
+		if (callfunc("F_IsEquipIDHack", .@part, .@refineitemid) ||
+		    callfunc("F_IsEquipRefineHack", .@part, .@refinerycnt)) {
+			mes "["+ .@npc_name$ +"]";
+			emotion e_an;
+			mes "รอสักครู่...";
+			mes "คุณคิดว่าฉันโง่หรือยังไง ?!";
+			mes "คุณเปลี่ยนรายการขณะที่ฉันไม่ได้มองหามัน ! ออกไปจากที่นี่ซะ !";
+			close;
+		}
+
+		if(getequippercentrefinery(.@part) <= rand(100)) {
+			if ( .Unbreak == 1 ){
+				mes "["+ .@npc_name$ +"]";
+				emotion (!rand(5))?e_cash:e_omg;
+				set .Unbreak,0;
+				set .@lose,rand(1,3);
+				if (.@lose == 1) {
+					mes "โอ้ ! พระเจ้า !";
+					mes "บ้าน่า ! ไม่มีอีกครั้ง !";
+					mes "ฉันขอโทษ, แต่คุณก็รู้ว่าการที่จะทำให้สมบูรณ์แบบจะต้องมีข้อผิดพลาดบ้าง.";
+					mes "อืม, ใช่มั้ย ? ฮ่า ฮ่า...";
+				} else if(.@lose == 2) {
+					mes "ไม่ !";
+					mes "บ้าน่า !";
+					mes "ฉัน ฉันขอโทษ !";
+				} else {
+					mes "ฉันต้องขออภัยเกี่ยวกับเรื่องพวกนี้...";
+				}
+				close;
+			}
+			else
+			{
+				failedrefitem .@part;
+				mes "["+ .@npc_name$ +"]";
+				emotion (!rand(5))?e_cash:e_omg;
+				set .@lose,rand(1,3);
+				if (.@lose == 1) {
+					mes "โอ้ ! พระเจ้า !";
+					mes "บ้าน่า ! ไม่มีอีกครั้ง !";
+					mes "ฉันขอโทษ, แต่คุณก็รู้ว่าการที่จะทำให้สมบูรณ์แบบจะต้องมีข้อผิดพลาดบ้าง.";
+					mes "อืม, ใช่มั้ย ? ฮ่า ฮ่า...";
+				} else if(.@lose == 2) {
+					mes "ไม่ !";
+					mes "บ้าน่า !";
+					mes "ฉัน ฉันขอโทษ !";
+				} else {
+					mes "ฉันต้องขออภัยเกี่ยวกับเรื่องพวกนี้...";
+				}
+				close;
+			}
+		}
+		mes "["+getarg(0)+"]";
+		successrefitem .@part;
+		
+		if ( getequiprefinerycnt(.@part) >= 5 )
+				announce "[ ตีบวกคอส Shadows ] ผู้เล่น "+strcharinfo(0)+" ได้ทำการอัพเกรด [ "+ getequipname(.@part) +" ] ถึงระดับ +"+ getequiprefinerycnt(.@part) +" สำเร็จ !",bc_all;
+			
+		emotion e_heh;
+		set .@win,rand(1,3);
+		if (.@win == 1) {
+			mes "ยอดเยี่ยม !";
+			mes "เฮ้ เฮ้ !";
+			mes "และ อีกครั้ง,";
+			mes "การทำงาน";
+			mes "จากความสมบูรณ์แบบ~";
+		} else if(.@win == 2) {
+			mes "สำเร็จ...!";
+			mes "อีกครั้ง, กับสิ่งที่หน้าตื่นตาตื่นใจ";
+			mes "ของฉันในวันนี้.";
+		} else {
+			mes "เฮ้ เฮ้ !";
+			mes "ฉันทำสำเร็จทุกอย่าง.";
+			mes "ไม่มีข้อสงสัย, การทำงานของฉันคือ";
+			mes "เพื่อความพึงพอใจของคุณ.";
+			mes "ใช่, มันสมบูรณ์แบบที่สุด~";
+		}
+		close;
+	}
+}

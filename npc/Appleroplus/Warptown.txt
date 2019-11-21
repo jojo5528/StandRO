@@ -1,0 +1,54 @@
+//===== Developers Script ===================================
+//= Server Rate
+//===== Current Version =====================================
+//= 1.0
+//===== Description =========================================
+//= Server Rate
+//===== Additional Comments =================================
+//= 1.0 Start Version
+//= 1.1 Edit By Ragnarok PVP GVG
+//===========================================================
+
+start_a01,58,98,4	script	ไปเมืองหลวง	686,{
+
+mes "เราจะพาท่านไปเมืองหลวง";
+mes "คือ Wonderworld";
+next;
+menu "- เข้าสู่เมืองหลวง",Wonderworld,"- ยกเลิก",cancel;
+
+Wonderworld:
+warp "wonderworld",156,124;
+announce "[ระบบ] ขณะนี้ คุณ [ "+strcharinfo(0)+" ] ผู้เล่นใหม่ได้เข้าสู่เมืองหลวงของเราแล้วจ้า มีผู้เล่นออนไลน์อยู่ในเมืองหลวงทั้งหมด [ "+getmapusers("wonderworld")+" ] คน",0,0x66FF00;
+atcommand "@save";
+close;
+
+cancel:
+close;
+
+OnInit:
+waitingroom "ไปเมืองหลวง Wonderworld",0;
+end; 
+}
+
+
+start_a01,0,0,0,0	monster	น้องโปริ่ง	3601,10,0,0,0
+start_a01,0,0,0,0	monster	น้องโปริ่ง	3602,10,0,0,0
+start_a01,0,0,0,0	monster	น้องโปริ่ง	3603,10,0,0,0
+start_a01,0,0,0,0	monster	น้องโปริ่ง	3604,10,0,0,0
+start_a01,0,0,0,0	monster	น้องโปริ่ง	3605,10,0,0,0
+start_a01,0,0,0,0	monster	น้องโปริ่ง	3606,10,0,0,0
+start_a01,0,0,0,0	monster	น้องโปริ่ง	3607,10,0,0,0
+start_a01,0,0,0,0	monster	น้องโปริ่ง	3608,10,0,0,0
+start_a01,0,0,0,0	monster	น้องโปริ่ง	3609,10,0,0,0
+start_a01,0,0,0,0	monster	น้องโปริ่ง	3610,10,0,0,0
+start_a01,0,0,0,0	monster	น้องโปริ่ง	3611,10,0,0,0
+start_a01,0,0,0,0	monster	น้องโปริ่ง	3612,10,0,0,0
+start_a01,0,0,0,0	monster	น้องโปริ่ง	3613,10,0,0,0
+start_a01,0,0,0,0	monster	น้องโปริ่ง	3614,10,0,0,0
+start_a01,0,0,0,0	monster	น้องโปริ่ง	3615,10,0,0,0
+start_a01,0,0,0,0	monster	น้องโปริ่ง	3616,10,0,0,0
+start_a01,0,0,0,0	monster	น้องโปริ่ง	3617,10,0,0,0
+start_a01,0,0,0,0	monster	น้องโปริ่ง	3618,10,0,0,0
+start_a01,0,0,0,0	monster	น้องโปริ่ง	3619,10,0,0,0
+start_a01,0,0,0,0	monster	น้องโปริ่ง	3620,10,0,0,0
+//start_a01,0,0,0,0	monster	ม๊ะม๊าโปริ่ง	3621,1,0,0,0

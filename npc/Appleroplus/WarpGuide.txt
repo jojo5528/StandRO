@@ -1,0 +1,58 @@
+//===== Developers Script ===================================
+//= Server Rate
+//===== Current Version =====================================
+//= 1.0
+//===== Description =========================================
+//= Server Rate
+//===== Additional Comments =================================
+//= 1.0 Start Version
+//= 1.1 Edit By Ragnarok PVP GVG
+//===========================================================
+
+wonderworld,158,131,4	script	วาปแนะนำในเมือง#1	726,{
+
+mes "^CC00CCเราจะพาท่านไปสถานที่ต่างๆในเมือง^000000";
+mes "โปรดเลือกสถานที่ต่างๆที่จะไป";
+next;
+menu "โซนกิจกรรม",Event,"โซนWoe",Woe,"โซนดันเจี้ยน",Dungeon,"โซนตกปลา",Fishing,"โซนแต่งงาน",Merry,"โซนตีบวก",Refine,"โซนเทสดาเมจ",Damage,"โซนเควสต่างๆ",Quest,"โซนอัพเกรดไอเทม",Upgrade,"ยกเลิก",cancel;
+
+Event:
+warp "wonderworld",109,158;
+close;
+
+Woe:
+warp "wonderworld",135,78;
+close;
+
+Dungeon:
+warp "wonderworld",53,158;
+close;
+
+Fishing:
+warp "wonderworld",167,48;
+close;
+
+Merry:
+warp "wonderworld",105,108;
+close;
+
+Refine:
+warp "wonderworld",159,158;
+close;
+
+Damage:
+warp "wonderworld",135,78;
+close;
+
+Quest:
+warp "wonderworld",157,102;
+close;
+
+Upgrade:
+warp "wonderworld",137,98;
+close;
+
+cancel:
+close;
+
+}

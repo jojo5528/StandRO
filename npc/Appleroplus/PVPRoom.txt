@@ -1,0 +1,149 @@
+//==============================================
+// - Script By : M-Ro Online
+// - Script City : Thailand 
+// - Script Support Server : Hercules & rAthena
+//==============================================
+-	script	PvP	-1,{
+
+soundeffect "pvp.wav",0;
+mes "สวัสดีคุณ :^FF0000 "+strcharinfo(0)+" ^000000 ";
+mes "ต้องการเข้าสู่สนามประลอง";
+mes "เพื่อทดสอบฝีมือของคุณไหม";
+menu 
+"สนามประลองกลางทะเล [ "+getmapusers("m_pvp01")+"/30 ]",Mm_pvp01a,
+"สนามประลองโคคาโคล่า [ "+getmapusers("m_pvp02")+"/30 ]",Mm_pvp02a,
+"สนามประลองของนักฆ่า [ "+getmapusers("m_pvp03")+"/30 ]",Mm_pvp03a,
+"สนามประลอง พรอนเทร่า [ "+getmapusers("prt_pvp")+"/30 ]",Mprt_pvpa,
+"Death Match [ "+getmapusers("pvp_n_1-5")+"/100 ]",Mm_pvp01,
+"Izlude [ "+getmapusers("pvp_y_8-2")+"/100 ]",Mm_pvp02,
+"Prontera [ "+getmapusers("pvp_y_8-1")+"/100 ]",Mm_pvp03,
+"1 VS 1 [ "+getmapusers("pvp_n_1-3")+"/2 ]",Mm_pvp04,
+"ออก ",Lcancel;
+
+
+Mm_pvp01a:
+sc_end SC_POEMBRAGI;
+sc_end SC_SERVICE4U;
+if (getmapusers("m_pvp01")>= 30) goto MaxPlayerRoom;
+warp "m_pvp01",0,0;
+announce "[ระบบ] ขณะนี้ คุณ [ "+strcharinfo(0)+" ] ได้เข้าสู่ สนามประลองกลางทะเล แล้วจ้า ขณะนี้มีผู้เล่นทั้งหมด [ "+getmapusers("m_pvp01")+"/30 ] คน",0;
+close;
+
+Mm_pvp02a:
+sc_end SC_POEMBRAGI;
+sc_end SC_SERVICE4U;
+if (getmapusers("m_pvp02")>= 30) goto MaxPlayerRoom;
+warp "m_pvp02",0,0;
+announce "[ระบบ] ขณะนี้ คุณ [ "+strcharinfo(0)+" ] ได้เข้าสู่ สนามประลองโคคาโคล่า แล้วจ้า ขณะนี้มีผู้เล่นทั้งหมด [ "+getmapusers("m_pvp02")+"/30 ] คน",0;
+close;
+
+Mm_pvp03a:
+sc_end SC_POEMBRAGI;
+sc_end SC_SERVICE4U;
+if (getmapusers("m_pvp03")>= 30) goto MaxPlayerRoom;
+warp "m_pvp03",0,0;
+announce "[ระบบ] ขณะนี้ คุณ [ "+strcharinfo(0)+" ] ได้เข้าสู่ สนามประลองของนักฆ่า แล้วจ้า ขณะนี้มีผู้เล่นทั้งหมด [ "+getmapusers("m_pvp03")+"/30 ] คน",0;
+close;
+
+Mprt_pvpa:
+sc_end SC_POEMBRAGI;
+sc_end SC_SERVICE4U;
+if (getmapusers("prt_pvp")>= 30) goto MaxPlayerRoom;
+warp "prt_pvp",0,0;
+announce "[ระบบ] ขณะนี้ คุณ [ "+strcharinfo(0)+" ] ได้เข้าสู่ สนามประลอง พรอนเทร่า แล้วจ้า ขณะนี้มีผู้เล่นทั้งหมด [ "+getmapusers("prt_pvp")+"/30 ] คน",0;
+close;
+
+Mm_pvp01:
+sc_end SC_POEMBRAGI;
+sc_end SC_SERVICE4U;
+if (getmapusers("pvp_n_1-5")>= 100) goto MaxPlayerRoom;
+warp "pvp_n_1-5",0,0;
+announce "[ระบบ] ขณะนี้ คุณ [ "+strcharinfo(0)+" ] ได้เข้าสู่สนามประลอง Death Match แล้วจ้า ขณะนี้มีผู้เล่นทั้งหมด [ "+getmapusers("pvp_n_1-5")+"/100 ] คน",0;
+close;
+
+Mm_pvp02:
+sc_end SC_POEMBRAGI;
+sc_end SC_SERVICE4U;
+if (getmapusers("pvp_y_8-2")>= 100) goto MaxPlayerRoom;
+warp "pvp_y_8-2",0,0;
+announce "[ระบบ] ขณะนี้ คุณ [ "+strcharinfo(0)+" ] ได้เข้าสู่สนามประลอง Izlude แล้วจ้า ขณะนี้มีผู้เล่นทั้งหมด [ "+getmapusers("pvp_y_8-2")+"/100 ] คน",0;
+close;
+
+Mm_pvp03:
+sc_end SC_POEMBRAGI;
+sc_end SC_SERVICE4U;
+if (getmapusers("pvp_y_8-1")>= 100) goto MaxPlayerRoom;
+warp "pvp_y_8-1",0,0;
+announce "[ระบบ] ขณะนี้ คุณ [ "+strcharinfo(0)+" ] ได้เข้าสู่สนามประลอง Prontera แล้วจ้า ขณะนี้มีผู้เล่นทั้งหมด [ "+getmapusers("pvp_y_8-1")+"/100 ] คน",0;
+close;
+
+Mm_pvp04:
+sc_end SC_POEMBRAGI;
+sc_end SC_SERVICE4U;
+if (getmapusers("pvp_n_1-3")>= 2) goto MaxPlayerRoom;
+warp "pvp_n_1-3",0,0;
+announce "[ระบบ] ขณะนี้ คุณ [ "+strcharinfo(0)+" ] ได้เข้าสู่สนามประลอง 1 VS 1 แล้วจ้า ขณะนี้มีผู้เล่นทั้งหมด [ "+getmapusers("pvp_n_1-3")+"/100 ] คน",0;
+close;
+
+MaxPlayerRoom:
+mes "ขณะนี้สนามประลองเต็ม";
+close;
+
+Lcancel:
+close;
+OnInit:
+do {
+delwaitingroom;
+waitingroom "ผู้เล่นในห้อง " +getmapusers("guild_vs3")+ " คน",0;
+sleep 1000; // Evites super infinity loop
+} while(1); // End Loop
+end;
+}
+wonderworld,167,131,4	duplicate(PvP)	PvP Officer#pron_1	615
+wonderworld,167,82,4	duplicate(PvP)	PvP Officer#pron_2	615
+wonderworld,108,51,4	duplicate(PvP)	PvP Officer#pron_3	615
+wonderworld,84,104,4	duplicate(PvP)	PvP Officer#pron_4	615
+wonderworld,36,134,4	duplicate(PvP)	PvP Officer#pron_5	615
+//morocc,214,71,4	duplicate(PvP)	PvP Officer#pron_6	676
+
+
+pvp_y_8-2	mapflag	nocommand	90
+pvp_y_8-1	mapflag	nocommand	90
+pvp_n_1-3	mapflag	nocommand	90
+pvp_n_1-5	mapflag	nocommand	90
+
+pvp_y_8-2	mapflag	pvp
+pvp_y_8-2	mapflag	nomemo
+pvp_y_8-2	mapflag	nosave	SavePoint
+pvp_y_8-2	mapflag	noteleport
+pvp_y_8-2	mapflag	nowarp
+pvp_y_8-2	mapflag	noreturn
+pvp_y_8-2	mapflag	nodrop
+pvp_y_8-2	mapflag	nobranch
+
+pvp_y_8-1	mapflag	pvp
+pvp_y_8-1	mapflag	nomemo
+pvp_y_8-1	mapflag	nosave	SavePoint
+pvp_y_8-1	mapflag	noteleport
+pvp_y_8-1	mapflag	nowarp
+pvp_y_8-1	mapflag	noreturn
+pvp_y_8-1	mapflag	nodrop
+pvp_y_8-1	mapflag	nobranch
+
+pvp_n_1-3	mapflag	pvp
+pvp_n_1-3	mapflag	nomemo
+pvp_n_1-3	mapflag	nosave	SavePoint
+pvp_n_1-3	mapflag	noteleport
+pvp_n_1-3	mapflag	nowarp
+pvp_n_1-3	mapflag	noreturn
+pvp_n_1-3	mapflag	nodrop
+pvp_n_1-3	mapflag	nobranch
+
+pvp_n_1-5	mapflag	pvp
+pvp_n_1-5	mapflag	nomemo
+pvp_n_1-5	mapflag	nosave	SavePoint
+pvp_n_1-5	mapflag	noteleport
+pvp_n_1-5	mapflag	nowarp
+pvp_n_1-5	mapflag	noreturn
+pvp_n_1-5	mapflag	nodrop
+pvp_n_1-5	mapflag	nobranch

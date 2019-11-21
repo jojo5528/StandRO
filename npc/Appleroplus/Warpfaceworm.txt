@@ -1,0 +1,32 @@
+//===== Developers Script ===================================
+//= Server Rate
+//===== Current Version =====================================
+//= 1.0
+//===== Description =========================================
+//= Server Rate
+//===== Additional Comments =================================
+//= 1.0 Start Version
+//= 1.1 Edit By Ragnarok PVP GVG
+//===========================================================
+
+wonderworld,50,163,4	script	ดัน Faceworm	11044,{
+
+mes "เราจะพาท่านไปแมพ Faceworm";
+mes "^ff0000ลงแล้วได้มัพหนอน สเปเชียลสุ่มออฟ^000000";
+next;
+menu 
+"ดันหนอน Faceworm [ "+getmapusers("dali")+" ]",faceworm,
+"ยกเลิก",cancel;
+
+faceworm:
+warp "dali",93,141;
+close;
+
+
+cancel:
+close;
+
+OnInit:
+waitingroom "Face Worm Nest",0;
+end; 
+}

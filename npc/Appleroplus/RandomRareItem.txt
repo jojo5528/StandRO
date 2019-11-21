@@ -1,0 +1,36 @@
+function	script	randomRareItem	{
+setarray .OTH_ITEMLIST[0],909,713,512,705,61014,61010,7227,705,914,511,949,12710,6380,985,984,7227,7642,607,608,515,534,603,617,7539,12596,6417,605,606,610,716,601,602,639,621,642,641,631,630,623,660,626,637,620,635,622,624,625,640,638,639,661,627,633,619,611,610;
+setarray .COSN_ITEMLIST[0],35450,2344,2346,2348,2350;
+setarray .RARE_ITEMLIST[0],61001;
+setarray .min_amount,1;
+setarray .max_amount,1;
+
+    set .rand, rand(0,30);
+    switch(.rand){
+        case 54:
+            set .Random, rand( getarraysize( .RARE_ITEMLIST ) );
+            getitem .RARE_ITEMLIST[ .Random ], 1;
+            //announce "ผู้เล่น ["+strcharinfo(0)+"] เปิดไข่ Rare Item Egg "+getitemname(.RARE_ITEMLIST[ .Random ])+" ",bc_all,0xFF0000;
+        break;
+       
+       
+        case 19: case 71: case 24:
+            set .Random, rand( getarraysize( .COSN_ITEMLIST ) );
+            getitem .COSN_ITEMLIST[ .Random ], 1;
+            announce "ผู้เล่น ["+strcharinfo(0)+"] เปิดไข่ Rare Item Egg ได้รับ "+getitemname(.COSN_ITEMLIST[ .Random ])+" ",bc_all,0xFF0000;
+        break;
+       
+        default:
+            set .@amount,rand( .min_amount[.@random],.max_amount[.@random] );
+            set .Random, rand( getarraysize( .OTH_ITEMLIST ) );
+        if ( .OTH_ITEMLIST[ .Random ] == 12913 || .OTH_ITEMLIST[ .Random ] == 12914 ) {
+            getitem .OTH_ITEMLIST[ .Random ], 1;
+            //announce "ผู้เล่น ["+strcharinfo(0)+"] เปิด MG Lucky Egg ได้รับ.. "+getitemname(.OTH_ITEMLIST[ .Random ])+" ",bc_all,0xFF0000;
+            } else {
+            getitem .OTH_ITEMLIST[ .Random ], .@amount;
+            //announce "ผู้เล่น ["+strcharinfo(0)+"] เปิด MG Lucky Egg ได้รับ.. "+getitemname(.OTH_ITEMLIST[ .Random ])+" จำนวน "+.@amount+" ea. ",bc_all,0x00FF00;
+        }
+        break;
+    }
+ 
+}

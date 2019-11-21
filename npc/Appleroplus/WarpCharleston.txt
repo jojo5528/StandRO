@@ -1,0 +1,32 @@
+//===== Developers Script ===================================
+//= Server Rate
+//===== Current Version =====================================
+//= 1.0
+//===== Description =========================================
+//= Server Rate
+//===== Additional Comments =================================
+//= 1.0 Start Version
+//= 1.1 Edit By Ragnarok PVP GVG
+//===========================================================
+
+wonderworld,36,163,4	script	Charleston In Distress	11044,{
+
+mes "เราจะพาท่านไปแมพ Charleston";
+mes "^ff0000ลงแล้วได้ประดับ^000000";
+next;
+menu 
+"ดัน Charleston [ "+getmapusers("verus04")+" ]",Charleston,
+"ยกเลิก",cancel;
+
+Charleston:
+warp "verus04",78,117;
+close;
+
+
+cancel:
+close;
+
+OnInit:
+waitingroom "Charleston KRO",0;
+end; 
+}

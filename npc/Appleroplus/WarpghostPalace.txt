@@ -1,0 +1,32 @@
+//===== Developers Script ===================================
+//= Server Rate
+//===== Current Version =====================================
+//= 1.0
+//===== Description =========================================
+//= Server Rate
+//===== Additional Comments =================================
+//= 1.0 Start Version
+//= 1.1 Edit By Ragnarok PVP GVG
+//===========================================================
+
+wonderworld,43,163,4	script	ดัน GhostPalace	11044,{
+
+mes "เราจะพาท่านไปแมพ GhostPalace";
+mes "^ff0000ลงคนดียวได้^000000";
+next;
+menu 
+"ดัน GhostPalace [ "+getmapusers("dali02")+" ]",faceworm,
+"ยกเลิก",cancel;
+
+faceworm:
+warp "dali02",47,130;
+close;
+
+
+cancel:
+close;
+
+OnInit:
+waitingroom "GhostPalace KRO",0;
+end; 
+}

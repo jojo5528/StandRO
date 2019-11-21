@@ -1,0 +1,9 @@
+wonderworld,182,166,4	script	รวมไอเทม	893,{
+
+	mergeitem;
+	end;
+	
+OnInit:
+	waitingroom "รวมไอเทมทุกชนิด",0;
+	end;
+}

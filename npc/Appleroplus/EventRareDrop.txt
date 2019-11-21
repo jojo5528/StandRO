@@ -1,0 +1,65 @@
+//==============================================
+// - Script By : M-Ro Online
+// - Script City : Thailand 
+// - Script Support Server : Hercules & rAthena
+//==============================================
+-	script	PlayBoxTimer4	-1,{
+OnClock0029:
+OnClock0129:
+OnClock0229:
+OnClock0329:
+OnClock0429:
+OnClock0529:
+OnClock0629:
+OnClock0729:
+OnClock0829:
+OnClock0929:
+OnClock1029:
+OnClock1129:
+OnClock1229:
+OnClock1329:
+OnClock1429:
+OnClock1529:
+OnClock1629:
+OnClock1729:
+OnClock1829:
+OnClock1929:
+OnClock2029:
+OnClock2129:
+OnClock2229:
+OnClock2329:
+set $@PB_Count3,0;
+announce "[กิจกรรม Rare Drop Item] : ขณะนี้มอนเตอร์ Rare Drop Item ได้เกิดขึ้นที่เมืองหลวง จำนวน 35 ตัว มีเวลาในการกำจัด 5 นาที !!",0;
+monster "wonderworld",0,0,"Aqua",2117,35,"PlayBoxTimer4::OnBox4";
+initnpctimer;
+end;
+
+OnBox4:
+getitem 61017,1;
+set $@PB_Count3,$@PB_Count3+1;
+announce "[กิจกรรม Rare Drop Item] : มอนเตอร์ตัวที่ [ "+$@PB_Count3+"/35 ] ถูกพบโดยคุณ [ "+strcharinfo(0)+" ]",0;
+end;
+
+OnTimer60000:
+if($@PB_Count3==30){ stopnpctimer; set $@PB_Count3,0; }
+announce "[กิจกรรม Rare Drop Item] : มีเวลาในการกำจัดอีก 4 นาที",0;
+end;
+OnTimer120000:
+if($@PB_Count3==30){ stopnpctimer; set $@PB_Count3,0; }
+announce "[กิจกรรม Rare Drop Item] : มีเวลาในการกำจัดอีก 3 นาที",0;
+end;
+OnTimer180000:
+if($@PB_Count3==30){ stopnpctimer; set $@PB_Count3,0; }
+announce "[กิจกรรม Rare Drop Item] : มีเวลาในการกำจัดอีก 2 นาที",0;
+end;
+OnTimer240000:
+if($@PB_Count3==30){ stopnpctimer; set $@PB_Count3,0; }
+announce "[กิจกรรม Rare Drop Item] : มีเวลาในการกำจัดอีก 1 นาที",0;
+end;
+OnTimer300000:
+announce "[กิจกรรม Rare Drop Item] : หมดเวลากิจกรรมแล้ว",0;
+stopnpctimer;
+set $@PB_Count3,0;
+killmonsterall "morocc";
+end;
+}

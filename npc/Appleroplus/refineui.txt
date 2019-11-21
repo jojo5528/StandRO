@@ -1,0 +1,10 @@
+-	script	refineui	-1,{
+
+atcommand "@refineui";
+close;
+OnInit:
+waitingroom "ตีบวก 1 - 20",0;
+end;
+}
+
+wonderworld,176,160,4	duplicate(refineui)	บริการตีบวก#01	63

@@ -1,0 +1,56 @@
+sec_pri,19,60,4	script	CheckRK	878,{
+	
+	if ( getgmlevel() >= 99 )
+	{
+		switch(prompt("Check Zeny Rank :Check Cash Rank"))
+		{
+			case 1:
+			
+				query_sql("SELECT `c`.`name`, `c`.`account_id`, `c`.`char_id`, `c`.`class`, `c`.`base_level`, `c`.`job_level`, `c`.`zeny`, `g`.`name` FROM `char` c LEFT JOIN (`guild` g) ON (`c`.`guild_id` = `g`.`guild_id`) ORDER BY `c`.`zeny` DESC LIMIT 10", .@name$, .@aid, .@cid, .@class, .@blvl, .@jlvl, .@zeny, .@guild$);
+				
+				
+				for (.@zenrk = 0; .@zenrk < getarraysize(.@name$); .@zenrk++)
+				{
+					.@menu$ = (("" == .@menu$) ? "ลำดับที่ " + (.@zenrk + 1) + " - " + .@name$[.@zenrk] : .@menu$ + ":ลำดับที่ " + (.@zenrk + 1) + " - " + .@name$[.@zenrk]);
+				}
+		
+				mes "[Zeny Ranking]";
+				mes "กรุณาเลือกเมนูรายการเพื่อดูรายละเอียดข้อมูล?";
+				
+				.@zenselected = select(.@menu$);
+				
+				next;
+				mes "[Zeny Ranking]";
+				mes "ชื่อตัวละคร: " + .@name$[.@zenselected - 1];
+				mes "AID: " + .@aid[.@zenselected - 1];
+				mes "CID: " + .@cid[.@zenselected - 1];
+				mes "อาชีพ: " + jobname(.@class[.@zenselected - 1]);
+				mes "เบสเลเวล: " + .@blvl[.@zenselected - 1];
+				mes "จ็อบเลเวล: " + .@jlvl[.@zenselected - 1];
+				mes "กิลด์: " + ((.@guild$[.@zenselected - 1]) ? .@guild$[.@zenselected - 1] : "none");
+				mes "จำนวนเซนี: " + .@zeny[.@zenselected - 1];
+				close;
+				
+			case 2:
+			
+				query_sql("SELECT login.userid, acc_reg_num.account_id, acc_reg_num.value FROM `acc_reg_num` LEFT JOIN `login` ON acc_reg_num.account_id = login.account_id WHERE acc_reg_num.key = '#CASHPOINTS' ORDER BY CAST(`acc_reg_num`.`value` AS UNSIGNED) DESC LIMIT 10", .@uid$, .@acid, .@value);
+				
+				for (.@cashrk = 0; .@cashrk < getarraysize(.@uid$); .@cashrk++)
+				{
+					.@menu$ = (("" == .@menu$) ? "ลำดับที่ " + (.@cashrk + 1) + " - UID " + .@uid$[.@cashrk] : .@menu$ + ":ลำดับที่ " + (.@cashrk + 1) + " - UID " + .@uid$[.@cashrk]);
+				}
+		
+				mes "[CASHPOINTS Ranking]";
+				mes "กรุณาเลือกเมนูรายการเพื่อดูรายละเอียดข้อมูล?";
+				
+				.@cashselected = select(.@menu$);
+				
+				next;
+				mes "[CASHPOINTS Ranking]";
+				mes "ชื่อบัญชีผู้ใช้: " + .@uid$[.@cashselected - 1];
+				mes "แอคเคาท์ ไอดี: " + .@acid[.@cashselected - 1];
+				mes "จำนวนแคชพอยท์: " + .@value[.@cashselected - 1];
+				close;
+		}
+	}
+}

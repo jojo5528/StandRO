@@ -1,0 +1,64 @@
+function	script	SetItem	{
+setarray @refineupgrade[0], 10;
+setarray @itemrefine[0], 1231;
+setarray @itemtrade_1[0], 7539;
+setarray @amoutitem_1[0], 40;
+setarray @itemtrade_2[0], 0;
+setarray @amoutitem_2[0], 0;
+setarray @itemtrade_3[0], 0;
+setarray @amoutitem_3[0], 0;
+return;
+}
+
+wonderworld,89,157,5	script	ตีบวกแลกของรางวัล#quiz	896,{
+set $@tr$,"[Refiner's Challenge]";
+mes $@tr$;
+mes "สวัสดีค่ะ ยินดีให้บริการค่ะ";
+mes "เลือกเมนูที่คุณต้องการค่ะ";
+next;
+menu
+"• แลกรางวัล",upgstart,
+"• ยกเลิก",upgend;
+
+upgstart:
+mes $@tr$;
+callfunc "SetItem";
+set .@menu$,"";
+for( set .@u,0; .@u < getarraysize(@itemrefine); set .@u,.@u+1 ) {
+sleep2 1;
+if (0 == getitemslots( @itemrefine[.@u]))	set .@menu$, .@menu$ + ""+(.@u+1)+". +" + "" + @refineupgrade[.@u]+" "+getitemname(@itemrefine[.@u])+"";
+if (1 <= getitemslots( @itemrefine[.@u]))	set .@menu$, .@menu$ + ""+(.@u+1)+". +" + "" + @refineupgrade[.@u]+" "+getitemname(@itemrefine[.@u])+"["+getitemslots( @itemrefine[.@u])+"]";
+set .@menu$, .@menu$ + ":";
+if (0 == getitemslots( @itemrefine[.@u])) 	mes ""+(.@u+1)+". +"+@refineupgrade[.@u ]+" "+getitemname(@itemrefine[.@u])+" แลก";
+if (1 <= getitemslots( @itemrefine[.@u])) 	mes ""+(.@u+1)+". +"+@refineupgrade[.@u ]+" "+getitemname(@itemrefine[.@u])+"["+getitemslots( @itemrefine[.@u])+"] แลก Upg Box";
+if (@itemtrade_1[.@u] > 0)	mes "- "+getitemname(@itemtrade_1[.@u])+" "+@amoutitem_1[.@u]+" ea";
+if (@itemtrade_2[.@u] > 0)	mes "- "+getitemname(@itemtrade_2[.@u])+" "+@amoutitem_2[.@u]+" ea";
+if (@itemtrade_3[.@u] > 0)	mes "- "+getitemname(@itemtrade_3[.@u])+" "+@amoutitem_3[.@u]+" ea";
+continue;
+}
+next;
+set .@u,select(.@menu$);
+mes $@tr$;
+if(countitem2(@itemrefine[(.@u-1)],1,@refineupgrade[(.@u-1)],0,0,0,0,0) < 1) {
+if (0 == getitemslots( @itemrefine[(.@u-1)]))	mes "ต้องการ +" + "" + @refineupgrade[(.@u-1)]+" "+getitemname(@itemrefine[(.@u-1)])+" 1 ea ค่ะ";
+if (1 <= getitemslots( @itemrefine[(.@u-1)]))	mes "ต้องการ +" + "" + @refineupgrade[(.@u-1)]+" "+getitemname(@itemrefine[(.@u-1)])+"["+getitemslots( @itemrefine[(.@u-1)])+"] 1 ea ค่ะ";
+end;
+}
+else if(countitem2(@itemrefine[(.@u-1)],1,@refineupgrade[(.@u-1)],0,0,0,0,0) >= 1) {
+if(@inventorylist_count >= 95){ mes "ตรวจสอบน้ำหนักด้วยค่ะ"; goto upgend;}
+if ((((readparam(24)+(getiteminfo(@itemtrade_1[(.@u-1)],6)*@amoutitem_1[(.@u-1)])+(getiteminfo(@itemtrade_2[(.@u-1)],6)*@amoutitem_2[(.@u-1)])+(getiteminfo(@itemtrade_3[(.@u-1)],6)*@amoutitem_3[(.@u-1)]))-getiteminfo(@itemrefine[(.@u-1)],6))/10) > (readparam(25)-100)/10) {mes "ตรวจสอบน้ำหนักตัวละครด้วยค่ะ"; goto upgend; }
+delitem2 @itemrefine[(.@u-1)],1,1,@refineupgrade[(.@u-1)],0,0,0,0,0;
+if (@itemtrade_1[.@u-1] > 0) getitem @itemtrade_1[(.@u-1)],@amoutitem_1[(.@u-1)];
+if (@itemtrade_2[.@u-1] > 0) getitem @itemtrade_2[(.@u-1)],@amoutitem_2[(.@u-1)];
+if (@itemtrade_3[.@u-1] > 0) getitem @itemtrade_3[(.@u-1)],@amoutitem_3[(.@u-1)];
+mes " ";
+end;
+}
+upgend:
+end;
+
+OnInit:
+waitingroom "ตีบวกแลกของรางวัล",0;
+end;
+}
+

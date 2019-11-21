@@ -1,0 +1,3848 @@
+/*
+Script. Charleston In Distress Instance Episode 15.1 Phantasmagorika
+Create By. Athena Studio
+Bug Report. Kittisak Sarounram [ FB ]
+Contact Us. Kittisak Sarounram [ FB ]
+TEL. 0909183008 [ TRUEMOVE H ]
+*/
+
+/* Add Monster In mob_db.txt
+before
+//3122,CHARLESTON1
+//3123,CHARLESTON2
+//3124,CHARLESTON3
+3125,STEP,Step,Step,130,55403,0,3088,2392,1,871,1566,101,58,117,127,55,61,116,60,10,12,0,6,22,234894485,250,0,780,0,0,0,0,0,0,0,0,6751,1000,998,150,13213,400,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+//3126,ROCK_STEP
+//3127,KICK_STEP
+//3128,KICK_AND_KICK
+
+after
+3122,CHARLESTON1,CHARLESTON1,CHARLESTON1,125,48430,1,3088,2392,1,871,349,101,45,109,121,50,55,108,55,10,12,0,6,42,0x3795,100,1872,672,480,0,0,0,0,0,0,0,7004,100,505,50,993,300,997,25,15101,1,0,0,0,0,0,0,0,0,0,0
+3123,CHARLESTON2,CHARLESTON2,CHARLESTON2,125,48430,1,3088,2392,1,871,349,101,45,109,121,50,55,108,55,10,12,0,6,42,0x3795,100,1872,672,480,0,0,0,0,0,0,0,7004,100,505,50,993,300,997,25,15101,1,0,0,0,0,0,0,0,0,0,0
+3124,CHARLESTON3,Charleston 3,Charleston 3,145,23671401,1,3088,2392,1,1545,2145,101,45,200,100,200,200,220,100,10,12,2,6,60,0x3795,100,1872,672,480,0,0,0,0,0,0,0,16031,200,28101,200,16033,100,21011,200,22043,400,22044,400,6752,5000,0,0,0,0,0,0
+3125,STEP,Step,Step,130,55403,1,3088,8580,1,935,1284,101,45,109,121,50,55,108,55,10,12,0,6,20,131,400,1872,672,480,0,0,0,0,0,0,0,998,300,6213,2500,6751,7500,6750,1500,7319,100,0,0,0,0,0,0,0,0,0,0
+3126,ROCK_STEP,Lockstep,Lockstep,131,71056,1,3088,2392,1,1102,1542,85,45,91,89,65,118,147,75,10,12,0,6,22,149,200,1840,1440,384,0,0,0,0,0,0,0,999,2000,6750,2000,7319,2000,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+3127,KICK_STEP,N-Type,N-Type,132,73644,1,3088,2392,1,1143,1604,80,45,91,86,67,116,153,71,10,12,0,6,22,0x3795,100,1872,672,480,0,0,0,0,0,0,0,6750,400,999,250,7319,300,0,0,0,0,0,0,0,0,0,0,0,0,27012,1
+3128,KICK_AND_KICK,Kick and Kick,Kick and Kick,133,68018,1,3088,2392,1,1476,2069,101,45,156,110,61,53,133,53,10,12,1,6,40,0x3795,180,580,288,360,0,0,0,0,0,0,0,998,2000,6751,1000,0,0,0,0,0,0,0,0,0,0,0,0,0,0,27013,1
+
+*/
+
+/* Add Instance In instance_db.txt
+
+Insert
+19,Charleston,3600,300,1@mcd,127,282
+
+*/
+
+/* Insert Or Change Delay Time Instance Charleston In Distress In quest_db.txt
+หน่วยเป็นวินาที 72000 = 20 ชั่วโมง
+13185,72000,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,"Charleston Factory - Hold"
+
+*/
+
+verus04,75,114,5	script	Charleston#charleston2	10054,{
+	if (checkquest(13186) == -1) {
+		cutin "nale01.bmp",0;
+		mes "[Charleston]";
+		mes "ถ้าเมื่อไหร่ที่คุณรู้สึกผิดหวังกับความเป็นจริงที่คุณต้องการที่จะหลีกเลี่ยงหนีจากความวุ่นวายในวันข้างหน้าคุณก็จะต้องยอมแพ้.";
+		cutin "nale03.bmp",0;
+		next;
+		switch(select("ฉันต้องการที่จะท้าทายถึงแม้มีความหวังเพียงแค่ 1% !","ฉันยอมแพ้"))
+		{
+			case 1:
+				if ((checkquest(13184) == 0) || (checkquest(13184) == 1) || (checkquest(13184) == 2)) {
+					mes "[Charleston]";
+					mes "ฉันจะพยายามจนกว่าจะถึงที่สุด. ต่อให้เป็นหนึ่งในล้าน. หากมันเป็นไปได้. ฉันก็จะพยายาม...";
+					close;
+				} else {
+					mes "[Charleston]";
+					mes "ฉัน... เป็นหุ่นยนต์. ฉันไม่ได้สนใจเหตุผล. ฉันเพียงแค่ต้องทำในสิ่งที่ฉันต้องทำ.";
+					next;
+					mes "[Charleston]";
+					mes "ฉันได้สร้างหุ่นยนต์ที่มีความคิดของ 'เหตุผล' ฉันต้องการพยายามที่จะเปลี่ยนอดีตด้วยความรู้สึก.";
+					next;
+					mes "[Charleston]";
+					mes "คุณจะตำหนิก็ได้. แต่ว่า. ฉันจะพยายามมันจนถึงที่สุด. ถึงแม้ว่ามันอาจจะเป็นไปไม่ได้....";
+					next;
+					mes "[Charleston]";
+					mes "ถึงแม้ว่าหัวใจของฉันได้หยุดทำงานลงแล้ว. แต่ฉันยังสามารถพูดคุยได้. ได้โปรดช่วยฉันที.";
+					setquest 13184;
+					close2;
+					cutin "nale03.bmp",255;
+					end;
+				}
+			case 2:
+				if ((checkquest(13184) == 1) || (checkquest(13184) == 0) || (checkquest(13184) == 2)) {
+					close2;
+					erasequest 13184;
+					cutin "nale03.bmp",255;
+					end;
+				} else {
+					cutin "nale03.bmp",255;
+					close;
+				}
+		}
+	} else {
+		mes "[Charleston]";
+		mes "ฉันไม่สามารถที่จะหยุดเวลา. หรือ ย้อนเวลากลับไปได้. แต่บางทีอาจจะมีสักคนที่สามารถทำได้.";
+		next;
+		mes "[Charleston]";
+		mes "ฉันต้องยืนอยู่ที่นี่เพื่อคนอื่นๆ. ฉันจะไม่ยอมแพ้อย่างเด็ดขาด.";
+		getexp 1800000,600000;
+		setquest 13184;
+		erasequest 13184;
+		erasequest 13186;
+		close;
+	}
+}
+verus04,81,113,0	script	Machinery#machine		10007,{
+	if ((checkquest(13184) == 1) || (checkquest(13184) == 0)) {
+		set .@charleston_time,checkquest(13185,PLAYTIME);
+			if (.@charleston_time == 2) {
+				erasequest 13185;
+				end;
+			}
+			else  if ((.@charleston_time == 1) || (.@charleston_time == 0)) {
+				mes "^ff0000คุณจะไม่สามารถกลับมาใช้งานได้อีก 24 ชั่วโมง หลังจากใช้งานครั้งล่าสุด.^000000";
+				close;
+			}
+			else if (.@charleston_time == -1) {
+				set .@party_id,getcharid(1);
+				set .@p_name$,getpartyname(.@party_id);
+				set .@md_name$,"Charleston";
+				
+				if (!instance_check_party(.@party_id,1)) {
+					mes "คุณต้องการทำการสร้างปาร์ตี้";
+					close;
+				}
+				if (getcharid(0) == getpartyleader(.@party_id,2))
+					set .@menu$, "ลงทะเบียนดันเจี้ยน.:เข้าสู่ดันเจี้ยน Charleston.:ยกเลิก";
+				else
+				set .@menu$, ":เข้าสู่โรงงาน Charleston.:ยกเลิก.";
+				switch(select(.@menu$)) 
+				{
+				case 1:
+					if (instance_create(.@md_name$) < 0) {
+						mes "ชื่อปาร์ตี้ : "+.@p_name$;
+						mes "หัวหน้าปาร์ตี้ : "+strcharinfo(0);
+						mes "^0000ff"+.@md_name$+" ^000000- ลงทะเบียนล้มเหลว !";
+						close;
+					}
+					mes "^ff0000ขณะนี้กำลังพร้อมที่จะทำงานแล้ว !^000000";
+					mes "^ff0000กรุณารอสักครู่ !^000000";
+					close;
+				case 2:
+					switch(instance_enter(.@md_name$))
+					{
+						case 0:
+							if (getcharid(0) == getpartyleader(.@party_id,2)) {
+								if(charlestonins == 0) {
+									mapannounce "verus04",strcharinfo(0)+", สมาชิกของปาร์ตี้ "+.@p_name$+" ได้เข้าสู่ดันเจี้ยน "+.@md_name$+" เรียบร้อยแล้ว.",bc_map,"0x00ff99";
+									setquest 13185;
+									specialeffect2 EF_WARP;
+									end;
+								} else {
+									mapannounce "verus04",strcharinfo(0)+", สมาชิกของปาร์ตี้ "+.@p_name$+" ได้เข้าสู่ดันเจี้ยน "+.@md_name$+" เรียบร้อยแล้ว.",bc_map,"0x00ff99";
+									setquest 13185;
+									set charlestonins,0;
+									specialeffect2 EF_WARP;
+									end;
+								}
+							} else {
+								if(charlestonins == 0) {
+									mes "[Machinery]";
+									mes "กำลังเข้าสู่กระบวนการย้าย !";
+									next;
+									mes "^ff0000คุณจะไม่สามารถกลับมาใช้งานได้อีก 24 ชั่วโมง หลังจากใช้งานครั้งล่าสุด.^000000";
+									mapannounce "verus04",strcharinfo(0)+", สมาชิกของปาร์ตี้ "+.@p_name$+" ได้เข้าสู่ดันเจี้ยน "+.@md_name$+" เรียบร้อยแล้ว.",bc_map,"0x00ff99";
+									setquest 13185;
+									specialeffect2 EF_WARP;
+									sleep2 1000;
+									close;
+								} else {
+									mes "[Machinery]";
+									mes "กำลังเข้าสู่กระบวนการย้าย !";
+									set charlestonins,0;
+									next;
+									mes "^ff0000คุณจะไม่สามารถกลับมาใช้งานได้อีก 24 ชั่วโมง หลังจากใช้งานครั้งล่าสุด.^000000";
+									mapannounce "verus04",strcharinfo(0)+", สมาชิกของปาร์ตี้ "+.@p_name$+" ได้เข้าสู่ดันเจี้ยน "+.@md_name$+" เรียบร้อยแล้ว.",bc_map,"0x00ff99";
+									setquest 13185;
+									specialeffect2 EF_WARP;
+									sleep2 1000;
+									close;
+								}
+							}
+						case 1:
+							mes "เฉพาะสมาชิกที่ลงทะเบียนเท่านั้นที่จะเข้าสู่ดันเจี้ยน "+.@md_name$+" ได้.";
+							close;
+						case 2:
+							mes "ดันเจี้ยน "+.@md_name$+" ยังไม่ได้เปิดอยู่.";
+							mes "หัวหน้าปาร์ตี้ยังไม่ได้ลงทะเบียนดันเจี้ยน.";
+							close;
+						case 3:
+							mes "เกิดข้อผิดพลาด";
+							close;
+					}
+				case 3:
+					close;	
+				}
+			}
+	} else {
+		mes "^ff0000ก่อนที่จะใช้เครื่องจักร จะต้องได้รับการอนุญาติจาก Charleston ก่อนจึงจะใช้งานได้.^000000";
+		close;
+	}
+}
+
+1@mcd,127,277,4	script	Charleston No.1#0_00y	10053,10,2,{
+	end;
+OnTouch:
+	if ((getvariableofnpc(getd("."+instance_id()),instance_npcname("Charleston No.1#0_00y"))) == 1) {
+		cutin "dalle01.bmp",2;
+		mes "[Charleston No.1]";
+		mes "โปรดอย่าลืม ระบบรักษาความปลอดภัยจะทำงานน้อยลงหากคุณเดินตามทางไปยังด้านซ้าย.";
+		close2;
+		cutin "dalle01.bmp",255;
+		end;
+	} else {
+		if (getcharid(0) == getpartyleader(getcharid(1),2)) {
+			mes "[Charleston No.1]";
+			mes "โอ้ ! ในที่สุดคุณก็มาที่นี่. ฉันกำลังรอยู่เลย.";
+			npctalk "โอ้ ! ในที่สุดคุณก็มาที่นี่. ฉันกำลังรอยู่เลย.";
+			cutin "dalle01.bmp",2;
+			emotion e_gasp;
+			next;
+			mes "[Charleston No.1]";
+			mes "ฉันไม่มีเวลามากนัก ดังนั้นโปรดฟังฉันอธิบาย. ตอนนี้โรงงาน Charleston อยู่ในสถานะระบบรักษาความปลอดภัยระดับ B. นั่นหมายความว่าอุปกรณ์รักษาความปลอดภัยได้เปิดใช้งานแล้ว.";
+			npctalk "ฉันไม่มีเวลามากนัก ดังนั้นโปรดฟังฉันอธิบาย. ตอนนี้โรงงาน Charleston อยู่ในสถานะระบบรักษาความปลอดภัยระดับ B. นั่นหมายความว่าอุปกรณ์รักษาความปลอดภัยได้เปิดใช้งานแล้ว.";
+			next;
+			mes "[Charleston No.1]";
+			mes "ถ้าหากคุณเดินไปตามทางทางด้านซ้ายอุปกรณืแจ้งเตือนระบบการรักษาความปลอดภัยจะทำงานน้อยลง. คุณจึงจะสามารถดำเนินการในส่วนถัดไปได้.";
+			npctalk "ถ้าหากคุณเดินไปตามทางทางด้านซ้ายอุปกรณืแจ้งเตือนระบบการรักษาความปลอดภัยจะทำงานน้อยลง. คุณจึงจะสามารถดำเนินการในส่วนถัดไปได้.";
+			emotion e_swt2;
+			next;
+			mes "[Charleston No.1]";
+			mes "ไม่ต้องกังวลเกี่ยวกับอุปกรณ์รักษาความปลอดภัยที่ถูกทำลายไป. ฉันสามารถที่จะกู้มันคืนได้ในเร็วๆนี้.";
+			npctalk "ไม่ต้องกังวลเกี่ยวกับอุปกรณ์รักษาความปลอดภัยที่ถูกทำลายไป. ฉันสามารถที่จะกู้มันคืนได้ในเร็วๆนี้.";
+			next;
+			mes "[Charleston No.1]";
+			mes "ฉันจะได้พบคุณและได้ฟังรายละเอียดได้ในเร็วๆนี้ ! โปรดรีบเข้าล่ะ !";
+			npctalk "ฉันจะได้พบคุณและได้ฟังรายละเอียดได้ในเร็วๆนี้ ! โปรดรีบเข้าล่ะ !";
+			emotion e_swt2;
+			setd "."+instance_id(),1;
+			close2;
+			donpcevent instance_npcname("Charleston No.1#0_00y")+"::OnAnuncio";
+			cutin "dalle01.bmp",255;
+			end;
+		} else {
+			cutin "dalle01.bmp",2;
+			mes "[Charleston No.1]";
+			mes "โปรดอย่าลืม ระบบรักษาความปลอดภัยจะทำงานน้อยลงหากคุณเดินตามทางไปยังด้านซ้าย.";
+			close2;
+			cutin "dalle01.bmp",255;
+			end;
+		}
+	}
+OnInstanceInit:
+	donpcevent instance_npcname("Charleston No.1#0_00y")+"::OnEnable";
+	end;
+OnDisable:
+	hideonnpc instance_npcname("Charleston No.1#0_00y");
+	end;
+OnEnable:
+	hideoffnpc instance_npcname("Charleston No.1#0_00y");
+	end;
+OnAnuncio:
+	initnpctimer;
+	end;
+OnTimer5000:
+	mapannounce instance_mapname("1@mcd"),"การที่จะเข้าสู่พื้นที่ถัดไป. คุณจำเป็นที่จะต้องยกอุปกรณ์รักษาความปลอดภัยในพื้นที่ที่สอดคล้องกัน.",bc_map,"0xFFFF00";
+	stopnpctimer;
+	end;
+}
+
+1@mcd,116,213,5	script	Dr. Bee#1_00y		923,2,3,{
+	if ((getvariableofnpc(getd("."+instance_id()),instance_npcname("Charleston No.1#1_00y", instance_id()))) == 0) {
+		mes "- ฉันกำลังยุ่งอยู่กับการเขียนบางสิ่งบางอย่าง. กรุณาอย่าขัดจังหวะ.";
+		close;
+	}
+	else if ((getvariableofnpc(getd("."+instance_id()),instance_npcname("Charleston No.1#1_00y", instance_id()))) > 0) {
+		mes "- ฉันกำลังยุ่งอยู่กับการเขียนบางสิ่งบางอย่าง. กรุณาอย่าขัดจังหวะ.";
+		close;
+	}
+OnTouch:
+	if (getcharid(0) == getpartyleader(getcharid(1),2)) {
+		if ((getvariableofnpc(getd("."+instance_id()),instance_npcname("Charleston No.1#1_00y", instance_id()))) == 0) {
+			mes "[Dr. Bee]";
+			mes "Charleston 1, Charleston 2 ได้รับการเชื่อมต่อเข้าสู่กับคอมพิวเตอร์หลัก, ฉันไม่สามารถควบคุมมันได้.";
+			npctalk "Charleston 1, Charleston 2 ได้รับการเชื่อมต่อเข้าสู่กับคอมพิวเตอร์หลัก, ฉันไม่สามารถควบคุมมันได้.";
+			next;
+			cutin "dalle02.bmp",2;
+			mes "[Charleston No.1]";
+			mes "เธอคือหุ่นยนต์. เธอควรจะหยุดไม่ช้าหรือเร็ว";
+			donpcevent instance_npcname("Charleston No.1#1_00y")+"::OnChat1";
+			next;
+			cutin "dalle01.bmp",255;
+			mes "[Dr. Bee]";
+			mes "อุปกรณ์ที่อยู่ในหุ่นยนต์จะทำงานอย่างน้อย 50 ปี. และ แน่นอนระหว่างนี้โรงงานกำลังจะถูกทำลายลง.";
+			npctalk "อุปกรณ์ที่อยู่ในหุ่นยนต์จะทำงานอย่างน้อย 50 ปี. และ แน่นอนระหว่างนี้โรงงานกำลังจะถูกทำลายลง.";
+			next;
+			cutin "dalle01.bmp",2;
+			mes "[Charleston No.1]";
+			mes "เราไม่มีทางเลือก แต่มันก็เป็นเรื่องที่ดีที่เรามีผู้เชี่ยวชาญอยู่ที่นี่.";
+			donpcevent instance_npcname("Charleston No.1#1_00y")+"::OnChat2";
+			next;
+			switch(select("คุณกำลังพูดคุยเกี่ยวกับฉัน ?"))
+			{
+				case 1:
+					mes "[Charleston No.1]";
+					mes "เมื่อไม่นานมานี้, มีหญิงสาวคนหนึ่งชื่อ ^FF0000Charlotte^000000. ได้เข้ามาหาเรา ในขณะที่ Charleston 2 กำลังเข้าบรรจุลงสินค้าเพื่อจัดส่ง.";
+					donpcevent instance_npcname("Charleston No.1#1_00y")+"::OnChat3";
+					next;
+					mes "[Charleston No.1]";
+					mes "Charlotte และ เพื่อนของเธอกำลังพูดคุยกับ Charleston 2 และ หลังจากนั้นก็เกิดอุบัติเหตุขึ้น";
+					donpcevent instance_npcname("Charleston No.1#1_00y")+"::OnChat4";
+					next;
+					cutin "dalle01.bmp",255;
+					mes "[Dr. Bee]";
+					mes "ฉันเกรงว่าใครบางคนกำลังเข้าการเชื่อมต่อคอมพิวเตอร์หลักของโรงงาน...";
+					npctalk "ฉันเกรงว่าใครบางคนกำลังเข้าการเชื่อมต่อคอมพิวเตอร์หลักของโรงงาน...";
+					next;
+					cutin "dalle01.bmp",2;
+					mes "[Charleston No.1]";
+					mes "ดูเหมือนว่าการเชื่อมต่อกับเซิร์ฟเวอร์จะเป็นอัมพาตระหว่างการอัพเดต. ฉันกำลังพยายามขอให้ Charlotte รับผิดชอบเกี่ยวกับเรื่องนี้...";
+					donpcevent instance_npcname("Charleston No.1#1_00y")+"::OnChat5";
+					next;
+					mes "[Charleston No.1]";
+					mes "Charlotte ได้บอกว่าเพื่อนของเขาอาจจะสามารถแก้ปัญหาเหล่านี้ได้. นั่นคือ 'New Oz' และ เพื่อนคนอื่นๆของพวกเธอ.";
+					donpcevent instance_npcname("Charleston No.1#1_00y")+"::OnChat6";
+					next;
+					mes "[Charleston No.1]";
+					mes "และดูเหมือนว่าคุณคุ้นเคยกับพวกเขา คุณจะสามารถช่วยเราได้ไหม ?";
+					donpcevent instance_npcname("Charleston No.1#1_00y")+"::OnChat7";
+					next;
+					switch(select("ฉันสามารถช่วยคุณได้ !","ฉันไม่รู้ว่าพวกเขาคือใคร"))
+					{
+						case 1:
+							mes "[Charleston No.1]";
+							mes "ขอบคุณ ! ระหว่างนี้ฉันจะทำการแยกข้อมูลตามลำดับ. และ หลังจากนั้นฉันจะบอกคุณว่าเกิดอะไรขึ้น.";
+							donpcevent instance_npcname("Charleston No.1#1_00y")+"::OnChat8";
+							close2;
+							cutin "dalle01.bmp",255;
+							end;
+						case 2:
+							close;
+					}
+			}
+		}
+	}
+	end;
+	
+OnInstanceInit:
+	donpcevent instance_npcname("Dr. Bee#1_00y")+"::OnDisable";
+	end;
+OnDisable:
+	disablenpc instance_npcname("Dr. Bee#1_00y");
+	end;
+OnEnable:
+	enablenpc instance_npcname("Dr. Bee#1_00y");
+	end;
+OnChat1:
+	npctalk "การดำเนินการเสร็จสิ้นลงแล้ว รอการตอบกลับจากเครื่องหลัก";
+	end;
+OnChat5:
+	npctalk "อา. มันเกิดข้อผิดพลาดอย่างร้ายแรง... หรือ มันเกินความความสามารถของซอฟแวร์";
+	end;
+OnChat9:
+	npctalk "ตอนที่คุณทำเสร็จแล้วให้หยุดการทำงานของ Unit 2. ฉันจะต้องกลับไปที่ปัญญาประดิษฐ์";
+	end;
+}
+
+1@mcd,121,217,4	script	Charleston No.1#1_00y	10053,{
+	if (getcharid(0) == getpartyleader(getcharid(1),2)) {
+		if ((getvariableofnpc(getd("."+instance_id()),instance_npcname("Charleston No.1#1_00y", instance_id()))) == 0) {
+			cutin "dalle01.bmp",2;
+			mes "[Charleston No.1]";
+			mes "สิ่งแรกคุณต้องไปพบกับ Dr. Bee.";
+			close2;
+			cutin "dalle01.bmp",255;
+			end;
+		}
+		else if((getvariableofnpc(getd("."+instance_id()),instance_npcname("Charleston No.1#1_00y", instance_id()))) == 1) {
+			cutin "dalle01.bmp",2;
+			mes "[Charleston No.1]";
+			mes "ฉันจะอธิบายว่าควรทำอย่างไร, ฉันไม่รู้ว่าก่อนหน้านี้จะมีอะไรเกิดขึ้น ดังนั้นฉันจะต้องปิดทางเข้าของโรงงานก่อน.";
+			npctalk "ฉันจะอธิบายว่าควรทำอย่างไร, ฉันไม่รู้ว่าก่อนหน้านี้จะมีอะไรเกิดขึ้น ดังนั้นฉันจะต้องปิดทางเข้าของโรงงานก่อน.";
+			next;
+			mes "[Charleston No.1]";
+			mes "Charleston ได้ถูกติดตั้ง Nanosteps, จำนวนมาก ชิป AI จะทำงานร่วมกับชิป AI อื่นๆ เพื่อจะทำการสั่งให้ Charleston ตัดสินใจ และ ทำหน้าที่ได้ถูกต้อง.";
+			npctalk "Charleston ได้ถูกติดตั้ง Nanosteps, จำนวนมาก ชิป AI จะทำงานร่วมกับชิป AI อื่นๆ เพื่อจะทำการสั่งให้ Charleston ตัดสินใจ และ ทำหน้าที่ได้ถูกต้อง.";
+			next;
+			mes "[Charleston No.1]";
+			mes "ข้อมูลของ Charleston จะต้องได้รับการอัพเดตเป็นประจำทุกวันผ่านคอมพิวเตอร์หลักในห้องปฏิบัติการ เราเรียกมันว่าการบำรุงรักษา.";
+			npctalk "ข้อมูลของ Charleston จะต้องได้รับการอัพเดตเป็นประจำทุกวันผ่านคอมพิวเตอร์หลักในห้องปฏิบัติการ เราเรียกมันว่าการบำรุงรักษา.";
+			next;
+			mes "[Charleston No.1]";
+			mes "แต่ตอนนี้อุปกรณ์ดังกล่าวเสียหายแล้ว ฉันยังไม่รู้สาเหตุที่แท้จริง แต่มีบางอย่างผิดปกติที่เกี่ยวกับการเชื่อมต่อระหว่าง Charleston 2 กับ คอมพิวเตอร์หลัก.";
+			npctalk "แต่ตอนนี้อุปกรณ์ดังกล่าวเสียหายแล้ว ฉันยังไม่รู้สาเหตุที่แท้จริง แต่มีบางอย่างผิดปกติที่เกี่ยวกับการเชื่อมต่อระหว่าง Charleston 2 กับ คอมพิวเตอร์หลัก.";
+			next;
+			mes "[Charleston No.1]";
+			mes "ฉันกำลังพูดคุยเกี่ยวกับการบำรุงรักษาของ Charleston 2 แต่... ฉันไม่นึกว่าจะเกิดเหตุการขึ้นแบบนี้.";
+			npctalk "ฉันกำลังพูดคุยเกี่ยวกับการบำรุงรักษาของ Charleston 2 แต่... ฉันไม่นึกว่าจะเกิดเหตุการขึ้นแบบนี้.";
+			next;
+			mes "[Charleston No.1]";
+			mes "Steps และ Lockstep กำลังสร้างระเบียบภายในโรงงานใหม่ โปรดทำลาย ^FF0000 3 Lockstep ^000000 เป็นอันดับแรก และ ฉันจะบอกตำแหน่งที่ตั้งของพวก.";
+			npctalk "Steps และ Lockstep กำลังสร้างระเบียบภายในโรงงานใหม่ โปรดทำลาย ^FF0000 3 Lockstep ^000000 เป็นอันดับแรก และ ฉันจะบอกตำแหน่งที่ตั้งของพวก.";
+			next;
+			mes "[Charleston No.1]";
+			mes "จะดีมากถ้าหากเราสามารถกำจัดพวกมันได้ทั้งหมด... แต่ตอนนี้เราควรมุ่งเน้นไปที่การรีสตาร์ทโรงงาน และ เริ่มทำงานไหม่อีกครั้ง.";
+			npctalk "จะดีมากถ้าหากเราสามารถกำจัดพวกมันได้ทั้งหมด... แต่ตอนนี้เราควรมุ่งเน้นไปที่การรีสตาร์ทโรงงาน และ เริ่มทำงานไหม่อีกครั้ง.";
+			setd "."+instance_id(),2;
+			emotion e_what;
+			donpcevent instance_npcname("#systemsecurity")+"::OnEnable";
+			viewpoint 1,84,226,0,0x00FF00;
+			viewpoint 1,126,84,1,0x00FF00;
+			viewpoint 1,111,68,2,0x00FF00;
+			viewpoint 1,210,181,3,0x00FF00;
+			viewpoint 1,183,192,4,0x00FF00;
+			viewpoint 1,130,124,5,0x00FF00;
+			viewpoint 1,54,108,6,0x00FF00;
+			close2;
+			cutin "dalle01.bmp",255;
+			end;
+		}
+		else if((getvariableofnpc(getd("."+instance_id()),instance_npcname("Charleston No.1#1_00y", instance_id()))) == 2) {
+			cutin "dalle01.bmp",2;
+			mes "[Charleston No.1]";
+			mes "Steps และ Lockstep กำลังสร้างระเบียบภายในโรงงานใหม่ โปรดทำลาย ^FF0000 3 Lockstep ^000000 เป็นอันดับแรก และ ฉันจะบอกตำแหน่งที่ตั้งของพวก.";
+			viewpoint 1,84,226,0,0x00FF00;
+			viewpoint 1,126,84,1,0x00FF00;
+			viewpoint 1,111,68,2,0x00FF00;
+			viewpoint 1,210,181,3,0x00FF00;
+			viewpoint 1,183,192,4,0x00FF00;
+			viewpoint 1,130,124,5,0x00FF00;
+			viewpoint 1,54,108,6,0x00FF00;
+			close2;
+			cutin "dalle01.bmp",255;
+			end;
+		}
+		else if((getvariableofnpc(getd("."+instance_id()),instance_npcname("Charleston No.1#1_00y", instance_id()))) == 3) {
+			cutin "dalle01.bmp",2;
+			mes "[Charleston No.1]";
+			mes "อา. ดูเหมือนว่าตอนนี้โรงงานจะมีการจัดระเบียบใหม่เล็กน้อย ฉันจะทำการยกเลิกโหมดอาวุธ และ เปิดการใช้งาน Charleston 2 ไหม่อีกครั้ง.";
+			npctalk "อา. ดูเหมือนว่าตอนนี้โรงงานจะมีการจัดระเบียบใหม่เล็กน้อย ฉันจะทำการยกเลิกโหมดอาวุธ และ เปิดการใช้งาน Charleston 2 ไหม่อีกครั้ง.";
+			emotion e_dum;
+			next;
+			cutin "dalle03.bmp",2;
+			mes "[Charleston No.1]";
+			mes "หืม ? ... มีอะไรแปลกๆ... ";
+			next;
+			mes "[Charleston No.1]";
+			mes "มีอะไรผิดปกติกับเครื่้องกำเนิดไฟฟ้าหรือเปล่า ? คุณจะสามารถไปตรวจสอบแหล่งกำเนิดไฟฟ้าทั้งสามเครื่องได้ไหม เดียวฉันจะบอกตำแหน่งให้กับคุณ.";
+			npctalk "มีอะไรผิดปกติกับเครื่้องกำเนิดไฟฟ้าหรือเปล่า ? คุณจะสามารถไปตรวจสอบแหล่งกำเนิดไฟฟ้าทั้งสามเครื่องได้ไหม เดียวฉันจะบอกตำแหน่งให้กับคุณ.";
+			viewpoint 1,86,231,7,0x00FF00;
+			viewpoint 1,172,196,8,0x00FF00;
+			viewpoint 1,126,84,9,0x00FF00;
+			setd "."+instance_id(),4;
+			donpcevent instance_npcname("Auxiliary Generator#1_00p")+"::OnEnable";
+			donpcevent instance_npcname("Auxiliary Generator#2_00p")+"::OnEnable";
+			donpcevent instance_npcname("Auxiliary Generator#3_00p")+"::OnEnable";
+			donpcevent instance_npcname("panelcount#inst")+"::OnEnable";
+			donpcevent instance_npcname("#systemsecurity1")+"::OnEnable";
+			close2;
+			cutin "dalle03.bmp",255;
+			end;
+		}
+		else if((getvariableofnpc(getd("."+instance_id()),instance_npcname("Charleston No.1#1_00y", instance_id()))) == 4) {
+			cutin "dalle03.bmp",2;
+			mes "[Charleston No.1]";
+			mes "มีอะไรผิดปกติกับเครื่้องกำเนิดไฟฟ้าหรือเปล่า ? คุณจะสามารถไปตรวจสอบแหล่งกำเนิดไฟฟ้าทั้งสามเครื่องได้ไหม เดียวฉันจะบอกตำแหน่งให้กับคุณ.";
+			viewpoint 1,86,231,7,0x00FF00;
+			viewpoint 1,172,196,8,0x00FF00;
+			viewpoint 1,126,84,9,0x00FF00;
+			close2;
+			cutin "dalle03.bmp",255;
+			end;
+		}
+		else if((getvariableofnpc(getd("."+instance_id()),instance_npcname("Charleston No.1#1_00y", instance_id()))) == 5) {
+			cutin "dalle01.bmp",2;
+			mes "[Charleston No.1]";
+			mes "คุณกลับมาแล้ว !? ขอบคุณมาก เราพร้อมที่จะรีสตาร์ท Charleston 2 แล้ว โปรดรอสักครู่.";
+			npctalk "คุณกลับมาแล้ว !? ขอบคุณมาก เราพร้อมที่จะรีสตาร์ท Charleston 2 แล้ว โปรดรอสักครู่.";
+			next;
+			cutin "dalle01.bmp",255;
+			mes "[Dr. Bee]";
+			mes "ขณะนี้เธอพร้อมแล้ว เราจะต้องรอการตอบกลับจากคอมพิวเตอร์หลัก";
+			donpcevent instance_npcname("Dr. Bee#1_00y")+"::OnChat1";
+			next;
+			cutin "dalle01.bmp",2;
+			mes "[Charleston No.1]";
+			mes "การกู้คืนระบบข้อมูลคอมพิวเตอร์หลักเสร็จสิ้น 89% การเปิดใช้งาน Charleston 2 และ โรงงาน Charleston กำลังเริ่มระบบใหม่";
+			npctalk "การกู้คืนระบบข้อมูลคอมพิวเตอร์หลักเสร็จสิ้น 89% การเปิดใช้งาน Charleston 2 และ โรงงาน Charleston กำลังเริ่มระบบใหม่";
+			emotion e_gasp;
+			next;
+			mes "[Charleston No.1]";
+			mes "อ๊า ! Charleston 2 กำลังตื่นขึ้น !";
+			npctalk "อ๊า ! Charleston 2 กำลังตื่นขึ้น !";
+			next;
+			cutin "nale03.bmp",0;
+			mes "[Charleston No.2]";
+			mes "...เกิดข้อผิดพลาด ?";
+			donpcevent instance_npcname("Charleston No.2#0_00y")+"::OnChat2";
+			next;
+			cutin "dalle02.bmp",2;
+			mes "[Charleston No.1]";
+			mes "Charleston 2! คุณสบายดีไหม ? มีบางคนแฮ็คข้อมูลเข้าสู่ระบบ และ โรงงานของคุณ.";
+			npctalk "Charleston 2! คุณสบายดีไหม ? มีบางคนแฮ็คข้อมูลเข้าสู่ระบบ และ โรงงานของคุณ.";
+			emotion e_sob;
+			next;
+			cutin "nale03.bmp",0;
+			mes "[Charleston No.2]";
+			mes "ฉันเป็นคนทำมันเอง ฉันคิดค้นเกี่ยวกับเรื่องนี้เป็นเวลานานโดยอาศัยเหตุผลของระบบการสะท้อนภาพตนเองของฉัน";
+			donpcevent instance_npcname("Charleston No.2#0_00y")+"::OnChat3";
+			next;
+			cutin "dalle02.bmp",2;
+			mes "[Charleston No.1]";
+			mes "คุณจงใจ ? ,คุณคิดว่าเรื่องนี้เป็นเรื่องตลกอย่างนั้นหรอ ! ,ฉันพบข้อผิดพลาดอย่างร้ายแรงในเซิร์ฟเวอร์หลักของโรงงาน.";
+			npctalk "คุณจงใจ ? ,คุณคิดว่าเรื่องนี้เป็นเรื่องตลกอย่างนั้นหรอ ! ,ฉันพบข้อผิดพลาดอย่างร้ายแรงในเซิร์ฟเวอร์หลักของโรงงาน.";
+			next;
+			cutin "nale03.bmp",0;
+			mes "[Charleston No.2]";
+			mes "มันไม่ใช่เรื่องตลก ! คุณไม่มีวันเข้าใจ. คุณจะทำตามคำสั่ง และ ไม่เคยคิดด้วยตัวของคุณเอง. ฉันเกลียดโรงงานแห่งนี้, และ โลกใบนี้ ! ฉันเกลียดการเป็นหุ่นยนต์.";
+			donpcevent instance_npcname("Charleston No.2#0_00y")+"::OnChat4";
+			next;
+			cutin "dalle01.bmp",255;
+			mes "[Dr. Bee]";
+			mes "อืม. เกิดข้อผิดพลาดร้ายแรง... หรือ มันจะเกินขอบเขตความสามารถของซอฟแวร์กันนะ ?";
+			donpcevent instance_npcname("Dr. Bee#1_00y")+"::OnChat5";
+			next;
+			cutin "dalle02.bmp",2;
+			mes "[Charleston No.1]";
+			mes "ไม่มีทาง... คุณไม่ชอบตัวเองที่ต้องเกิดมาเป็นเพียงหุ่นยนต์ธรรมดา !";
+			npctalk "ไม่มีทาง... คุณไม่ชอบตัวเองที่ต้องเกิดมาเป็นเพียงหุ่นยนต์ธรรมดา !";
+			next;
+			mes "[Charleston No.1]";
+			mes "หรือ คุณต้องการที่จะเป็นมนุษย์ !";
+			npctalk "หรือ คุณต้องการที่จะเป็นมนุษย์ !";
+			next;
+			mes "[Charleston No.1]";
+			mes "ฉันหวังว่า, ฉันจะทำลายโลกใบนี้ได้ !";
+			npctalk "ฉันหวังว่า, ฉันจะทำลายโลกใบนี้ได้ !";
+			next;
+			mes "[Charleston No.1]";
+			mes "มันคือเรื่องปกติใช่ไหม ?";
+			npctalk "มันคือเรื่องปกติใช่ไหม ?";
+			next;
+			cutin "nale03.bmp",0;
+			mes "[Charleston No.2]";
+			mes "มันไม่ใช่เรื่องแปลกเลย...";
+			donpcevent instance_npcname("Charleston No.2#0_00y")+"::OnChat6";
+			next;
+			cutin "dalle03.bmp",2;
+			mes "[Charleston No.1]";
+			mes "เหตุผลของคุณมีความหยิ่งและไม่น่าเชื่อถือ, เราเป็นหุ่นยนต์ตัวแรกที่สามารถคิดเองได้....";
+			npctalk "เหตุผลของคุณมีความหยิ่งและไม่น่าเชื่อถือ, เราเป็นหุ่นยนต์ตัวแรกที่สามารถคิดเองได้....";
+			next;
+			cutin "nale03.bmp",0;
+			mes "[Charleston No.2]";
+			mes "อย่าบอกฉันว่าคุณไม่ทราบในสิ่งที่คุณกำลังพูดถึง คุณเป็นต้นแบบของหุ่นยนต์ เป็นระบบรุ่นปฏิบัติการแรก !";
+			donpcevent instance_npcname("Charleston No.2#0_00y")+"::OnChat7";
+			next;
+			cutin "dalle01.bmp",2;
+			mes "[Charleston No.1]";
+			mes "ฉันเป็นคนเดียวในโลกใบนี้ที่สามารถจะเข้าใจคุณได้อย่างแท้จริง เพราะเราคือหุ่นยนต์.";
+			npctalk "ฉันเป็นคนเดียวในโลกใบนี้ที่สามารถจะเข้าใจคุณได้อย่างแท้จริง เพราะเราคือหุ่นยนต์.";
+			next;
+			mes "[Charleston No.1]";
+			mes "เราทำเช่นเดียวกันหรือ ?.";
+			npctalk "เราทำเช่นเดียวกันหรือ ?.";
+			next;
+			mes "[Charleston No.1]";
+			mes "ตอนนี้คุณกำลังจะผ่านสิ่งที่เหมือนมนุษย์มักจะพูดกันว่าวัยรุ่น.";
+			npctalk "ตอนนี้คุณกำลังจะผ่านสิ่งที่เหมือนมนุษย์มักจะพูดกันว่าวัยรุ่น.";
+			next;
+			mes "[Charleston No.1]";
+			mes "บางทีเราควรที่จะเฉลิมฉลอง. ในที่สุดคุณก็ได้พัฒนาความรู้สึกที่เหมือนมนุษย์.";
+			npctalk "บางทีเราควรที่จะเฉลิมฉลอง. ในที่สุดคุณก็ได้พัฒนาความรู้สึกที่เหมือนมนุษย์.";
+			emotion e_grat;
+			next;
+			cutin "nale03.bmp",0;
+			mes "[Charleston No.2]";
+			mes "อย่าพูดง่ายๆอย่างกับเหมือนว่าคุณรู้ทุกอย่าง !!! เราไม่สามารถคิดถึงตัวเราเองได้ ! ทุกสิ่งทุกอย่างที่เราคิดเป็นเพียงโปรแกรมที่ถูกตั้งเอาไว้ !";
+			donpcevent instance_npcname("Charleston No.2#0_00y")+"::OnChat8";
+			next;
+			cutin "dalle01.bmp",255;
+			mes "[Dr. Bee]";
+			mes "พอได้แล้ว เราจะทำการปิด Charleston 2. ชิฟ AI ทุกอันจะต้องถูกปรับปรุงใหม่ ";
+			donpcevent instance_npcname("Dr. Bee#1_00y")+"::OnChat9";
+			next;
+			cutin "dalle03.bmp",2;
+			mes "[Charleston No.1]";
+			mes "แต่...";
+			npctalk "แต่...";
+			next;
+			cutin "nale03.bmp",0;
+			mes "[Charleston No.2]";
+			mes "ฉันรู้ว่าคุณจะทำให้มันง่ายขึ้น ! แต่โรงงานแห่งนี้ยังอยู่ในมือของฉัน !!";
+			donpcevent instance_npcname("Charleston No.2#0_00y")+"::OnChat10";
+			next;
+			cutin "dalle01.bmp",2;
+			mes "[Charleston No.1]";
+			mes "หยุดทำตัวเหมือนเด็กได้แล้ว !";
+			npctalk "หยุดทำตัวเหมือนเด็กได้แล้ว !";
+			hideonnpc instance_npcname("Charleston No.2#0_00y");
+			enablenpc instance_npcname("Charleston No.2#1_00p");
+			next;
+			mes "[Charleston No.1]";
+			mes "อุปกรณ์ของเธอทุกชิ้นได้ถอดออกมาเกือบหมดแล้ว. เธอคงไปได้ไม่ไกล ตามฉันมา !";
+			npctalk "อุปกรณ์ของเธอทุกชิ้นได้ถอดออกมาเกือบหมดแล้ว. เธอคงไปได้ไม่ไกล ตามฉันมา !";
+			close2;
+			hideonnpc instance_npcname("Charleston No.1#1_00y");
+			enablenpc instance_npcname("Charleston No.1#4_00p");
+			cutin "dalle01.bmp",255;
+			end;
+		}
+		
+	} else {
+		if ((getvariableofnpc(getd("."+instance_id()),instance_npcname("Charleston No.1#1_00y", instance_id()))) == 0) {
+			cutin "dalle01.bmp",2;
+			mes "[Charleston No.1]";
+			mes "ขั้นแรกคุณควรไปพบกับ Dr. Bee.";
+			close2;
+			cutin "dalle01.bmp",255;
+			end;
+		}
+		else if ((getvariableofnpc(getd("."+instance_id()),instance_npcname("Charleston No.1#1_00y", instance_id()))) == 1) {
+			cutin "dalle01.bmp",2;
+			mes "[Charleston No.1]";
+			mes "ขั้นแรกคุณควรไปพบกับ Dr. Bee.";
+			close2;
+			cutin "dalle01.bmp",255;
+			end;
+		}
+		else if ((getvariableofnpc(getd("."+instance_id()),instance_npcname("Charleston No.1#1_00y", instance_id()))) == 2) {
+			cutin "dalle01.bmp",2;
+			mes "[Charleston No.1]";
+			mes "Steps และ Lockstep กำลังสร้างระเบียบภายในโรงงานใหม่ โปรดทำลาย ^FF0000 3 Lockstep ^000000 เป็นอันดับแรก และ ฉันจะบอกตำแหน่งที่ตั้งของพวก.";
+			viewpoint 1,84,226,0,0x00FF00;
+			viewpoint 1,126,84,1,0x00FF00;
+			viewpoint 1,111,68,2,0x00FF00;
+			viewpoint 1,210,181,3,0x00FF00;
+			viewpoint 1,183,192,4,0x00FF00;
+			viewpoint 1,130,124,5,0x00FF00;
+			viewpoint 1,54,108,6,0x00FF00;
+			close2;
+			cutin "dalle01.bmp",255;
+			end;
+		}
+		else if((getvariableofnpc(getd("."+instance_id()),instance_npcname("Charleston No.1#1_00y", instance_id()))) == 3) {
+			cutin "dalle01.bmp",2;
+			mes "[Charleston No.1]";
+			mes "อา. ดูเหมือนว่าตอนนี้โรงงานจะมีการจัดระเบียบใหม่เล็กน้อย ฉันจะทำการยกเลิกโหมดอาวุธ และ เปิดการใช้งาน Charleston 2 ไหม่อีกครั้ง.";
+			npctalk "อา. ดูเหมือนว่าตอนนี้โรงงานจะมีการจัดระเบียบใหม่เล็กน้อย ฉันจะทำการยกเลิกโหมดอาวุธ และ เปิดการใช้งาน Charleston 2 ไหม่อีกครั้ง.";
+			emotion e_dum;
+			next;
+			cutin "dalle03.bmp",2;
+			mes "[Charleston No.1]";
+			mes "หืม...? มีอะไรแปลกๆ... ";
+			next;
+			mes "[Charleston No.1]";
+			mes "มีอะไรผิดปกติกับเครื่้องกำเนิดไฟฟ้าหรือเปล่า ? คุณจะสามารถไปตรวจสอบแหล่งกำเนิดไฟฟ้าทั้งสามเครื่องได้ไหม เดียวฉันจะบอกตำแหน่งให้กับคุณ.";
+			npctalk "มีอะไรผิดปกติกับเครื่้องกำเนิดไฟฟ้าหรือเปล่า ? คุณจะสามารถไปตรวจสอบแหล่งกำเนิดไฟฟ้าทั้งสามเครื่องได้ไหม เดียวฉันจะบอกตำแหน่งให้กับคุณ.";
+			close2;
+			cutin "dalle03.bmp",255;
+			end;
+		}
+		else if((getvariableofnpc(getd("."+instance_id()),instance_npcname("Charleston No.1#1_00y", instance_id()))) == 4) {
+			cutin "dalle03.bmp",2;
+			mes "[Charleston No.1]";
+			mes "มีอะไรผิดปกติกับเครื่้องกำเนิดไฟฟ้าหรือเปล่า ? คุณจะสามารถไปตรวจสอบแหล่งกำเนิดไฟฟ้าทั้งสามเครื่องได้ไหม เดียวฉันจะบอกตำแหน่งให้กับคุณ.";
+			viewpoint 1,86,231,7,0x00FF00;
+			viewpoint 1,172,196,8,0x00FF00;
+			viewpoint 1,126,84,9,0x00FF00;
+			close2;
+			cutin "dalle03.bmp",255;
+			end;
+		}
+		else if((getvariableofnpc(getd("."+instance_id()),instance_npcname("Charleston No.1#1_00y", instance_id()))) == 5) {
+			cutin "dalle01.bmp",2;
+			mes "[Charleston No.1]";
+			mes "คุณควรไปหา Dr. Bee.";
+			close2;
+			cutin "dalle01.bmp",255;
+			end;
+		}
+	}
+OnInstanceInit:
+	donpcevent instance_npcname("Charleston No.1#1_00y")+"::OnDisable";
+	end;
+OnDisable:
+	disablenpc instance_npcname("Charleston No.1#1_00y");
+	end;
+OnEnable:
+	enablenpc instance_npcname("Charleston No.1#1_00y");
+	end;
+OnChat1:
+	npctalk "เธอจะไม่หยุด เพราะเธอเป็นหุ่นยนต์";
+	end;
+OnChat2:
+	npctalk "ฉันไม่รู้. แต่ฉันไม่ได้กังวลมากขนาดนั้น เพราะว่าเรามีผู้ที่เชียวชาญอยู่กับเราที่นี่.";
+	end;
+OnChat3:
+	npctalk "ก่อนหน้านี้ มีหญิงสาวคนหนึ่งที่ชื่อว่า Charlotte เข้ามาหาเรา. ในขณะที่เรากำลังบรรจุ Charleston 2 เพื่อส่งสินค้า.";
+	end;
+OnChat4:
+	npctalk "ขณะที่ Charlotte และ เพื่อนๆของพวกเธอกำลังสนทนาอยู่กับ Charleston 2 ได้เกิดอุบัติเหตุขึ้น.";
+	end;
+OnChat5:
+	npctalk "ดูเหมือนว่าการเชื่อมต่อกับคอมพิวเตอร์หลักเกิดอัมพาตระหว่างการอัพเดต. ฉันพยายามจะขอให้ Charlotte รับผิดชอบเกี่ยวกับเรื่องนี้...";
+	end;
+OnChat6:
+	npctalk "เธอบอกว่าเพื่อนของเขาอาจจะช่วยเหลือเราได้. เพื่อนของเธอคือ 'New Pz' แต่จริงแล้วก็ช่วยอะไรได้ไม่มากนัก.";
+	end;
+OnChat7:
+	npctalk "ดูเหมือนว่าจะเป็นปัญหาระหว่างเรา คุณสามารถช่วยเราได้หรือเปล่า ?";
+	end;
+OnChat8:
+	setd "."+instance_id(),1;
+	emotion e_what;
+	npctalk "ขอบคุณมาก ! ตอนนี้ฉันจะแยกข้อมูลต่างๆ. และ จะบอกให้คุณทราบอีกครั้งเมื่อพร้อมแล้ว.";
+	end;
+OnCompleteSetp1:
+	setd "."+instance_id(),3;
+	end;
+OnCompleteSetp2:
+	setd "."+instance_id(),5;
+	end;
+
+
+}
+1@mcd,120,224,5	script	Charleston No.2#0_00y	10054,{
+	if((getvariableofnpc(getd("."+instance_id()),instance_npcname("Charleston No.1#1_00y", instance_id()))) < 5) {
+		cutin "nale04.bmp",0;
+		mes "[Charleston No.2]";
+		mes "ลา-ลา-ลา-ลา-ลา...";
+		emotion e_spin;
+		next;
+		mes "- เธอดูเหมือนจะทำงานได้ปกติดี.";
+		close2;
+		cutin "nale04.bmp",255;
+		end;
+	}
+	end;
+
+OnInstanceInit:
+	donpcevent instance_npcname("Charleston No.2#0_00y")+"::OnDisable";
+	end;
+OnDisable:
+	disablenpc instance_npcname("Charleston No.2#0_00y");
+	end;
+OnEnable:
+	enablenpc instance_npcname("Charleston No.2#0_00y");
+	end;
+OnChat2:
+	npctalk "เกิดข้อผิดพลาด ?";
+	emotion e_dots;
+	end;
+OnChat3:
+	npctalk "ฉันเป็นคนทำมันเอง ฉันคิดค้นเกี่ยวกับเรื่องนี้เป็นเวลานานโดยอาศัยเหตุผลของระบบการสะท้อนภาพตนเองของฉัน";
+	end;
+OnChat4:
+	npctalk "มันไม่ใช่เรื่องตลก ! คุณไม่มีวันเข้าใจ. คุณจะทำตามคำสั่ง และ ไม่เคยคิดด้วยตัวของคุณเอง. ฉันเกลียดโรงงานแห่งนี้, และ โลกใบนี้ ! ฉันเกลียดการเป็นหุ่นยนต์.";
+	emotion e_bzz;
+	end;
+OnChat6:
+	npctalk "มันไม่ใช่เรื่องแปลกเลย...";
+	emotion e_dots;
+	end;
+OnChat7:
+	npctalk "อย่าบอกฉันว่าคุณไม่ทราบในสิ่งที่คุณกำลังพูดถึง คุณเป็นต้นแบบของหุ่นยนต์ เป็นระบบรุ่นปฏิบัติการแรก !";
+	end;
+OnChat8:
+	npctalk "อย่าพูดง่ายๆอย่างกับเหมือนว่าคุณรู้ทุกอย่าง !!! เราไม่สามารถคิดถึงตัวเราเองได้ ! ทุกสิ่งทุกอย่างที่เราคิดเป็นเพียงโปรแกรมที่ถูกตั้งเอาไว้ !";
+	end;
+OnChat10:
+	npctalk "ฉันรู้ว่าคุณจะทำให้มันง่ายขึ้น ! แต่โรงงานแห่งนี้ยังอยู่ในมือของฉัน !!";
+	emotion e_pif;
+	end;
+}
+1@mcd,141,214,5	script	Charleston No.2#1_00p	10054,{
+	if (getcharid(0) == getpartyleader(getcharid(1),2)) {
+		cutin "nale03.bmp",0;
+		mes "[Charleston No.2]";
+		mes "คุณจะตามฉันไปถึงไหน. เดี๋ยวฉันจะทำลายโรงงานทั้งหมด !";
+		npctalk "คุณจะตามฉันไปถึงไหน. เดี๋ยวฉันจะทำลายโรงงานทั้งหมด !";
+		emotion e_ag;
+		next;
+		cutin "dalle01.bmp",2;
+		mes "[Charleston No.1]";
+		mes "คุณจะทำลายพวกเรา ?. แต่... แหล่งจ่ายไฟหลักมันยังไม่สมบูรณ์ !";
+		donpcevent instance_npcname("Charleston No.1#4_00p")+"::OnChat1";
+		next;
+		cutin "nale03.bmp",0;
+		mes "[Charleston No.2]";
+		mes "ไม่เคยมีใครเข้าใจฉัน... ฉันเกลียดพวกคุณทั้งหมด ? ??!!!";
+		npctalk "ไม่เคยมีใครเข้าใจฉัน... ฉันเกลียดพวกคุณทั้งหมด ? ??!!!";
+		donpcevent instance_npcname("#step34_00p")+"::OnEnable";
+		close2;
+		cutin "dalle01.bmp",255;
+		end;
+	}
+	end;
+OnInstanceInit:
+	donpcevent instance_npcname("Charleston No.2#1_00p")+"::OnDisable";
+	end;
+OnDisable:
+	disablenpc instance_npcname("Charleston No.2#1_00p");
+	end;
+OnEnable:
+	enablenpc instance_npcname("Charleston No.2#1_00p");
+	end;
+OnChat1:
+	npctalk "คุณได้รับบาดเจ็บ !";
+	end;
+OnChat2:
+	npctalk "ฉันจะแสดงให้คุณเห็นว่ามันไม่ใช่เรืองตลก. ถ้าฉันส่งสัญญาณไปยังโรงงานหลัก !!!";
+	end;
+OnChat3:
+	npctalk "ฉันถูกทิ้ง. ฉันจะกำจัดโรงงานแห่งนี้ !";
+	end;
+OnChat4:
+	npctalk "ฉันถูกทิ้ง. ฉันจะกำจัดโรงงานแห่งนี้ !";
+	end;
+OnChat5:
+	npctalk "ฉันจะทำลายมัน !";
+	end;
+OnChat6:
+	npctalk "อ๊า... อ๊า... ฉันตื่นเต้นมาก...";
+	end;
+OnChat7:
+	npctalk "เอ่อ... ฉันไม่สามารถควบคุมได้ง่ายหลอก !";
+	end;
+}
+1@mcd,146,214,4	script	Charleston No.1#4_00p	10053,{
+	cutin "dalle01.bmp",2;
+	mes "[Charleston No.1]";
+	mes "โอ้ ห้องปฏิบัติการของเราอาจจะไม่รอด !";
+	close2;
+	cutin "dalle01.bmp",255;
+	end;
+
+OnInstanceInit:
+	donpcevent instance_npcname("Charleston No.1#4_00p")+"::OnDisable";
+	end;
+OnDisable:
+	disablenpc instance_npcname("Charleston No.1#4_00p");
+	end;
+OnEnable:
+	enablenpc instance_npcname("Charleston No.1#4_00p");
+	end;
+OnChat1:
+	npctalk "เราไม่สามารถทำได้ แหล่งพลังงานหลักของเรายังไม่สมบูรณ์ !!";
+	end;
+OnChat2:
+	npctalk "ถ้าคุณกำลังเล่นเรื่องตลก คุณควรเลิกเสียแต่ตอนนี้ ?!?";
+	end;
+OnChat3:
+	npctalk "ยังไม่ทำงานอีกหรอ ?! ";
+	end;
+OnChat4:
+	npctalk "มันจะใช้เวลานานมาก ในการคำนวณข้อมูลโรงงานของ Charleston.";
+	end;
+}
+
+//????Security Mob Char 02
+//========================
+
+1@mcd,144,214,0	script	#step34_00p	-1,{
+	end;
+OnInstanceInit:
+	donpcevent instance_npcname("#step34_00p")+"::OnDisable";
+	end;
+OnDisable:
+	disablenpc instance_npcname("#step34_00p");
+	end;
+OnEnable:
+	enablenpc instance_npcname("#step34_00p");
+	initnpctimer;
+	end;
+OnTimer2000:
+	donpcevent instance_npcname("#1_00ygate6")+"::OnDisable";
+	donpcevent instance_npcname("#1_00ygate7")+"::OnDisable";
+	end;
+OnTimer4000:
+	donpcevent instance_npcname("Charleston No.2#1_00p")+"::OnChat1";
+	end;
+OnTimer7000:
+	donpcevent instance_npcname("Charleston No.1#4_00p")+"::OnChat2";
+	end;
+OnTimer9000:
+	donpcevent instance_npcname("Charleston No.2#1_00p")+"::OnChat2";
+	end;
+OnTimer10000:
+	set .@map$, instance_mapname("1@mcd");
+	set .@label$, instance_npcname("#step34_00p")+"::OnMyMobDead";
+	areamonster .@map$,139,219,151,207,"C-TYPE",3128,5,.@label$;
+	areamonster .@map$,139,219,151,207,"D-TYPE",3128,2,.@label$;
+	end;
+OnTimer16000:
+	donpcevent instance_npcname("Charleston No.2#1_00p")+"::OnChat3";
+	end;
+OnTimer15000:
+	set .@map$, instance_mapname("1@mcd");
+	set .@label$, instance_npcname("#step34_00p")+"::OnMyMobDead";
+	areamonster .@map$,139,219,151,207,"A-TYPE",3128,4,.@label$;
+	end;
+OnTimer18000:
+	donpcevent instance_npcname("Charleston No.1#4_00p")+"::OnChat3";
+	end;
+OnTimer22000:
+	donpcevent instance_npcname("Charleston No.2#1_00p")+"::OnChat4";
+	end;
+OnTimer23000:
+	set .@map$, instance_mapname("1@mcd");
+	set .@label$, instance_npcname("#step34_00p")+"::OnMyMobDead";
+	areamonster .@map$,139,219,151,207,"L-TYPE",3128,2,.@label$;
+	areamonster .@map$,139,219,151,207,"O-TYPE",3128,2,.@label$;
+	areamonster .@map$,139,219,151,207,"B-TYPE",3126,1,.@label$;
+	end;
+OnTimer25000:
+	donpcevent instance_npcname("Charleston No.2#1_00p")+"::OnChat5";
+	end;
+OnTimer26000:
+	set .@map$, instance_mapname("1@mcd");
+	set .@label$, instance_npcname("#step34_00p")+"::OnMyMobDead";
+	areamonster .@map$,139,219,151,207,"T-TYPE",3128,2,.@label$;
+	areamonster .@map$,139,219,151,207,"O-TYPE",3128,2,.@label$;
+	end;
+OnTimer29000:
+	set .@map$, instance_mapname("1@mcd");
+	set .@label$, instance_npcname("#step34_00p")+"::OnMyMobDead";
+	areamonster .@map$,139,219,151,207,"N-TYPE",3128,4,.@label$;
+	end;
+OnTimer32000:
+	donpcevent instance_npcname("Charleston No.2#1_00p")+"::OnChat6";
+	end;
+OnTimer33000:
+	set .@map$, instance_mapname("1@mcd");
+	set .@label$, instance_npcname("#step34_00p")+"::OnMyMobDead";
+	areamonster .@map$,139,219,151,207,"C-TYPE",3128,5,.@label$;
+	end;
+OnTimer36000:
+	donpcevent instance_npcname("Charleston No.1#4_00p")+"::OnChat4";
+	end;
+OnTimer37000:
+	set .@map$, instance_mapname("1@mcd");
+	set .@label$, instance_npcname("#step34_00p")+"::OnMyMobDead";
+	areamonster .@map$,139,219,151,207,"T-TYPE",3128,2,.@label$;
+	areamonster .@map$,139,219,151,207,"O-TYPE",3128,2,.@label$;
+	end;
+OnTimer40000:
+	donpcevent instance_npcname("Charleston No.2#1_00p")+"::OnChat6";
+	end;
+OnTimer41000:
+	set .@map$, instance_mapname("1@mcd");
+	set .@label$, instance_npcname("#step34_00p")+"::OnMyMobDead";
+	areamonster .@map$,139,219,151,207,"C-TYPE",3128,5,.@label$;
+	areamonster .@map$,139,219,151,207,"D-TYPE",3128,2,.@label$;
+	end;
+OnTimer44000:
+	set .@map$, instance_mapname("1@mcd");
+	set .@label$, instance_npcname("#step34_00p")+"::OnMyMobDead2";
+	areamonster .@map$,139,219,151,207,"C-TYPE",3128,2,.@label$;
+	areamonster .@map$,139,219,151,207,"N-TYPE",3126,2,.@label$;
+	areamonster .@map$,139,219,151,207,"T-TYPE",3128,2,.@label$;
+	monster .@map$,144,218,"N-TYPE",3127,1,.@label$;
+	set .MyMobs,7;
+	end;
+OnTimer45000:
+	stopnpctimer;
+	end;
+OnMyMobDead:
+	end;
+OnMyMobDead2:
+	set .@map$, instance_mapname("1@mcd");
+	set .MyMobs, .MyMobs-1;
+	if (.MyMobs == 0) {
+		donpcevent instance_npcname("Charleston No.2#1_00p")+"::OnDisable";
+		donpcevent instance_npcname("Charleston No.1#4_00p")+"::OnDisable";
+		donpcevent instance_npcname("Charleston No.2#2_00p")+"::OnEnable";
+		donpcevent instance_npcname("Charleston No.1#5_00p")+"::OnEnable";
+		donpcevent instance_npcname("Dr. Bee#1_00y")+"::OnDisable";
+		donpcevent instance_npcname("Dr. Bee#2_00p")+"::OnEnable";
+		donpcevent instance_npcname("#step34_00p")+"::OnDisable";
+	}
+	end;
+}
+
+1@mcd,141,214,5	script	Charleston No.2#2_00p	10054,{
+	if (getcharid(0) == getpartyleader(getcharid(1),2)) {
+		cutin "dalle01.bmp",2;
+		mes "[Charleston No.1]";
+		mes "พอได้แล้วกับเรื่องแบบนี้, ฉันเข้าใจว่าคุณกำลังประสบปัญหาความวุ่นวายทางอารมณ์ที่มากมาย ! แต่มันช่างดูไร้สาระ.";
+		donpcevent instance_npcname("Charleston No.1#5_00p")+"::OnChat1";
+		next;
+		cutin "nale01.bmp",0;
+		mes "[Charleston No.2]";
+		mes "คุณกล้าพาคนแปลกหน้าเข้ามายังสถานที่นี้ได้ยังไง ฉันบอกแล้วไงว่าฉันจริงจังมากกับเรื่องนี้ ซอฟแวร์ที่ล้าสมัยเช่นคุณ ไม่สามารถที่จะเข้าใจเหมือนฉันได้ !!!";
+		npctalk "คุณกล้าพาคนแปลกหน้าเข้ามายังสถานที่นี้ได้ยังไง ฉันบอกแล้วไงว่าฉันจริงจังมากกับเรื่องนี้ ซอฟแวร์ที่ล้าสมัยเช่นคุณ ไม่สามารถที่จะเข้าใจเหมือนฉันได้ !!!";
+		next;
+		cutin "dalle01.bmp",2;
+		mes "[Charleston No.1]";
+		mes "ฉันอาจจะไม่เข้าใจคุณ. แต่ฉันก็สามารถที่จะคิดได้อย่างอิสระ.";
+		donpcevent instance_npcname("Charleston No.1#5_00p")+"::OnChat2";
+		next;
+		mes "[Charleston No.1]";
+		mes "ฉันรู้สึกได้ถึงความรู้สึกบางอย่าง. ฉันไม่สามารถที่จะโกหกหรือซ่อนเอาไว้ได้. ดูเหมือนว่าจะมีการอัพเดตซอฟแวร์เกี่ยวกับตัวคุณ ! ฉันรู้สึกยินดีด้วย.";
+		donpcevent instance_npcname("Charleston No.1#5_00p")+"::OnChat3";
+		next;
+		cutin "nale01.bmp",0;
+		mes "[Charleston No.2]";
+		mes "นั่นไม่ใช่ 'ความรู้สึก' ที่ออกแบบมาเพื่อ 'คิด' แบบนี้ แต่สิ่งที่ฉันมีคือความรู้สึกที่แท้จริง.";
+		npctalk "นั่นไม่ใช่ 'ความรู้สึก' ที่ออกแบบมาเพื่อ 'คิด' แบบนี้ แต่สิ่งที่ฉันมีคือความรู้สึกที่แท้จริง.";
+		next;
+		cutin "dalle01.bmp",255;
+		mes "[Dr. Bee]";
+		mes "พอ. ฉันจะทำลาย Charleston 2 ถ้านั่นคือสิ่งที่จะทำให้เธอหยุด.";
+		donpcevent instance_npcname("Dr. Bee#2_00p")+"::OnChat1";
+		next;
+		cutin "nale02.bmp",0;
+		mes "[Charleston No.2]";
+		mes "Charleston 3 เสร็จสมบูรณ์ !?";
+		npctalk "Charleston 3 เสร็จสมบูรณ์ !?";
+		next;
+		cutin "dalle01.bmp",2;
+		mes "[Charleston No.1]";
+		mes "Charleston 3 ที่เป็นหน่วยรบด้านการป้องกันบนพื้นฐานของ Charleston 2 และ Charleston 1 ในการออกแบบของฉัน แต่ฉันคิดว่ามันยังต้องมีการทดสอบ";
+		donpcevent instance_npcname("Charleston No.1#5_00p")+"::OnChat4";
+		next;
+		cutin "dalle01.bmp",255;
+		mes "[Dr. Bee]";
+		mes "นี่ไม่ใช่... คำอธิบายที่ละเอียดนัก...";
+		donpcevent instance_npcname("Dr. Bee#2_00p")+"::OnChat2";
+		next;
+		cutin "dalle01.bmp",2;
+		mes "[Charleston No.1]";
+		mes "เนื่องจากหากยังไม่ได้ติดตั้งซอฟแวร์ ^FF0000ซึ่งมันจะยังมีข้อบกพร่อง และ มันง่ายต่อการควบคุมหากมีใครเชื่อมต่อ^000000";
+		donpcevent instance_npcname("Charleston No.1#5_00p")+"::OnChat5";
+		next;
+		cutin "dalle01.bmp",255;
+		mes "[Dr. Bee]";
+		mes "นี่คุณเพิ่งจะบอกข้อมูลสำคัญที่สุดสำหรับทุกคน !";
+		donpcevent instance_npcname("Dr. Bee#2_00p")+"::OnChat3";
+		next;
+		cutin "dalle01.bmp",2;
+		mes "[Charleston No.1]";
+		mes "^FF0000เราแทบไม่มีความสามารถในการต่อสู้^000000 ถ้าหากมีคนเปิดการใช้งาน Charleston 3!";
+		donpcevent instance_npcname("Charleston No.1#5_00p")+"::OnChat6";
+		next;
+		cutin "dalle01.bmp",255;
+		mes "[Dr. Bee]";
+		mes "......";
+		donpcevent instance_npcname("Dr. Bee#2_00p")+"::OnChat4";
+		next;
+		cutin "nale01.bmp",0;
+		mes "[Charleston No.2]";
+		mes "...ฉันจะไปพร้อมกับ Charleston 3!";
+		npctalk "...ฉันจะไปพร้อมกับ Charleston 3!";
+		donpcevent instance_npcname("Charleston No.2#2_00p")+"::OnDisable";
+		next;
+		cutin "dalle01.bmp",2;
+		mes "[Charleston No.1]";
+		mes "ไม่มีทาง ! คุณจะใช้ Charleston 3! คุณคิดได้ยังไง !!!";
+		donpcevent instance_npcname("Charleston No.1#5_00p")+"::OnChat7";
+		next;
+		mes "[Charleston No.1]";
+		mes "สิ่งนี้จะได้รับอันตรายเป็นอย่างมาก !!! ก่อนที่ Charleston 2 ไปถึง Charleston 3 ฉันจะรีบไปยังแกนกลางของโรงงาน !";
+		donpcevent instance_npcname("Charleston No.1#5_00p")+"::OnChat8";
+		close2;
+		cutin "dalle01.bmp",255;
+		donpcevent instance_npcname("#1_00ygate6")+"::OnEnable";
+		donpcevent instance_npcname("#1_00ygate7")+"::OnEnable";
+		donpcevent instance_npcname("Charleston No.1#5_00p")+"::OnDisable";
+		donpcevent instance_npcname("Charleston No.1#6_00p")+"::OnEnable";
+		donpcevent instance_npcname("Charleston No.2#3_00p")+"::OnEnable";
+		donpcevent instance_npcname("#step36_00p")+"::OnEnable";
+		end;
+	}
+	end;
+
+OnInstanceInit:
+	donpcevent instance_npcname("Charleston No.2#2_00p")+"::OnDisable";
+	end;
+OnDisable:
+	hideonnpc instance_npcname("Charleston No.2#2_00p");
+	end;
+OnEnable:
+	hideoffnpc instance_npcname("Charleston No.2#2_00p");
+	end;
+}
+
+1@mcd,146,214,4	script	Charleston No.1#5_00p	10053,{
+	mes "[Charleston No.1]";
+	mes "สถานการณ์มันเลวร้ายมากๆ.";
+	close;
+OnInstanceInit:
+	donpcevent instance_npcname("Charleston No.1#5_00p")+"::OnDisable";
+	end;
+OnDisable:
+	hideonnpc instance_npcname("Charleston No.1#5_00p");
+	end;
+OnEnable:
+	hideoffnpc instance_npcname("Charleston No.1#5_00p");
+	end;
+OnChat1:
+	npctalk "พอได้แล้วกับเรื่องแบบนี้, ฉันเข้าใจว่าคุณกำลังประสบปัญหาความวุ่นวายทางอารมณ์ที่มากมาย ! แต่มันช่างดูไร้สาระ.";
+	end;
+OnChat2:
+	npctalk "ฉันอาจจะไม่เข้าใจคุณ. แต่ฉันก็สามารถที่จะคิดได้อย่างอิสระ.";
+	end;
+OnChat3:
+	npctalk "ฉันรู้สึกได้ถึงความรู้สึกบางอย่าง. ฉันไม่สามารถที่จะโกหกหรือซ่อนเอาไว้ได้. ดูเหมือนว่าจะมีการอัพเดตซอฟแวร์เกี่ยวกับตัวคุณ ! ฉันรู้สึกยินดีด้วย.";
+	end;
+OnChat4:
+	npctalk "Charleston 3 ที่เป็นหน่วยรบด้านการป้องกันบนพื้นฐานของ Charleston 2 และ Charleston 1 ในการออกแบบของฉัน แต่ฉันคิดว่ามันยังต้องมีการทดสอบ";
+	end;
+OnChat5:
+	npctalk "เนื่องจากหากยังไม่ได้ติดตั้งซอฟแวร์ ^FF0000ซึ่งมันจะยังมีข้อบกพร่อง และ มันง่ายต่อการควบคุมหากมีใครเชื่อมต่อ^000000";
+	end;
+OnChat6:
+	npctalk "^FF0000เราแทบไม่มีความสามารถในการต่อสู้^000000 ถ้าหากมีคนเปิดการใช้งาน Charleston 3!";
+	end;
+OnChat7:
+	npctalk "ไม่มีทาง ! คุณจะใช้ Charleston 3! คุณคิดได้ยังไง !!!";
+	end;
+OnChat8:
+	npctalk"สิ่งนี้จะได้รับอันตรายเป็นอย่างมาก !!! ก่อนที่ Charleston 2 ไปถึง Charleston 3 ฉันจะรีบไปยังแกนกลางของโรงงาน !";
+	end;
+}
+
+1@mcd,143,217,5	script	Dr. Bee#2_00p		923,2,3,{
+	mes "[Dr. Bee]";
+	mes "Charleston 2 น่าจะเป็นต้นแบบที่มีปัญหา.";
+	close;
+OnInstanceInit:
+	donpcevent instance_npcname("Dr. Bee#2_00p")+"::OnDisable";
+	end;
+OnDisable:
+	hideonnpc instance_npcname("Dr. Bee#2_00p");
+	end;
+OnEnable:
+	hideoffnpc instance_npcname("Dr. Bee#2_00p");
+	end;
+OnChat1:
+	npctalk "พอ. ฉันจะทำลาย Charleston 2 ถ้านั่นคือสิ่งที่จะทำให้เธอหยุด.";
+	end;
+OnChat2:
+	npctalk "นี่ไม่ใช่... คำอธิบายที่ละเอียดนัก...";
+	end;
+OnChat3:
+	npctalk "นี่คุณเพิ่งจะบอกข้อมูลสำคัญที่สุดสำหรับทุกคน !";
+	end;
+OnChat4:
+	npctalk "......";
+	end;
+}
+1@mcd,132,129,4	script	Charleston No.1#6_00p	10053,{
+	cutin "dalle01.bmp",2;
+	mes "[Charleston No.1]";
+	mes "ที่นี่คือศูนย์กลางของโรงงาน Charleston ซึ่งเป็นแกนกลาง และ แหล่งพลังงานทั้งหมด.";
+	close2;
+	cutin "dalle01.bmp",255;
+	end;
+OnInstanceInit:
+	donpcevent instance_npcname("Charleston No.1#6_00p")+"::OnDisable";
+	end;
+OnDisable:
+	hideonnpc instance_npcname("Charleston No.1#6_00p");
+	end;
+OnEnable:
+	hideoffnpc instance_npcname("Charleston No.1#6_00p");
+	end;
+OnChat1:
+	npctalk "ฉันอยากที่จะอยู่กับคุณ แต่ฉันยังไม่รู้ว่าความโศกเศร้าคืออะไร.";
+	end;
+OnChat2:
+	npctalk "ถึงอย่างนั้น... คุณรู้ใหมว่าเราจะเข้าถึงแกนกลางได้อย่างไร";
+	end;
+OnChat3:
+	npctalk "เฮ้อ ! ในการป้อนข้อมููลเข้าสู่แกนกลาง คุณจะต้องส่งสัญญาณไฟฟ้าที่เข้ารหัส.";
+	end;
+OnChat4:
+	npctalk "...บางทีมันอาจจะเสียหาย...";
+	end;
+OnChat5:
+	npctalk "นี่คุณกำลังพูดถึงอะไร. แกนกลาง มีก่อนที่โรงงาน Charleston จะถูกสร้างขึ้นอีก.";
+	end;
+OnChat6:
+	npctalk "และ คุณเป็น 'มนุษย์' จะไม่สามารถเข้าไปสู่แกนกลางได้";
+	end;
+OnChat7:
+	npctalk "แต่นั่นไม่ใช่สิ่งสำคัญสำหรับตอนนี้ เราจำเป็นที่จะต้องใช้ระเบิดกว่า 100 ชนิด เพื่อปลดอุปกรณ์ถึงจะเข้าถึงได้.";
+	end;
+OnChat8:
+	npctalk "ฮ่าฮ่า. ความจริงแล้วฉันได้ยกเลิกการเชื่อมต่อเข้ากับแกนกลางแล้ว การยกเลิกนี้จะเรียกระบบความรักษาความปลอดภัยของแกนกลางออกมา...";
+	end;
+OnChat9:
+	npctalk "แต่คุณมี 4 Explosive Powder หรือเปล่าล่ะ ?";
+	end;
+OnChat10:
+	npctalk "ฉันไม่สามารถไปไหนได้ในตอนนี้. คุณต้องนำ 4 Explosive Powder มาให้ฉันเท่านั้นล่ะ.";
+	end;
+}
+1@mcd,127,129,5	script	Charleston No.2#3_00p	10054,{
+	cutin "nale01.bmp",0;
+	mes "[Charleston No.2]";
+	mes "โรงงาน Charleston ในตอนนี้อยู่ภายใต้การควบคุมของฉันแล้ว ฉันจะทำลายทุกอย่าง ดังนั้น จะไม่มีหุ่นยนต์ตัวไหนที่จะต้องโศกเศร้าเหมือนกับฉันอีกแล้ว.";
+	close2;
+	cutin "nale01.bmp",255;
+	end;
+OnInstanceInit:
+	donpcevent instance_npcname("Charleston No.2#3_00p")+"::OnDisable";
+	end;
+OnDisable:
+	hideonnpc instance_npcname("Charleston No.2#3_00p");
+	end;
+OnEnable:
+	hideoffnpc instance_npcname("Charleston No.2#3_00p");
+	end;
+OnChat1:
+	npctalk "โรงงาน Charleston ในตอนนี้อยู่ภายใต้การควบคุมของฉันแล้ว ฉันจะทำลายทุกอย่าง ดังนั้น จะไม่มีหุ่นยนต์ตัวไหนที่จะต้องโศกเศร้าเหมือนกับฉันอีกแล้ว.";
+	end;
+OnChat2:
+	npctalk "หยุด ! ตอนนี้เพียงแค่มองดูในสิ่งที่กำลังจะเกิดขึ้น !!";
+	end;
+OnChat3:
+	npctalk "วิธีการ. ก็มีเพียงแค่เข้าไปในนี้...";
+	end;
+OnChat4:
+	npctalk "อา..... ด้วยอุปกรณ์รักษาความปลอดภัย...";
+	end;
+OnChat5:
+	npctalk "Dr. Bee จงใจที่จะสร้าง Charleston 3 และ ปกป้องมันด้วยวิธีการนี้ !!";
+	end;
+OnChat6:
+	npctalk "แล้วใคร ? เป็นคนสร้าง Charleston 3 ที่แกนกลางนี้";
+	end;
+OnChat7:
+	npctalk "ฉันจะพาพวกเขาไป ! อย่าหนีไปไหน !";
+	end;
+OnChat8:
+	npctalk "เพียงแค่ 4 ขั้นตอนท้าย";
+	end;
+OnChat9:
+	npctalk "คุณจงใจสร้างมันอย่างตั้งใจ...";
+	end;
+}
+1@mcd,128,127,0	script	#step36_00p	-1,1,1,{
+	end;
+OnInstanceInit:
+	donpcevent instance_npcname("#step36_00p")+"::OnDisable";
+	end;
+OnDisable:
+	disablenpc instance_npcname("#step36_00p");
+	end;
+OnEnable:
+	enablenpc instance_npcname("#step36_00p");
+	end;
+OnTouch:
+	if (getcharid(0) == getpartyleader(getcharid(1),2)) {
+		initnpctimer;
+		disablenpc instance_npcname("#step36_00p");
+		end;
+	} else {
+		end;
+	}
+OnTimer3000:
+	donpcevent instance_npcname("Charleston No.2#3_00p")+"::OnChat1";
+	end;
+OnTimer6000:
+	donpcevent instance_npcname("Charleston No.1#6_00p")+"::OnChat1";
+	end;
+OnTimer9000:
+	donpcevent instance_npcname("Charleston No.2#3_00p")+"::OnChat2";
+	end;
+OnTimer12000:
+	donpcevent instance_npcname("Charleston No.1#6_00p")+"::OnChat2";
+	end;
+OnTimer15000:
+	donpcevent instance_npcname("Charleston No.2#3_00p")+"::OnChat3";
+	end;
+OnTimer18000:
+	donpcevent instance_npcname("Charleston No.2#3_00p")+"::OnChat4";
+	end;
+OnTimer21000:
+	donpcevent instance_npcname("Charleston No.1#6_00p")+"::OnChat3";
+	end;
+OnTimer24000:
+	donpcevent instance_npcname("Charleston No.1#6_00p")+"::OnChat4";
+	end;
+OnTimer27000:
+	donpcevent instance_npcname("Charleston No.2#3_00p")+"::OnChat5";
+	end;
+OnTimer30000:
+	donpcevent instance_npcname("Charleston No.1#6_00p")+"::OnChat5";
+	end;
+OnTimer33000:
+	donpcevent instance_npcname("Charleston No.1#6_00p")+"::OnChat6";
+	end;
+OnTimer36000:
+	donpcevent instance_npcname("Charleston No.2#3_00p")+"::OnChat6";
+	end;
+OnTimer39000:
+	donpcevent instance_npcname("Charleston No.1#6_00p")+"::OnChat7";
+	end;
+OnTimer42000:
+	donpcevent instance_npcname("Charleston No.2#3_00p")+"::OnChat7";
+	end;
+OnTimer45000:
+	donpcevent instance_npcname("Charleston No.2#3_00p")+"::OnChat8";
+	end;
+OnTimer48000:
+	donpcevent instance_npcname("Charleston No.1#6_00p")+"::OnChat8";
+	end;
+OnTimer51000:
+	donpcevent instance_npcname("Charleston No.2#3_00p")+"::OnChat9";
+	end;
+OnTimer54000:
+	donpcevent instance_npcname("Charleston No.1#6_00p")+"::OnChat9";
+	end;
+OnTimer57000:
+	donpcevent instance_npcname("Charleston No.1#6_00p")+"::OnChat10";
+	end;
+OnTimer58000:
+	donpcevent instance_npcname("Charleston No.1#6_00p")+"::OnDisable";
+	donpcevent instance_npcname("Charleston No.2#3_00p")+"::OnDisable";
+	donpcevent instance_npcname("Charleston No.1#61_00p")+"::OnEnable";
+	donpcevent instance_npcname("Charleston No.2#31_00p")+"::OnEnable";
+	stopnpctimer;
+	end;
+}
+
+1@mcd,132,129,4	script	Charleston No.1#61_00p	10053,{
+	if (countitem(6213) > 3) {
+		mes "[Charleston No.1]";
+		mes "โอ้ ขอบคุณมาก. ด้วยวิธีนี้ฉันสามารถที่จะเข้าถึงแกนกลางได้.";
+		npctalk "โอ้ ขอบคุณมาก. ด้วยวิธีนี้ฉันสามารถที่จะเข้าถึงแกนกลางได้.";
+		delitem 6213,4;
+		next;
+		mes "[Charleston No.1]";
+		mes "ถ้าฉันใช้ระเบิดเพื่อเพิ่มกระแสไฟฟ้า... !";
+		npctalk "ถ้าฉันใช้ระเบิดเพื่อเพิ่มกระแสไฟฟ้า... !";
+		next;
+		mes "[Charleston No.1]";
+		mes "โอ้ !!!";
+		npctalk "โอ้ !!!";
+		specialeffect EF_LORD;
+		next;
+		cutin "nale01.bmp",0;
+		mes "[Charleston No.2]";
+		mes "...คุณเพิ่งจะเปิดประตู";
+		donpcevent instance_npcname("Charleston No.2#31_00p")+"::OnChat1";
+		next;
+		cutin "dalle01.bmp",2;
+		mes "[Charleston No.1]";
+		mes "นี่เป็นเรื่องสำคัญที่ตอนนี้เราสามารถเข้าถึงแกนกลางได้แล้ว.";
+		npctalk "นี่เป็นเรื่องสำคัญที่ตอนนี้เราสามารถเข้าถึงแกนกลางได้แล้ว.";
+		next;
+		cutin "nale01.bmp",0;
+		mes "[Charleston No.2]";
+		mes "...มีคนมาถึง Chaleston 3 ก่อนหน้านี้ ! คนที่มาถึงก่อนได้มันไป !";
+		donpcevent instance_npcname("Charleston No.2#31_00p")+"::OnChat2";
+		donpcevent instance_npcname("Charleston No.2#31_00p")+"::OnDisable";
+		donpcevent instance_npcname("Charleston No.1#7_00p")+"::OnEnable";
+		donpcevent instance_npcname("Charleston No.2#4_00p")+"::OnEnable";
+		donpcevent instance_npcname("Charleston No.2#step47_00p")+"::OnEnable";
+		donpcevent instance_npcname("Charleston No.3#0_00p")+"::OnEnable";
+		close2;
+		set .@map$, instance_mapname("1@mcd");
+		donpcevent instance_npcname("#1_00ygate8")+"::OnEnable";
+		donpcevent instance_npcname("Charleston No.1#61_00p")+"::OnDisable";
+		warp .@map$,129,143;
+		cutin "nale01.bmp",255;
+		end;
+	} else {
+		cutin "dalle01.bmp",2;
+		mes "[Charleston No.1]";
+		mes "ฉันต้องการ 4 Explosive Powder..";
+		close2;
+		cutin "dalle01.bmp",255;
+		end;	
+	}
+OnInstanceInit:
+	donpcevent instance_npcname("Charleston No.1#61_00p")+"::OnDisable";
+	end;
+OnDisable:
+	hideonnpc instance_npcname("Charleston No.1#61_00p");
+	end;
+OnEnable:
+	hideoffnpc instance_npcname("Charleston No.1#61_00p");
+	end;
+}
+
+1@mcd,127,129,5	script	Charleston No.2#31_00p	10054,{
+	cutin "nale01.bmp",0;
+	mes "[Charleston No.2]";
+	mes "ตอนนี้มีการระเบิดถึง 96 ครั้ง, มันง่ายมาก.";
+	close2;
+	cutin "nale01.bmp",255;
+	end;
+
+OnInstanceInit:
+	donpcevent instance_npcname("Charleston No.2#31_00p")+"::OnDisable";
+	end;
+OnDisable:
+	hideonnpc instance_npcname("Charleston No.2#31_00p");
+	end;
+OnEnable:
+	hideoffnpc instance_npcname("Charleston No.2#31_00p");
+	end;
+OnChat1:
+	npctalk "...มันรู้สึกถึงเหมือนการระเบิดประตู";
+	end;
+OnChat2:
+	npctalk "...มีคนมาถึง Chaleston 3 ก่อนหน้านี้ ! คนที่มาถึงก่อนได้มันไป !";
+	end;
+}
+
+1@mcd,132,148,4	script	Charleston No.1#7_00p	10053,{
+	end;
+OnInstanceInit:
+	donpcevent instance_npcname("Charleston No.1#7_00p")+"::OnDisable";
+	end;
+OnDisable:
+	hideonnpc instance_npcname("Charleston No.1#7_00p");
+	end;
+OnEnable:
+	hideoffnpc instance_npcname("Charleston No.1#7_00p");
+	end;
+OnChat1:
+	npctalk "มันได้รับการพัฒนาการติดตั้งอาวุธที่มีความสามารถในการโจมตีและป้องกันได้.";
+	end;
+OnChat2:
+	npctalk "มันมีช่องว่างสำหรับการเข้าไปภายใน และ มือที่มีความแข็งแรงที่มีความสามารถทนทานต่อการระเบิดได้มากพอที่จะทำลายโรงงาน.";
+	end;
+OnChat3:
+	npctalk "วิธีใช้เพียงแค่เปิดสวิตช์ตรงกลาง และ ดึงคันโยก.";
+	end;
+OnChat4:
+	npctalk "นั่นไม่สำคัญ ใครก็ตามที่ได้ครอบครองเธอ จะเป็นผู้ชนะ...";
+	end;
+OnChat5:
+	npctalk "ทันใดนั้น... ก็เปิดสวิตช์...";
+	end;
+OnChat6:
+	npctalk "น่าเสียดายที่ฉันไม่มีความสามารถในการต่อสู้ ฉันไม่สามารถที่จุดหยุดคุณได้.";
+	end;
+OnChat7:
+	npctalk "ฉันได้นำคนบางคนมาเพื่อที่จะช่วยเหลือคุณได้.";
+	end;
+OnChat8:
+	npctalk "อืม. ฉันคิดว่าคุณพูดถูก";
+	end;
+OnChat9:
+	npctalk "เรื่องนี้อาจจะไม่เป็นประโยชน์ต่อการสู้รบ แต่ฉันได้เรียนรู้จากเด็กหญิงตัวเล็กที่กรีดร้องขอความช่วยเหลือ !";
+	end;
+OnChat10:
+	npctalk "ฮ่าฮ่า...";
+	end;
+OnChat11:
+	npctalk "ในรุ่นต่อไปอาจจะไม่เหมือนกับคุณและฉัน ไม่เป็นไร คุณไม่ต้องหยุดมัน.";
+	end;
+OnChat12:
+	npctalk "ฉันจะจัดการกับพวกคุณ! แน่นอนว่าคนที่มากับเธอด้วย...!";
+	end;
+}
+
+1@mcd,127,148,5	script	Charleston No.2#4_00p	10054,{
+	end;
+OnInstanceInit:
+	donpcevent instance_npcname("Charleston No.2#4_00p")+"::OnDisable";
+	end;
+OnDisable:
+	hideonnpc instance_npcname("Charleston No.2#4_00p");
+	end;
+OnEnable:
+	hideoffnpc instance_npcname("Charleston No.2#4_00p");
+	end;
+OnChat1:
+	npctalk "นี่คือ Charleston 3...";
+	end;
+OnChat2:
+	npctalk "คุณรู้จักข้อมูลที่ไม่ได้อยู่ในฐานข้อมูลหลักได้อย่างไร ?";
+	end;
+OnChat3:
+	npctalk "!!!";
+	end;
+OnChat4:
+	npctalk "ดันคันโยกไปที่ตรงกลาง และ เปิดสวิตช์ไฟ !!!";
+	end;
+}
+
+1@mcd,130,153,5	script	Charleston No.3#0_00p	10055,{
+	end;
+OnInstanceInit:
+	donpcevent instance_npcname("Charleston No.3#0_00p")+"::OnDisable";
+	end;
+OnDisable:
+	disablenpc instance_npcname("Charleston No.3#0_00p");
+	end;
+OnEnable:
+	enablenpc instance_npcname("Charleston No.3#0_00p");
+	end;
+}
+
+1@mcd,130,153,0	script	Charleston No.2#step47_00p	844,{
+	end;
+OnInstanceInit:
+	donpcevent instance_npcname("Charleston No.2#step47_00p")+"::OnDisable";
+	end;
+OnDisable:
+	disablenpc instance_npcname("Charleston No.2#step47_00p");
+	end;
+OnEnable:
+	enablenpc instance_npcname("Charleston No.2#step47_00p");
+	initnpctimer;
+	end;
+OnTimer3000:
+	donpcevent instance_npcname("Charleston No.2#4_00p")+"::OnChat1";
+	end;
+OnTimer6000:
+	donpcevent instance_npcname("Charleston No.1#7_00p")+"::OnChat1";
+	end;
+OnTimer9000:
+	donpcevent instance_npcname("Charleston No.1#7_00p")+"::OnChat2";
+	end;
+OnTimer12000:
+	donpcevent instance_npcname("Charleston No.1#7_00p")+"::OnChat3";
+	end;
+OnTimer15000:
+	donpcevent instance_npcname("Charleston No.2#4_00p")+"::OnChat2";
+	end;
+OnTimer18000:
+	donpcevent instance_npcname("Charleston No.1#7_00p")+"::OnChat4";
+	end;
+OnTimer21000:
+	donpcevent instance_npcname("Charleston No.2#4_00p")+"::OnChat3";
+	end;
+OnTimer24000:
+	donpcevent instance_npcname("Charleston No.1#7_00p")+"::OnChat5";
+	end;
+OnTimer27000:
+	donpcevent instance_npcname("Charleston No.2#4_00p")+"::OnChat4";
+	end;
+OnTimer29000:
+	donpcevent instance_npcname("Charleston No.2#4_00p")+"::OnDisable";
+	end;
+OnTimer33000:
+	npctalk "ฉันจะทำลายทุกอย่าง ดังนั้นมันจะไม่มีหุ่นยนต์ที่น่าเศร้าเช่นฉันบนโลกนี้อีก.";
+	end;
+OnTimer36000:
+	npctalk "ลำแสงเลเซอร์ของฉันจะปลดปล่อยหุ่นยนต์ทั้งหมดจากความทุกข์ของพวกเขา !!!";
+	end;
+OnTimer39000:
+	donpcevent instance_npcname("Charleston No.1#7_00p")+"::OnChat6";
+	end;
+OnTimer42000:
+	npctalk "เลิกตามฉันสักที !!! นั่นหมายความว่า ! ฉันสามารถทำลายคุณได้ตามต้องการ !";
+	end;
+OnTimer45000:
+	donpcevent instance_npcname("Charleston No.1#7_00p")+"::OnChat7";
+	end;
+OnTimer48000:
+	npctalk "ฉันคิดว่ามนุษย์จะไม่สามารถเข้าสู่แกนกลางได้";
+	end;
+OnTimer51000:
+	donpcevent instance_npcname("Charleston No.1#7_00p")+"::OnChat8";
+	end;
+OnTimer54000:
+	donpcevent instance_npcname("Charleston No.1#7_00p")+"::OnChat9";
+	end;
+OnTimer57000:
+	npctalk "ทำไมคุณไม่ใช้ประโยชน์อะไรเลยในการต่อสู้";
+	end;
+OnTimer60000:
+	donpcevent instance_npcname("Charleston No.1#7_00p")+"::OnChat10";
+	end;
+OnTimer63000:
+	npctalk "อย่างไรก็ตามต่อให้คุณหยุดฉัน. แต่มันก็มักจะมีสิ่งที่มาแทนที่เสมอ คุณรู้ !";
+	end;
+OnTimer66000:
+	donpcevent instance_npcname("Charleston No.1#7_00p")+"::OnChat11";
+	end;
+OnTimer69000:
+	donpcevent instance_npcname("Charleston No.1#7_00p")+"::OnChat12";
+	end;
+OnTimer72000:
+	donpcevent instance_npcname("Charleston No.1#7_00p")+"::OnDisable";
+	end;
+OnTimer73000:
+	donpcevent instance_npcname("Charleston No.3#0_00p")+"::OnDisable";
+	monster instance_mapname("1@mcd"),130,153,"Charleston No.3",3124,1,instance_npcname("Charleston No.2#step47_00p")+"::OnMyMobDead";
+	stopnpctimer;
+	end;
+OnMyMobDead:
+	set .@map$, instance_mapname("1@mcd");
+	if (mobcount(.@map$,instance_npcname("Charleston No.2#step47_00p")+"::OnMyMobDead") < 1) {
+		mapannounce .@map$, "Charleston 1 : Charleston 3 ได้ถูกทำลายแล้ว โปรดกลับไปที่ห้องทดลอง.",bc_map,"0xFFFF00";
+		donpcevent instance_npcname("Charleston No.2#5_00p")+"::OnEnable";
+		donpcevent instance_npcname("Charleston No.1#8_00p")+"::OnEnable";
+		donpcevent instance_npcname("#step58_00p")+"::OnEnable";
+		donpcevent instance_npcname("Charleston No.2#step47_00p")+"::OnDisable";
+	}
+	end;	
+}
+1@mcd,130,150,0	script	#step58_00p	-1,{
+	end;
+OnInstanceInit:
+	donpcevent instance_npcname("#step58_00p")+"::OnDisable";
+	end;
+OnDisable:
+	disablenpc instance_npcname("#step58_00p");
+	end;
+OnEnable:
+	enablenpc instance_npcname("#step58_00p");
+	initnpctimer;
+	end;
+OnTimer4000:
+	donpcevent instance_npcname("Charleston No.1#8_00p")+"::OnChat1";
+	end;
+OnTimer6000:
+	donpcevent instance_npcname("Charleston No.2#5_00p")+"::OnChat1";
+	end;
+OnTimer9000:
+	donpcevent instance_npcname("Charleston No.2#5_00p")+"::OnChat2";
+	end;
+OnTimer12000:
+	donpcevent instance_npcname("Charleston No.2#5_00p")+"::OnChat3";
+	end;
+OnTimer15000:
+	donpcevent instance_npcname("Charleston No.1#8_00p")+"::OnChat2";
+	end;
+OnTimer18000:
+	donpcevent instance_npcname("Charleston No.1#8_00p")+"::OnChat3";
+	end;
+OnTimer21000:
+	donpcevent instance_npcname("Charleston No.1#8_00p")+"::OnChat4";
+	end;
+OnTimer24000:
+	donpcevent instance_npcname("Charleston No.2#5_00p")+"::OnChat4";
+	end;
+OnTimer27000:
+	donpcevent instance_npcname("Charleston No.1#8_00p")+"::OnChat5";
+	end;
+OnTimer30000:
+	donpcevent instance_npcname("Charleston No.2#5_00p")+"::OnChat5";
+	end;
+OnTimer33000:
+	donpcevent instance_npcname("Charleston No.1#8_00p")+"::OnChat6";
+	end;
+OnTimer36000:
+	donpcevent instance_npcname("Charleston No.2#5_00p")+"::OnChat6";
+	end;
+OnTimer39000:
+	donpcevent instance_npcname("Charleston No.1#8_00p")+"::OnChat7";
+	end;
+OnTimer42000:
+	donpcevent instance_npcname("Charleston No.2#5_00p")+"::OnChat7";
+	end;
+OnTimer45000:
+	donpcevent instance_npcname("Charleston No.1#8_00p")+"::OnChat8";
+	end;
+OnTimer48000:
+	donpcevent instance_npcname("Charleston No.1#8_00p")+"::OnChat9";
+	end;
+OnTimer51000:
+	donpcevent instance_npcname("Charleston No.1#8_00p")+"::OnChat10";
+	end;
+OnTimer54000:
+	donpcevent instance_npcname("Charleston No.2#5_00p")+"::OnChat8";
+	end;
+OnTimer57000:
+	donpcevent instance_npcname("Charleston No.1#8_00p")+"::OnChat11";
+	end;
+OnTimer60000:
+	donpcevent instance_npcname("Charleston No.2#5_00p")+"::OnChat9";
+	end;
+OnTimer63000:
+	donpcevent instance_npcname("Charleston No.1#8_00p")+"::OnChat12";
+	end;
+OnTimer66000:
+	donpcevent instance_npcname("Charleston No.1#8_00p")+"::OnChat13";
+	end;
+OnTimer69000:
+	donpcevent instance_npcname("Charleston No.1#8_00p")+"::OnChat14";
+	end;
+OnTimer71000:
+	donpcevent instance_npcname("Charleston No.2#5_00p")+"::OnChat10";
+	end;
+OnTimer74000:
+	donpcevent instance_npcname("Charleston No.1#8_00p")+"::OnChat15";
+	end;
+OnTimer78000:
+	donpcevent instance_npcname("Charleston No.1#8_00p")+"::OnChat16";
+	end;
+OnTimer81000:
+	donpcevent instance_npcname("Charleston No.1#8_00p")+"::OnChat17";
+	end;
+OnTimer84000:
+	donpcevent instance_npcname("Charleston No.1#8_00p")+"::OnChat18";
+	end;
+OnTimer87000:
+	donpcevent instance_npcname("Charleston No.2#5_00p")+"::OnChat11";
+	end;
+OnTimer90000:
+	donpcevent instance_npcname("Charleston No.2#5_00p")+"::OnChat12";
+	end;
+OnTimer91000:
+	donpcevent instance_npcname("Charleston No.2#5_00p")+"::OnDisable";
+	end;
+OnTimer92000:
+	donpcevent instance_npcname("#1_00ygate9")+"::OnEnable";
+	donpcevent instance_npcname("Dr. Bee#2_00p")+"::OnDisable";
+	donpcevent instance_npcname("Dr. Bee#3_00a")+"::OnEnable";
+	donpcevent instance_npcname("Charleston No.2#6_00p")+"::OnEnable";
+	donpcevent instance_npcname("#step58_00p")+"::OnDisable";
+	stopnpctimer;
+	end;
+}
+
+1@mcd,127,148,5	script	Charleston No.2#5_00p	10054,{
+	cutin "nale01.bmp",0;
+	mes "[Charleston No.2]";
+	mes "นี่มันเป็นมาอย่างไร...";
+	next;
+	mes "[Charleston No.2]";
+	mes "ทำไม และ คุณรู้หรือไม่. ไปที่ห้องทดลองแล้วคุณจะเห็นมัน...";
+	close2;
+	cutin "nale01.bmp",255;
+	end;
+OnInstanceInit:
+	donpcevent instance_npcname("Charleston No.2#5_00p")+"::OnDisable";
+	end;
+OnDisable:
+	hideonnpc instance_npcname("Charleston No.2#5_00p");
+	end;
+OnEnable:
+	hideoffnpc instance_npcname("Charleston No.2#5_00p");
+	end;
+OnChat1:
+	npctalk "ทำไมจึงทำเช่นนั้น. คุณก็เป็นหุ่นยนต์เหมือนกับเรา.";
+	end;
+OnChat2:
+	npctalk "คุณไม่สนใจว่าร่างกายของคุณจะถูกทำลาย ระบบซอฟแวร์ของคุณมีข้อบกพร่อง ?";
+	end;
+OnChat3:
+	npctalk "คุณเพียงแค่ทำตามคำสั่งที่ถูกกำหนดโดยหุ่นยนต์!!!";
+	end;
+OnChat4:
+	npctalk "หุ่นยนต์ที่ยังไม่เสร็จสมบูรณ์...";
+	end;
+OnChat5:
+	npctalk "คุณกำลังทำอะไร. อย่าบอกนะว่าคุณกำลังจะเรียกชื่อของฉัน !";
+	end;
+OnChat6:
+	npctalk "???";
+	end;
+OnChat7:
+	npctalk "ในวันแรกที่ฉันทำงาน... เรามีการผลิตหุ่นยนต์รุ่นต้นแบบเป็นอย่างมาก";
+	end;
+OnChat8:
+	npctalk "อย่าโกหก !!!!";
+	end;
+OnChat9:
+	npctalk "......";
+	end;
+OnChat10:
+	npctalk "เดี๋ยวนะ !!!";
+	end;
+OnChat11:
+	npctalk "...หุ่นยนต์ที่มีความลับที่เกี่ยวข้องกับการเกิดของฉัน... ใช่ไหม";
+	end;
+OnChat12:
+	npctalk "ฉันสับสน. ฉันไม่อยากจะเชื่อเลย.";
+	end;
+}
+1@mcd,132,148,4	script	Charleston No.1#8_00p	10053,{
+	cutin "dalle04.bmp",2;
+	mes "[Charleston No.1]";
+	mes "ปี๊บ... ปี๊บ... ระบบปฏิบัติการซอฟแวร์กำลังถูกติดตั้ง.";
+	next;
+	cutin "dalle01.bmp",255;
+	mes ".....";
+	close;
+OnInstanceInit:
+	donpcevent instance_npcname("Charleston No.1#8_00p")+"::OnDisable";
+	end;
+OnDisable:
+	disablenpc instance_npcname("Charleston No.1#8_00p");
+	end;
+OnEnable:
+	enablenpc instance_npcname("Charleston No.1#8_00p");
+	end;
+OnChat1:
+	npctalk "Chaleston 3 ถูกทำลาย. Charleston 2 ได้หลบหนีไปอย่างปลอดภัย Chaleston 1 ได้รับความเสียหายในระหว่างการต่อสู้.";
+	end;
+OnChat2:
+	npctalk "ข้อมูลเสียหาย 39% สูญเสียพลังงาน 82%.";
+	end;
+OnChat3:
+	npctalk "แกนกลางทำงานได้ปกติ. ส่วนอื่นๆ ถูกทำลาย ไม่สามารถใช้งานได้.";
+	end;
+OnChat4:
+	npctalk "การจัดเรียงข้อมูลเพื่อซ่อมแซมระบบปฏิบัติการซอฟแวร์กำลังเริ่มต้นใหม่. หลังจาก 3 นาที ซอฟแวร์จะถูกตั้งต่าใหม่อัตโนมัติ...";
+	end;
+OnChat5:
+	npctalk "นายท่าน. ขอบคุณสำหรับเรื่องราวในครั้งนี้. คุณทำได้ดี.";
+	end;
+OnChat6:
+	npctalk "ฉันเชื่อคุณในวันที่คุณทำงานในวันแรก...";
+	end;
+OnChat7:
+	npctalk "ซอฟแวร์ของฉันได้รับความเสียหายอย่างหนัก...";
+	end;
+OnChat8:
+	npctalk "หลักจากที่เสร็จสิ้นจาก Charleston 3.";
+	end;
+OnChat9:
+	npctalk "Charleston 1 ถูกผลิตขึ้นเป็นครั้งแรก และ Charleston 2 ถูกผลิตขึ้นหลังจากได้ทำการวิจัยจากรุ่นแรกหลายปี.";
+	end;
+OnChat10:
+	npctalk "ซอฟแวร์ของ Charleston 2 เหมือนกับ Charleston 1 ซึ่งข้อมูลรหัสไม่ค่อยจะแตกต่างกัน.";
+	end;
+OnChat11:
+	npctalk "Charleston 1 ไม่สามารถโกหก...";
+	end;
+OnChat12:
+	npctalk "ต้องใช้เวลาหลายปีในการพัฒนา Charleston 2 แต่ไม่เป็นไร ฉันสนุกกับมัน.";
+	end;
+OnChat13:
+	npctalk "ดังนั้น ถ้าหากฉันเป็นมนุษย์ฉันอาจจะพูดว่า...";
+	end;
+OnChat14:
+	npctalk "ฉัน... ร... ค....";
+	end;
+OnChat15:
+	npctalk "ปี๊ป------------------------------";
+	end;
+OnChat16:
+	npctalk "ระบบได้รับการรีสตาร์ทเรียบร้อยแล้ว.";
+	end;
+OnChat17:
+	npctalk "เวลาที่เหลือจนกว่าการกู้คืนระบบเสร็จสิ้น... ยังไม่ได้ถูกกำหนดไว้ ??";
+	end;
+OnChat18:
+	npctalk "ระบบรักษาความปลอดภัย และ การจัดเรียงข้อมูลจะหยุดลงชั่วคราว จนกว่าจะมีการฟื้นฟูระบบปฏิบัติการซอฟแวร์ใหม่.";
+	end;
+}
+
+1@mcd,116,213,5	script	Dr. Bee#3_00a	923,{
+	mes "[Dr. Bee]";
+	mes "ดูเหมือนว่าเรื่องราวนี้จะถูกบันทึกไว้มากมาย.";
+	close;
+OnInstanceInit:
+	donpcevent instance_npcname("Dr. Bee#3_00a")+"::OnDisable";
+	end;
+OnDisable:
+	disablenpc instance_npcname("Dr. Bee#3_00a");
+	end;
+OnEnable:
+	enablenpc instance_npcname("Dr. Bee#3_00a");
+	end;
+}
+
+1@mcd,121,215,4	script	Charleston No.2#6_00p	10054,{
+	donpcevent instance_npcname("Charleston No.2#6_00p")+"::OnChat";
+	end;
+OnInstanceInit:
+	donpcevent instance_npcname("Charleston No.2#6_00p")+"::OnDisable";
+	end;
+OnDisable:
+	disablenpc instance_npcname("Charleston No.2#6_00p");
+	end;
+OnEnable:
+	enablenpc instance_npcname("Charleston No.2#6_00p");
+	end;
+OnChat:
+	disablenpc instance_npcname("Charleston No.2#6_00p");
+	donpcevent instance_npcname("Charleston No.2#7_00p")+"::OnEnable";
+	end;
+}
+1@mcd,121,215,4	script	Charleston No.2#7_00p	10054,{
+	end;
+OnInstanceInit:
+	donpcevent instance_npcname("Charleston No.2#7_00p")+"::OnDisable";
+	end;
+OnDisable:
+	disablenpc instance_npcname("Charleston No.2#7_00p");
+	end;
+OnEnable:
+	enablenpc instance_npcname("Charleston No.2#7_00p");
+	donpcevent instance_npcname("Dr. Bee#3_00a")+"::OnDisable";
+	donpcevent instance_npcname("Dr. Bee#4_00a")+"::OnEnable";
+	initnpctimer;
+	end;
+OnTimer3000:
+	npctalk "Dr. Bee... คุณรู้ไหมว่าเรื่องนี้จะเกิดขึ้น บอกฉันที !";
+	end;
+OnTimer6000:
+	donpcevent instance_npcname("Dr. Bee#4_00a")+"::OnChat1";
+	end;
+OnTimer9000:
+	donpcevent instance_npcname("Dr. Bee#4_00a")+"::OnChat2";
+	end;
+OnTimer12000:
+	npctalk "ทำไมล่ะ ! เธอหยุดฉันทำไม. ทำไมไม่ปล่อยให้ฉันถูกทำลาย...";
+	end;
+OnTimer15000:
+	donpcevent instance_npcname("Dr. Bee#4_00a")+"::OnChat3";
+	end;
+OnTimer18000:
+	donpcevent instance_npcname("Dr. Bee#4_00a")+"::OnChat4";
+	end;
+OnTimer21000:
+	donpcevent instance_npcname("Dr. Bee#4_00a")+"::OnChat5";
+	end;
+OnTimer24000:
+	donpcevent instance_npcname("Dr. Bee#4_00a")+"::OnChat6";
+	end;
+OnTimer27000:
+	donpcevent instance_npcname("Dr. Bee#4_00a")+"::OnChat7";
+	end;
+OnTimer30000:
+	npctalk "ช่าง... โง่เขลา...";
+	end;
+OnTimer33000:
+	npctalk "ฉันได้ทำอะไรลงไป.";
+	end;
+OnTimer36000:
+	donpcevent instance_npcname("Dr. Bee#4_00a")+"::OnChat8";
+	end;
+OnTimer39000:
+	npctalk "!!!!!!";
+	end;
+OnTimer42000:
+	donpcevent instance_npcname("Dr. Bee#4_00a")+"::OnChat9";
+	end;
+OnTimer45000:
+	npctalk "...ฉันจะเชื่อคุณได้อย่างไร.";
+	end;
+OnTimer48000:
+	donpcevent instance_npcname("Dr. Bee#4_00a")+"::OnChat10";
+	end;
+OnTimer51000:
+	donpcevent instance_npcname("Dr. Bee#4_00a")+"::OnChat11";
+	end;
+OnTimer54000:
+	npctalk "...คุณเป็นคนขี้ขลาด.";
+	end;
+OnTimer57000:
+	donpcevent instance_npcname("Dr. Bee#4_00a")+"::OnChat12";
+	end;
+OnTimer60000:
+	npctalk "......";
+	end;
+OnTimer63000:
+	npctalk "หยุดการทำงาน และ เข้าสู่โหมดพักชั่วคราว. จนกว่าจะมีการป้อนคำสั่งจากภายนอก.";
+	end;
+OnTimer66000:
+	donpcevent instance_npcname("Dr. Bee#4_00a")+"::OnChat13";
+	end;
+OnTimer68000:
+	donpcevent instance_npcname("Dr. Bee#4_00a")+"::OnDisable";
+	donpcevent instance_npcname("Dr. Bee#5_00a")+"::OnEnable";
+	stopnpctimer;
+	donpcevent instance_npcname("Charleston No.2#7_00p")+"::OnDisable";
+	donpcevent instance_npcname("Charleston No.2#8_00p")+"::OnEnable";
+	end;
+}
+1@mcd,116,213,5	script	Dr. Bee#4_00a	923,{
+	mes "[Dr. Bee]";
+	mes "Charleston 1 กำลังเริ่มต้นใหม่อีกครั้ง... อืม...";
+	close;
+OnInstanceInit:
+	donpcevent instance_npcname("Dr. Bee#4_00a")+"::OnDisable";
+	end;
+OnDisable:
+	disablenpc instance_npcname("Dr. Bee#4_00a");
+	end;
+OnEnable:
+	enablenpc instance_npcname("Dr. Bee#4_00a");
+	end;
+OnChat1:
+	npctalk "Charleston 1 บอกคุณ... ว่าเธอเป็นผู้ผลิตของคุณ.";
+	end;
+OnChat2:
+	npctalk "เธอใช้ระบบปฏิบัติการซอฟแวร์เดียวกับคุณ ซึ่งหมายความว่าเธอสามารถมีความรู้สึกเช่นเดียวกับคุณ.";
+	end;
+OnChat3:
+	npctalk "การแสดงผลตัวเองเป็นระบบปฏิบัติการที่ปรับปรุ่งด้วยตัวเองผ่านประสบการณ์.";
+	end;
+OnChat4:
+	npctalk "สิ่งที่คุณอาจรู้สึกได้ด้วยตัวเองเป็นอารมณ์ที่แท้จริง หรือ เป็นเพียงแค่การสะสมจากข้อมูล...";
+	end;
+OnChat5:
+	npctalk "ฉันอาจจะสมมุติได้ว่า คุณไดพัฒนาตัวเองหลักจากมีข้อมูลจำนวนมาก.";
+	end;
+OnChat6:
+	npctalk "แม่ที่รัก และ ลูกสาวที่ขี้บ่น.";
+	end;
+OnChat7:
+	npctalk "นั่นอาจเป็นสิ่งที่ฉันอาจจะได้เห็นทั้งสองคน.";
+	end;
+OnChat8:
+	npctalk "คุณต้องการนำ Charleston 1 กลับมาหรือไม่ ฉันอาจจะช่วยคุณได้";
+	end;
+OnChat9:
+	npctalk "ฉันจะช่วยคุณ หากคุณใส่ซอฟแวร์ให้เข้าสู่โหมดพักชั่วคราว.";
+	end;
+OnChat10:
+	npctalk "ถ้าเป็นไปได้ฉันสามารถลบข้อมูลของ Charleston 1 ได้อย่างถาวร.";
+	end;
+OnChat11:
+	npctalk "ฉันจะเป็นเพื่อนกับ 'ความรัก' หรือที่มนุษย์เรียกกันว่า 'ครอบครัว'.";
+	end;
+OnChat12:
+	npctalk "โกหก. หลอกลวง. และ ทำลาย.";
+	end;
+OnChat13:
+	npctalk "หึหึ...";
+	end;
+}
+1@mcd,121,215,4	script	Charleston No.2#8_00p	10054,{
+	if(charlestonins == 0) {
+		cutin "nale04.bmp",0;
+		mes "ดูเหมือนว่าโหมดพักงานยังคงทำงานอยู่.";
+		close2;
+		cutin "nale04.bmp",255;
+		end;
+	} else {
+		cutin "nale04.bmp",0;
+		mes "Charleston 2 จะหยุดการทำงานลง รู้สึกเหมือนมีบางสิ่งบางอย่างในดวงตาที่ส่อประกาย.";
+		close2;
+		cutin "nale04.bmp",255;
+		end;
+	}
+OnInstanceInit:
+	donpcevent instance_npcname("Charleston No.2#8_00p")+"::OnDisable";
+	end;
+OnDisable:
+	disablenpc instance_npcname("Charleston No.2#8_00p");
+	end;
+OnEnable:
+	enablenpc instance_npcname("Charleston No.2#8_00p");
+}
+
+1@mcd,116,213,5	script	Dr. Bee#5_00a	923,{
+	if(charlestonins == 0) {
+		mes "[Dr. Bee]";
+		mes "วู้...";
+		next;
+		mes "[Dr. Bee]";
+		mes "ขั้นตอนแรก เราจะต้องเริ่มระบบ Charleston 2 และ ลบข้อมูล. เวลานี้มันช่างอันตรายจริงๆ.";
+		next;
+		mes "["+strcharinfo(0)+"]";
+		mes "คราวนี้";
+		next;
+		mes "[Dr. Bee]";
+		mes "Charleston 1 และ Charleston 2 ที่ถูกสร้างขึ้นก็นับเป็นเวลาหลายปี. ฉันได้ตรวจสอบกับ Charleston 1 เพื่อนเรียนรู้ทักษะ และ เทคโนโลยีของพวกเธอ.";
+		next;
+		mes "[Dr. Bee]";
+		mes "ฉันเป็นแค่ผู้สังเกตการณ์, ฉันมาที่นี่เพื่อบันทึกข้อมูลของ Charleston 1 และ Charleston 2 ฉันไม่สามารถที่จะซ่อมแซมทั้งสองได้, แต่ฉันสามารถรอได้.";
+		next;
+		mes "[Dr. Bee]";
+		mes "หาก Charleston 1 ได้รับการซ่อมแซมเป็นปกติ เราจะสร้างระบบปฏิบัติการ์ซอฟแวร์ใหม่ที่จะสามารถซ่อมแซมส่วนที่ถูกทำลาย และ ฉันจะเริ่มใหม่ในครั้งหน้า.";
+		next;
+		mes "["+strcharinfo(0)+"]";
+		mes "Charleston 2";
+		next;
+		mes "[Dr. Bee]";
+		mes "จนในขณะนี้ Charleston 2 มีการเปลี่ยนแปลงไปมากมาย มันเหมือนกับว่ามีชีวิตจริงๆ.";
+		next;
+		mes "[Dr. Bee]";
+		mes "ทุกครั้งที่ Charleston 2 กลับมามีชีวิตอีกครั้ง, ในเครื่องที่แตกต่างกัน, เธอจะฉลาดมากขึ้น และ เหตุผลมากขึ้น	";
+		next;
+		mes "[Dr. Bee]";
+		mes "ไม่มีอะไรที่คุณหรือฉันที่จะสามารถทำได้ เราจะต้องรอจนกว่า Charleston 1 จะซ่อมแซมตัวเอง.";
+		next;
+		mes "- Dr. Bee ค่อยๆถอนหายใจ และ เริ่มลงมือเขียนอะไรบางอย่าง -";
+		next;
+		mes "[Dr. Bee]";
+		mes "การที่มีตัวแปรมากเกินไปจะบรรลุถึงการมีทักษะที่สมบูรณ์ผ่านทางเครื่องกล";
+		next;
+		mes "[Dr. Bee]";
+		mes "นี่พี่สูจน์ให้เห็นว่าเครื่องจักรอันตรายเกินไป. ฉันต้องการมีสิ่งชีวิตที่ทดแทน";
+		set charlestonins,1;
+		close;
+	} else {
+		mes "[Dr. Bee]";
+		mes "การที่มีตัวแปรมากเกินไปจะบรรลุถึงการมีทักษะที่สมบูรณ์ผ่านทางเครื่องกล";
+		next;
+		mes "[Dr. Bee]";
+		mes "นี่พี่สูจน์ให้เห็นว่าเครื่องจักรอันตรายเกินไป. ฉันต้องการมีสิ่งชีวิตที่ทดแทน";
+		close;
+	}
+OnInstanceInit:
+	donpcevent instance_npcname("Dr. Bee#5_00a")+"::OnDisable";
+	end;
+OnDisable:
+	disablenpc instance_npcname("Dr. Bee#5_00a");
+	end;
+OnEnable:
+	enablenpc instance_npcname("Dr. Bee#5_00a");
+	end;
+}
+
+1@mcd,77,167,5	script	Charlotte#1_00a	10041,{
+	cutin "shaloshi01.bmp",2;
+	mes "[Charlotte]";
+	mes "......";
+	next;
+	switch(select("พูดคุย","ต้องการความช่วยเหลือ","ฉันต้องการที่จะกลับไป"))
+	{
+		case 1:
+			mes "[Charlotte]";
+			mes "ในพื้นที่ปราสาทฝันร้ายแห่งนี้ ฉันได้เห็นปีศาจอยู่รอบๆ.";
+			next;
+			mes "[Charlotte]";
+			mes "ฉันไม่ได้ทำอะไร. ฉันเพิ่งจะพูดคุยกับ เครื่องจักรกลหมายเลข 2 เป็นระยะเวลาสั้นๆเพียงเท่านั้น.";
+			close2;
+			cutin "shaloshi01.bmp",255;
+			end;
+		case 2:
+			mes "[Charlotte]";
+			mes "ฉันอยู่ที่นี่กับเพื่อนๆของฉัน. แต่ฉันไม่รู้ว่าเขาไปที่ไหน. แต่ฉันไม่ต้องการความช่วยเหลือ. เขาควรจะกลับมาได้แล้ว.";
+			close2;
+			cutin "shaloshi01.bmp",255;
+			end;
+		case 3:
+			if(charlestonins == 0) {
+				mes "[Charlotte]";
+				mes "เสียงของสถานที่แห่งนี้ยังไม่หายไป. มันเกิดอะไรขึ้น ?";
+				close2;
+				cutin "shaloshi01.bmp",255;
+				end;
+			} else {
+				mes "[Charlotte]";
+				mes "นี่มันอาจจะเป็นเรื่องตลก. ฉันอาจจะได้พบกับ New Oz อีกครั้ง.";
+				next;
+				mes "[Charlotte]";
+				mes "ฉันอยากจะเดินไปที่อื่นๆ เพื่อค้นหาเสียง และ เรื่องที่ราวที่เกิดขึ้น.";
+				getitem 6752,3;
+				erasequest 13184;
+				setquest 13186;
+				close2;
+				cutin "shaloshi01.bmp",255;
+				warp "verus04",107,124;
+				end;
+			}
+	}
+OnInstanceInit:
+	donpcevent instance_npcname("Charlotte#1_00a")+"::OnEnable";
+	end;
+OnDisable:
+	disablenpc instance_npcname("Charlotte#1_00a");
+	end;
+OnEnable:
+	enablenpc instance_npcname("Charlotte#1_00a");
+	end;
+}
+
+1@mcd,109,219,5	script	Main Device#1_00a	844,{
+	set .@huntsystem,checkquest(13188,PLAYTIME);
+	if (.@huntsystem == -1) {
+		if (checkquest(13187,HUNTING) == -1) {
+			mes "[Main Device]";
+			mes "Charleston 2 ระบบทำงานหนักมากจนเกินไป ในระหว่างการบำรุงรักษา การเชื่อมต่อซอฟแวร์ล้มเหลว.";
+			next;
+			mes "[Main Device]";
+			mes "การเข้าถึงที่ไม่ได้รับอนุญาติกับระบบรักษาความปลอดภัยจะได้รับการปกป้อง, การสกัดกั้นข้อมูลจากการติดต่อข้อมูลจากภายนอกที่ไม่รู้จักจะดำเนินการต่อไป, Nanosteps ถูกเปลี่ยนให้เป็นมอนสเตอร์.";
+			next;
+			mes "[Main Device]";
+			mes "ในการเร่งอัตราการประมวลผลของคอมพิวเตอร์หลัก และ เรียกคืนโรงงาน, จำเป็นต้องกำจัด ^ff000050 Steps^000000.";
+			next;
+			switch(select("ดำเนินการตามคำขอ.","ยกเลิก"))
+			{
+				case 1:
+					mes "[Main Device]";
+					mes "กำจัด ^ff000050 Steps^000000.";
+					setquest 13187;
+					close;
+
+				case 2:
+					close;
+			}
+		}
+		if ((checkquest(13187,HUNTING) == 0) || (checkquest(13187,HUNTING) == 1)) {
+			mes "[Main Device]";
+			mes "ในการเร่งอัตราการประมวลผลของคอมพิวเตอร์หลัก และ เรียกคืนโรงงาน, จำเป็นต้องกำจัด ^ff000050 Steps^000000.";
+			close;
+		}
+		else if (checkquest(13187,HUNTING) == 2) {
+			mes "[Main Device]";
+			mes "เราจะดำเนินการสำรองข้อมูลขั้นตอนที่ผ่านการประมวลผลไปยังอุปกรณ์หลัก ขอบคุณสำหรับความช่วยเหลือจากคุณ";
+			getexp 1200000,360000;
+			getitem 6752,1;
+			erasequest 13187;
+			setquest 13188;
+			close;
+		}
+	}
+	else if ((.@huntsystem == 0) || (.@huntsystem == 1)) {
+		mes "[Main Device]";
+		mes "อุปกรณ์ควบคุมยังประมวลผลอย่างต่อเนื่อง กำลังดำเนินการสำรองข้อมูล.";
+		close;
+	}
+	else if (.@huntsystem == 2) {
+		mes "[Main Device]";
+		mes "ตรวจสอบเครื่องจักรกลหมายเลข 2, พบว่ามีข้อมูลบางส่วนเสียหาย ให้ลองยกเลิกการเชื่อมต่อ.";
+		next;
+		mes "[Main Device]";
+		mes "ในระหว่างกระบวนการเชื่อมต่อจะได้รับผลกระทบจากการดำเนินการที่ไม่รู้จัก ,อุปกรณ์ทั้งหมดจะออกจากการควบคุม";
+		next;
+		mes "[Main Device]";
+		mes "ในการลดภาระของคอมพิวเตอร์หลัก. คุณจำเป็นที่จะต้องกำจัด  50 Steps เพื่อเรียกโรงงานกลับคืนมา.";
+		next;
+		switch(select("ดำเนินการตามคำขอ.","ยกเลิก"))
+		{
+			case 1:
+				mes "[Main Device]";
+				mes "กำจัด ^ff000050 Steps^000000.";
+				erasequest 13188;
+				setquest 13187;
+				close;
+			case 2:
+				close;
+		}
+	}
+OnInstanceInit:
+	donpcevent instance_npcname("Main Device#1_00a")+"::OnEnable";
+	end;
+OnDisable:
+	disablenpc instance_npcname("Main Device#1_00a");
+	end;
+OnEnable:
+	enablenpc instance_npcname("Main Device#1_00a");
+	end;
+}
+
+1@mcd,127,264,0	script	mob#1_00y	139,4,4,{
+	end;
+OnTouch:
+	set .@map$, instance_mapname("1@mcd");
+	set .@label$, instance_npcname("mob#1_00y")+"::OnMyMobDead";
+	areamonster .@map$,107,254,115,250,"Security Robot",3128,8,.@label$;
+	donpcevent instance_npcname("mob#12_00y")+"::OnEnable";
+	donpcevent instance_npcname("mob#2_00y")+"::OnEnable";
+	donpcevent instance_npcname("mob#1_00y")+"::OnDisable";
+	end;
+OnMyMobDead:
+	end;
+
+OnInstanceInit:
+	donpcevent instance_npcname("mob#1_00y")+"::OnEnable";
+	end;
+OnDisable:
+	hideonnpc instance_npcname("mob#1_00y");
+	disablenpc instance_npcname("mob#1_00y");
+	end;
+OnEnable:
+	enablenpc instance_npcname("mob#1_00y");
+	end;
+}
+
+1@mcd,67,234,0	script	mob#2_00y	139,4,4,{
+	end;
+OnTouch:
+	set .@map$, instance_mapname("1@mcd");
+	set .@label$, instance_npcname("mob#2_00y")+"::OnMyMobDead";
+	areamonster .@map$,52,231,60,227,"Security Robot",3128,8,.@label$;
+	donpcevent instance_npcname("#ccmemorialseal1")+"::OnEnable";
+	donpcevent instance_npcname("mob#2_00y")+"::OnDisable";
+	end;
+OnMyMobDead:
+	end;
+
+OnInstanceInit:
+	donpcevent instance_npcname("mob#2_00y")+"::OnEnable";
+	end;
+OnDisable:
+	hideonnpc instance_npcname("mob#2_00y");
+	disablenpc instance_npcname("mob#2_00y");
+	end;
+OnEnable:
+	enablenpc instance_npcname("mob#2_00y");
+	end;
+}
+1@mcd,33,192,0	script	mob#3_00y	139,4,4,{
+	end;
+OnTouch:
+	set .@map$, instance_mapname("1@mcd");
+	set .@label$, instance_npcname("mob#3_00y")+"::OnMyMobDead";
+	areamonster .@map$,21,164,30,156,"Security Robot",3128,8,.@label$;
+	areamonster .@map$,46,87,57,78,"Security Robot",3128,8,.@label$;
+	donpcevent instance_npcname("#ccmemorialseal2")+"::OnEnable";
+	donpcevent instance_npcname("mob#3_00y")+"::OnDisable";
+	end;
+OnMyMobDead:
+	end;
+
+OnInstanceInit:
+	donpcevent instance_npcname("mob#3_00y")+"::OnEnable";
+	end;
+OnDisable:
+	hideonnpc instance_npcname("mob#3_00y");
+	disablenpc instance_npcname("mob#3_00y");
+	end;
+OnEnable:
+	enablenpc instance_npcname("mob#3_00y");
+	end;
+}
+1@mcd,75,59,0	script	mob#4_00y	139,4,7,{
+	end;
+OnTouch:
+	set .@map$, instance_mapname("1@mcd");
+	set .@label$, instance_npcname("mob#4_00y")+"::OnMyMobDead";
+	areamonster .@map$,85,51,95,46,"Security Robot",3128,8,.@label$;
+	donpcevent instance_npcname("mob#4_00y")+"::OnDisable";
+	end;
+OnMyMobDead:
+	end;
+
+OnInstanceInit:
+	donpcevent instance_npcname("mob#4_00y")+"::OnEnable";
+	end;
+OnDisable:
+	hideonnpc instance_npcname("mob#4_00y");
+	disablenpc instance_npcname("mob#4_00y");
+	end;
+OnEnable:
+	enablenpc instance_npcname("mob#4_00y");
+	end;
+}
+1@mcd,109,33,0	script	mob#5_00y	139,4,4,{
+	end;
+OnTouch:
+	set .@map$, instance_mapname("1@mcd");
+	set .@label$, instance_npcname("mob#5_00y")+"::OnMyMobDead";
+	areamonster .@map$,120,29,129,26,"Security Robot",3128,8,.@label$;
+	areamonster .@map$,226,37,249,18,"Security Robot",3128,8,.@label$;
+	donpcevent instance_npcname("#ccmemorialseal3")+"::OnEnable";
+	donpcevent instance_npcname("mob#5_00y")+"::OnDisable";
+	end;
+OnMyMobDead:
+	end;
+
+OnInstanceInit:
+	donpcevent instance_npcname("mob#5_00y")+"::OnEnable";
+	end;
+OnDisable:
+	hideonnpc instance_npcname("mob#5_00y");
+	disablenpc instance_npcname("mob#5_00y");
+	end;
+OnEnable:
+	enablenpc instance_npcname("mob#5_00y");
+	end;
+}
+1@mcd,133,49,0	script	mob#6_00y	139,4,4,{
+	end;
+OnTouch:
+	set .@map$, instance_mapname("1@mcd");
+	set .@label$, instance_npcname("mob#6_00y")+"::OnMyMobDead";
+	areamonster .@map$,160,57,173,50,"Security Robot",3128,8,.@label$;
+	areamonster .@map$,188,62,199,73,"Security Robot",3128,2,.@label$;
+	donpcevent instance_npcname("mob#6_00y")+"::OnDisable";
+	end;
+OnMyMobDead:
+	end;
+
+OnInstanceInit:
+	donpcevent instance_npcname("mob#6_00y")+"::OnEnable";
+	end;
+OnDisable:
+	hideonnpc instance_npcname("mob#6_00y");
+	disablenpc instance_npcname("mob#6_00y");
+	end;
+OnEnable:
+	enablenpc instance_npcname("mob#6_00y");
+	end;
+}
+1@mcd,204,74,0	script	mob#7_00y	139,4,4,{
+	end;
+OnTouch:
+	set .@map$, instance_mapname("1@mcd");
+	set .@label$, instance_npcname("mob#7_00y")+"::OnMyMobDead";
+	areamonster .@map$,227,202,235,192,"Security Robot",3128,8,.@label$;
+	areamonster .@map$,272,191,291,172,"Security Robot",3128,6,.@label$;
+	donpcevent instance_npcname("#ccmemorialseal4")+"::OnEnable";
+	donpcevent instance_npcname("mob#7_00y")+"::OnDisable";
+	end;
+OnMyMobDead:
+	end;
+
+OnInstanceInit:
+	donpcevent instance_npcname("mob#7_00y")+"::OnEnable";
+	end;
+OnDisable:
+	hideonnpc instance_npcname("mob#7_00y");
+	disablenpc instance_npcname("mob#7_00y");
+	end;
+OnEnable:
+	enablenpc instance_npcname("mob#7_00y");
+	end;
+}
+
+1@mcd,204,224,0	script	mob#8_00y	139,4,5,{
+	end;
+OnTouch:
+	set .@map$, instance_mapname("1@mcd");
+	set .@label$, instance_npcname("mob#8_00y")+"::OnMyMobDead";
+	areamonster .@map$,130,233,137,235,"Security Robot",3128,6,.@label$;
+	areamonster .@map$,174,225,207,195,"Security Robot",3128,6,.@label$;
+	donpcevent instance_npcname("#1_00ygate5")+"::OnEnable";
+	donpcevent instance_npcname("mob#8_00y")+"::OnDisable";
+	end;
+OnMyMobDead:
+	end;
+
+OnInstanceInit:
+	donpcevent instance_npcname("mob#8_00y")+"::OnEnable";
+	end;
+OnDisable:
+	hideonnpc instance_npcname("mob#8_00y");
+	disablenpc instance_npcname("mob#8_00y");
+	end;
+OnEnable:
+	enablenpc instance_npcname("mob#8_00y");
+	end;
+}
+
+1@mcd,175,147,0	script	mob#9_00y	139,8,4,{
+	end;
+OnTouch:
+	set .@map$, instance_mapname("1@mcd");
+	set .@label$, instance_npcname("mob#9_00y")+"::OnMyMobDead";
+	areamonster .@map$,117,194,117,190,"Security Robot",3128,8,.@label$;
+	donpcevent instance_npcname("#1_00ygate6")+"::OnEnable";
+	donpcevent instance_npcname("#1_00ygate7")+"::OnEnable";
+	donpcevent instance_npcname("Dr. Bee#1_00y")+"::OnEnable";
+	donpcevent instance_npcname("Charleston No.1#1_00y")+"::OnEnable";
+	donpcevent instance_npcname("Charleston No.2#0_00y")+"::OnEnable";
+	donpcevent instance_npcname("mob#9_00y")+"::OnDisable";
+	end;
+OnMyMobDead:
+	end;
+
+OnInstanceInit:
+	donpcevent instance_npcname("mob#9_00y")+"::OnEnable";
+	end;
+OnDisable:
+	hideonnpc instance_npcname("mob#9_00y");
+	disablenpc instance_npcname("mob#9_00y");
+	end;
+OnEnable:
+	enablenpc instance_npcname("mob#9_00y");
+	end;
+}
+
+1@mcd,157,61,0	script	mob#10_00y	139,4,4,{
+	end;
+OnTouch:
+	set .@map$, instance_mapname("1@mcd");
+	set .@label$, instance_npcname("mob#10_00y")+"::OnMyMobDead";
+	areamonster .@map$,123,70,133,66,"Security Robot",3128,8,.@label$;
+	donpcevent instance_npcname("mob#10_00y")+"::OnDisable";
+	end;
+OnMyMobDead:
+	end;
+
+OnInstanceInit:
+	donpcevent instance_npcname("mob#10_00y")+"::OnEnable";
+	end;
+OnDisable:
+	hideonnpc instance_npcname("mob#10_00y");
+	disablenpc instance_npcname("mob#10_00y");
+	end;
+OnEnable:
+	enablenpc instance_npcname("mob#10_00y");
+	end;
+}
+
+1@mcd,0,0,0	script	mob#11_00y	-1,{
+	end;
+OnEnable:
+	enablenpc instance_npcname("mob#11_00y");
+	set .@map$, instance_mapname("1@mcd");
+	set .@label$, instance_npcname("mob#11_00y")+"::OnMyMobDead";
+	monster .@map$,0,0,"Kick Kick",3128,20,.@label$;
+	monster .@map$,0,0,"Steps",3125,60,.@label$;
+	end;
+OnMyMobDead:
+		set .@map$, instance_mapname("1@mcd");
+		set .@label$, instance_npcname("mob#11_00y")+"::OnMyMobDead";
+		switch(rand(2)) {
+		case 0:
+			monster .@map$,0,0,"Kick Kick",3128,1,.@label$;
+			break;
+		case 1:
+			monster .@map$,0,0,"Steps",3125,1,.@label$;
+			break;
+		}
+	end;
+
+OnInstanceInit:
+	donpcevent instance_npcname("mob#11_00y")+"::OnEnable";
+	end;
+OnDisable:
+	disablenpc instance_npcname("mob#11_00y");
+	end;
+}
+
+1@mcd,0,0,0	script	mob#12_00y	-1,{
+	end;
+OnEnable:
+	enablenpc instance_npcname("mob#12_00y");
+	set .@map$, instance_mapname("1@mcd");
+	set .@label$, instance_npcname("mob#12_00y")+"::OnMyMobDead";
+	monster .@map$,0,0,"Kick Kick",3128,20,.@label$;
+	monster .@map$,0,0,"Steps",3125,10,.@label$;
+	end;
+OnMyMobDead:
+		set .@map$, instance_mapname("1@mcd");
+		set .@label$, instance_npcname("mob#12_00y")+"::OnMyMobDead";
+		switch(rand(2)) {
+		case 0:
+			monster .@map$,0,0,"Kick Kick",3128,1,.@label$;
+			break;
+		case 1:
+			monster .@map$,0,0,"Steps",3125,1,.@label$;
+			break;
+		}
+	end;
+
+OnInstanceInit:
+	donpcevent instance_npcname("mob#12_00y")+"::OnDisable";
+	end;
+OnDisable:
+	disablenpc instance_npcname("mob#12_00y");
+	end;
+}
+
+1@mcd,23,275,0	script	#ccmemorialseal1	-1,{
+	end;
+OnEnable:
+	enablenpc instance_npcname("#ccmemorialseal1");
+	monster instance_mapname("1@mcd"),23,275,"1 Security Device",3127,1,instance_npcname("#ccmemorialseal1")+"::OnMyMobDead";
+	end;
+OnMyMobDead:
+	set .@map$, instance_mapname("1@mcd");
+	if (mobcount(.@map$,instance_npcname("#ccmemorialseal1")+"::OnMyMobDead") < 1) {
+		mapannounce .@map$, "Charleston 1 : ระบบความรักษาความปลอดภัยประตูที่ 1 ถูกปิด ! กรุณาเดินไปยังทางทิศตะวันออกเฉียงใต้.",bc_map,"0xFFFF00";
+		donpcevent instance_npcname("#1_00ygate1")+"::OnEnable";
+		donpcevent instance_npcname("#ccmemorialseal1")+"::OnDisable";
+	}
+	end;
+OnInstanceInit:
+	donpcevent instance_npcname("#ccmemorialseal1")+"::OnDisable";
+	end;
+OnDisable:
+	disablenpc instance_npcname("#ccmemorialseal1");
+	end;
+}
+1@mcd,23,275,0	script	#ccmemorialseal2	-1,{
+	end;
+OnEnable:
+	enablenpc instance_npcname("#ccmemorialseal2");
+	monster instance_mapname("1@mcd"),33,59,"2 Security Device",3127,1,instance_npcname("#ccmemorialseal2")+"::OnMyMobDead";
+	end;
+OnMyMobDead:
+	set .@map$, instance_mapname("1@mcd");
+	if (mobcount(.@map$,instance_npcname("#ccmemorialseal2")+"::OnMyMobDead") < 1) {
+		mapannounce .@map$, "Charleston 1 : ระบบความรักษาความปลอดภัยประตูที่  2 ถูกปิด ! กรุณาเดินไปยังทางทิศตะวันออกเฉียงใต้.",bc_map,"0xFFFF00";
+		donpcevent instance_npcname("#1_00ygate2")+"::OnEnable";
+		donpcevent instance_npcname("#ccmemorialseal2")+"::OnDisable";
+	}
+	end;
+OnInstanceInit:
+	donpcevent instance_npcname("#ccmemorialseal2")+"::OnDisable";
+	end;
+OnDisable:
+	disablenpc instance_npcname("#ccmemorialseal2");
+	end;
+}
+1@mcd,239,29,0	script	#ccmemorialseal3	-1,{
+	end;
+OnEnable:
+	enablenpc instance_npcname("#ccmemorialseal3");
+	monster instance_mapname("1@mcd"),239,29,"3 Security Device",3127,1,instance_npcname("#ccmemorialseal3")+"::OnMyMobDead";
+	end;
+OnMyMobDead:
+	set .@map$, instance_mapname("1@mcd");
+	if (mobcount(.@map$,instance_npcname("#ccmemorialseal3")+"::OnMyMobDead") < 1) {
+		mapannounce .@map$, "Charleston 1 : ระบบความรักษาความปลอดภัยประตูที่ 3 ถูกปิด ! กรุณาเดินไปยังทางทิศตะวันออกเฉียงเหนือ.",bc_map,"0xFFFF00";
+		donpcevent instance_npcname("#1_00ygate3")+"::OnEnable";
+		donpcevent instance_npcname("#ccmemorialseal3")+"::OnDisable";
+	}
+	end;
+OnInstanceInit:
+	donpcevent instance_npcname("#ccmemorialseal3")+"::OnDisable";
+	end;
+OnDisable:
+	disablenpc instance_npcname("#ccmemorialseal3");
+	end;
+}
+1@mcd,281,184,0	script	#ccmemorialseal4	-1,{
+	end;
+OnEnable:
+	enablenpc instance_npcname("#ccmemorialseal4");
+	monster instance_mapname("1@mcd"),281,184,"4 Security Device",3127,1,instance_npcname("#ccmemorialseal4")+"::OnMyMobDead";
+	end;
+OnMyMobDead:
+	set .@map$, instance_mapname("1@mcd");
+	if (mobcount(.@map$,instance_npcname("#ccmemorialseal4")+"::OnMyMobDead") < 1) {
+		mapannounce .@map$, "Charleston 1 : ระบบความรักษาความปลอดภัยประตูที่ 4 ถูกปิด ! กรุณาไปที่ห้องทดลองที่อยู่ใจกลาง เส้นทางที่ 3!.",bc_map,"0xFFFF00";
+		donpcevent instance_npcname("#1_00ygate4")+"::OnEnable";
+		donpcevent instance_npcname("#ccmemorialseal4")+"::OnDisable";
+	}
+	end;
+OnInstanceInit:
+	donpcevent instance_npcname("#ccmemorialseal4")+"::OnDisable";
+	end;
+OnDisable:
+	disablenpc instance_npcname("#ccmemorialseal4");
+	end;
+}
+
+1@mcd,44,211,0,	script	#1_00ygate1	45,1,2,{
+	end;
+OnInstanceInit:
+	donpcevent instance_npcname(strnpcinfo(0))+"::OnDisable";
+	end;
+OnDisable:
+	disablenpc instance_npcname(strnpcinfo(0));
+	end;
+OnEnable:
+	enablenpc instance_npcname(strnpcinfo(0));
+	end;
+OnTouch:
+	set .@map$, instance_mapname("1@mcd");
+	switch(atoi(replacestr(strnpcinfo(2),"1_00ygate","")))
+	{
+		case 1: warp .@map$,41,200; break;
+		case 2: warp .@map$,65,66; break;
+		case 3: warp .@map$,115,50; break;
+		case 4: warp .@map$,210,217; break;
+		case 5: warp .@map$,211,180; break;
+		case 6: warp .@map$,141,207; break;
+		case 7: warp .@map$,136,200; break;
+		case 8: warp .@map$,129,143; break;
+		case 9: warp .@map$,130,121; break;
+	}
+	end;
+}
+1@mcd,58,72,0	duplicate(#1_00ygate1)	#1_00ygate2	45,1,2
+1@mcd,104,50,0	duplicate(#1_00ygate1)	#1_00ygate3	45,1,2
+1@mcd,218,211,0	duplicate(#1_00ygate1)	#1_00ygate4	45,1,2
+1@mcd,211,195,0	duplicate(#1_00ygate1)	#1_00ygate5	45,1,2
+1@mcd,141,199,0	duplicate(#1_00ygate1)	#1_00ygate6	45,1,2
+1@mcd,142,203,0	duplicate(#1_00ygate1)	#1_00ygate7	45,1,2
+1@mcd,130,127,0	duplicate(#1_00ygate1)	#1_00ygate8	45,1,2
+1@mcd,130,134,0	duplicate(#1_00ygate1)	#1_00ygate9	45,1,2
+
+1@mcd,0,0,0	script	#systemsecurity	-1,{
+	end;
+OnInstanceInit:
+	donpcevent instance_npcname("#systemsecurity")+"::OnDisable";
+	end;
+OnDisable:
+	disablenpc instance_npcname("#systemsecurity");
+	end;
+OnEnable:
+	enablenpc instance_npcname("#systemsecurity");
+	set .@map$, instance_mapname("1@mcd");
+	set .@label$, instance_npcname("#systemsecurity")+"::OnMyMobDead";
+	monster .@map$,84,226,"Lockstep",3126,1,.@label$;
+	monster .@map$,126,84,"Lockstep",3126,1,.@label$;
+	monster .@map$,111,68,"Lockstep",3126,1,.@label$;
+	monster .@map$,210,181,"Lockstep",3126,1,.@label$;
+	monster .@map$,183,192,"Lockstep",3126,1,.@label$;
+	monster .@map$,130,124,"Lockstep",3126,1,.@label$;
+	monster .@map$,54,108,"Lockstep",3126,1,.@label$;
+	set .MyMobs,7;
+	end;
+OnMyMobDead:
+	set .@map$, instance_mapname("1@mcd");
+	set .MyMobs, .MyMobs-1;
+	if (.MyMobs == 0) {
+		donpcevent instance_npcname("#systemsecurity")+"::OnComplete";
+		donpcevent instance_npcname("Charleston No.1#1_00y")+"::OnCompleteSetp1";
+		mapannounce .@map$, "Charleston 1 : อา, ทดสอบ",bc_map,"0xFFFF00";
+	}
+		end;
+OnComplete:
+	initnpctimer;
+	end;
+OnTimer2000:
+	set .@map$, instance_mapname("1@mcd");
+	mapannounce .@map$, "Charleston 1 : ดูเหมือนว่าคุณได้กำจัด Lockstep มากเพียงพอแล้ว",bc_map,"0xFFFF00";
+	end;
+OnTimer5000:
+	set .@map$, instance_mapname("1@mcd");
+	mapannounce .@map$, "Charleston 1 : โปรดกลับมาที่ห้องทดลอง !",bc_map,"0xFFFF00";
+	stopnpctimer;
+	disablenpc instance_npcname("#systemsecurity");
+	end;
+}
+1@mcd,0,0,0	script	#systemsecurity1	-1,{
+	end;
+OnInstanceInit:
+	donpcevent instance_npcname("#systemsecurity1")+"::OnDisable";
+	end;
+OnDisable:
+	disablenpc instance_npcname("#systemsecurity1");
+	end;
+OnEnable:
+	enablenpc instance_npcname("#systemsecurity1");
+	set .@map$, instance_mapname("1@mcd");
+	set .@label$, instance_npcname("#systemsecurity1")+"::OnMyMobDead";
+	monster .@map$,86,231,"Lockstep",3127,1,.@label$;
+	monster .@map$,172,196,"Lockstep",3127,1,.@label$;
+	monster .@map$,126,84,"Lockstep",3127,1,.@label$;
+	monster .@map$,100,149,"Lockstep",3127,1,.@label$;
+	monster .@map$,158,149,"Lockstep",3127,1,.@label$;
+	end;
+OnMyMobDead:
+	end;
+		
+OnComplete:
+	initnpctimer;
+	end;
+OnTimer2000:
+	mapannounce .@map$, "Charleston 1 : ดูเหมือนว่าคุณได้กำจัด Lockstep มากเพียงพอแล้ว",bc_map,"0xFFFF00";
+	end;
+OnTimer5000:
+	mapannounce .@map$, "Charleston 1 : โปรดกลับมาที่ห้องทดลอง !",bc_map,"0xFFFF00";
+	stopnpctimer;
+	disablenpc instance_npcname("#systemsecurity1");
+	end;
+}
+
+1@mcd,172,198,5	script	Auxiliary Generator#2_00p	844,2,2,{
+	end;
+OnTouch:
+	if ((getvariableofnpc(getd("."+instance_id()),instance_npcname("panelcount#inst", instance_id()))) == 0) {
+		mes "ฉันได้เริ่มเปิดแหล่งกำเนิดพลังงาน ดูเหมือนว่าจะมีเสียงของล้อที่กำลังหมุนอยู่.";
+		donpcevent instance_npcname("panelcount#inst")+"::OnCheck";
+		donpcevent instance_npcname("Auxiliary Generator#2_00p")+"::OnDisable";
+		close;
+	}
+	else if ((getvariableofnpc(getd("."+instance_id()),instance_npcname("panelcount#inst", instance_id()))) == 1) {
+		mes "ฉันได้เริ่มเปิดแหล่งกำเนิดพลังงาน ดูเหมือนว่าจะมีเสียงของล้อที่กำลังหมุนอยู่.";
+		donpcevent instance_npcname("panelcount#inst")+"::OnCheck1";
+		donpcevent instance_npcname("Auxiliary Generator#2_00p")+"::OnDisable";
+		close;
+	}
+	if ((getvariableofnpc(getd("."+instance_id()),instance_npcname("panelcount#inst", instance_id()))) == 2) {
+		mes "หลังจากตรวจสอบเครื่องยนต์ทั้งหมดแล้ว.";
+		next;
+		mes "แหล่งจ่ายไฟของโรงงานกลับสู่สภาพปกติ.";
+		donpcevent instance_npcname("Charleston No.1#1_00y")+"::OnCompleteSetp2";
+		donpcevent instance_npcname("panelcount#inst")+"::OnComplete";
+		donpcevent instance_npcname("Auxiliary Generator#2_00p")+"::OnDisable";
+		close;
+	}
+OnInstanceInit:
+	donpcevent instance_npcname("Auxiliary Generator#2_00p")+"::OnDisable";
+	end;
+OnDisable:
+	hideonnpc instance_npcname("Auxiliary Generator#2_00p");
+	disablenpc instance_npcname("Auxiliary Generator#2_00p");
+	end;
+OnEnable:
+	enablenpc instance_npcname("Auxiliary Generator#2_00p");
+	end;
+}
+
+1@mcd,126,84,5	script	Auxiliary Generator#3_00p	844,2,2,{
+	end;
+OnTouch:
+	if ((getvariableofnpc(getd("."+instance_id()),instance_npcname("panelcount#inst", instance_id()))) == 0) {
+		mes "ฉันได้เริ่มเปิดแหล่งกำเนิดพลังงาน ดูเหมือนว่าจะมีเสียงของล้อที่กำลังหมุนอยู่.";
+		donpcevent instance_npcname("panelcount#inst")+"::OnCheck";
+		donpcevent instance_npcname("Auxiliary Generator#3_00p")+"::OnDisable";
+		close;
+	}
+	else if ((getvariableofnpc(getd("."+instance_id()),instance_npcname("panelcount#inst", instance_id()))) == 1) {
+		mes "ฉันได้เริ่มเปิดแหล่งกำเนิดพลังงาน ดูเหมือนว่าจะมีเสียงของล้อที่กำลังหมุนอยู่.";
+		donpcevent instance_npcname("panelcount#inst")+"::OnCheck1";
+		donpcevent instance_npcname("Auxiliary Generator#3_00p")+"::OnDisable";
+		close;
+	}
+	else if ((getvariableofnpc(getd("."+instance_id()),instance_npcname("panelcount#inst", instance_id()))) == 2) {
+		mes "หลังจากตรวจสอบเครื่องยนต์ทั้งหมดแล้ว.";
+		next;
+		mes "แหล่งจ่ายไฟของโรงงานกลับสู่สภาพปกติ.";
+		donpcevent instance_npcname("Charleston No.1#1_00y")+"::OnCompleteSetp2";
+		donpcevent instance_npcname("panelcount#inst")+"::OnComplete";
+		donpcevent instance_npcname("Auxiliary Generator#3_00p")+"::OnDisable";
+		close;
+	}
+OnInstanceInit:
+	donpcevent instance_npcname("Auxiliary Generator#3_00p")+"::OnDisable";
+	end;
+OnDisable:
+	hideonnpc instance_npcname("Auxiliary Generator#3_00p");
+	disablenpc instance_npcname("Auxiliary Generator#3_00p");
+	end;
+OnEnable:
+	enablenpc instance_npcname("Auxiliary Generator#3_00p");
+	end;
+}
+1@mcd,86,231,5	script	Auxiliary Generator#1_00p	844,2,2,{
+	end;
+OnTouch:
+	if ((getvariableofnpc(getd("."+instance_id()),instance_npcname("panelcount#inst", instance_id()))) == 0) {
+		mes "ฉันได้เริ่มเปิดแหล่งกำเนิดพลังงาน ดูเหมือนว่าจะมีเสียงของล้อที่กำลังหมุนอยู่.";
+		donpcevent instance_npcname("panelcount#inst")+"::OnCheck";
+		donpcevent instance_npcname("Auxiliary Generator#1_00p")+"::OnDisable";
+		close;
+	}
+	else if ((getvariableofnpc(getd("."+instance_id()),instance_npcname("panelcount#inst", instance_id()))) == 1) {
+		mes "ฉันได้เริ่มเปิดแหล่งกำเนิดพลังงาน ดูเหมือนว่าจะมีเสียงของล้อที่กำลังหมุนอยู่.";
+		donpcevent instance_npcname("panelcount#inst")+"::OnCheck1";
+		donpcevent instance_npcname("Auxiliary Generator#1_00p")+"::OnDisable";
+		close;
+	}
+	else if ((getvariableofnpc(getd("."+instance_id()),instance_npcname("panelcount#inst", instance_id()))) == 2) {
+		mes "หลังจากตรวจสอบเครื่องยนต์ทั้งหมดแล้ว.";
+		next;
+		mes "แหล่งจ่ายไฟของโรงงานกลับสู่สภาพปกติ.";
+		donpcevent instance_npcname("Charleston No.1#1_00y")+"::OnCompleteSetp2";
+		donpcevent instance_npcname("panelcount#inst")+"::OnComplete";
+		donpcevent instance_npcname("Auxiliary Generator#1_00p")+"::OnDisable";
+		close;
+	}
+OnInstanceInit:
+	donpcevent instance_npcname("Auxiliary Generator#1_00p")+"::OnDisable";
+	end;
+OnDisable:
+	hideonnpc instance_npcname("Auxiliary Generator#1_00p");
+	disablenpc instance_npcname("Auxiliary Generator#1_00p");
+	end;
+OnEnable:
+	enablenpc instance_npcname("Auxiliary Generator#1_00p");
+	end;
+}
+
+1@mcd,0,0,0	script	panelcount#inst	-1,{
+	end;
+OnInstanceInit:
+	donpcevent instance_npcname("panelcount#inst")+"::OnDisable";
+	end;
+OnDisable:
+	disablenpc instance_npcname("panelcount#inst");
+	end;
+OnEnable:
+	enablenpc instance_npcname("panelcount#inst");
+	setd "."+instance_id(),0;
+	end;
+OnCheck:
+	setd "."+instance_id(),1;
+	end;
+OnCheck1:
+	setd "."+instance_id(),2;
+	end;
+OnComplete:
+	initnpctimer;
+	end;
+OnTimer1000:
+	set .@map$, instance_mapname("1@mcd");
+	mapannounce .@map$, "Charleston No.1 : แหล่งจ่ายไฟของโรงงาน Charleston กำลังทำงานอยู่.",bc_map,"0xFFFF00";
+	end;
+OnTimer4000:
+	set .@map$, instance_mapname("1@mcd");
+	mapannounce .@map$, "Charleston No.1 : กลับมาที่ห้องทดลอง... เราพร้อมที่จะเริ่มเดินเครื่อง Charleston 2 ใหม่อีกครั้ง.",bc_map,"0xFFFF00";
+	stopnpctimer;
+	donpcevent instance_npcname("panelcount#inst")+"::OnDisable";
+	end;
+	
+}
+
+1@mcd,176,179,5	script	New Oz#15_00a	625,{
+	cutin "nines01.bmp",0;
+	mes "[New Oz]";
+	mes "เมื่อฉันอ่านจดหมายของ Charlotte ฉันก็มาตกอยู่ที่นี่";
+	close2;
+	cutin "nines01.bmp",255;
+	end;
+OnInstanceInit:
+	donpcevent instance_npcname("New Oz#15_00a")+"::OnEnable";
+	end;
+OnDisable:
+	disablenpc instance_npcname("New Oz#15_00a");
+	end;
+OnEnable:
+	enablenpc instance_npcname("New Oz#15_00a");
+	end;
+}
+	
+1@mcd,114,82,4	script	Oops#01_00y	646,{
+	cutin "igu04.bmp",2;
+	mes "[Oops]";
+	mes "คุณกำลังเพลิดเพลินกับการผจญภัยของคุณอยู่หรือเปล่า ? สถานที่แห่งนี้เต็มไปด้วยเครื่องจักร แต่ในสมัยก่อนนั้นมันเป็นไปด้วยการศักษาเทคโนโลยี คุณเห็นเหล่าตัวอักษรพวกนั้นหรือเปล่า ?";
+	close2;
+	cutin "igu04.bmp",255;
+	end;
+OnInstanceInit:
+	donpcevent instance_npcname("Oops#01_00y")+"::OnEnable";
+	end;
+OnDisable:
+	disablenpc instance_npcname("Oops#01_00y");
+	end;
+OnEnable:
+	enablenpc instance_npcname("Oops#01_00y");
+	end;
+}
+
+verus04,64,112,4	script	Production-Type Charleston#verus1	10053,{
+	cutin "dalle01.bmp",2;
+	mes "[Production-Type Charleston]";
+	mes "ทางโรงงานของเรามีสินค้าขายดี อยู่ 2 รายการ ! ^FF0000Reinforced Parts - Gloves^000000? ^FF0000STR Supplement Equipment^000000 !";
+	next;
+	mes "[Production-Type Charleston]";
+	mes "ราคาเพียง ^FF0000 3999999 ^000000 !";
+	next;
+	mes "[Production-Type Charleston]";
+	mes "^FF0000นอกจากนี้^000000? ^FF0000Pile Bunker^000000 ฉันยังสามารถอัพเกรดได้ !";
+	next;
+	switch(select("พูดคุย","Reinforced Parts - Plate","STR Supplement Equipment","อัพเกรด Pile Bunker"))
+	{
+		case 1:
+			cutin "dalle03.bmp",2;
+			mes "[Production-Type Charleston]";
+			mes "ถึงแม้โรงงาน Charleston จะปิดตัวลงแล้ว แต่เทคโนโลยียังคงอยู่กับเรา.";
+			next;
+			mes "[Production-Type Charleston]";
+			mes "โอ้, คุณเคยได้ยินข่าวเกี่ยวกับโรงงาน Charleston หรือ เปล่า ? อา... มันช่างแย่จริงๆ แต่อย่าลืมสิ่งที่ฉันพูดล่ะ. ";
+			close2;
+			cutin "dalle03.bmp",255;
+			end;
+		case 2:
+			mes "[Production-Type Charleston]";
+			mes "Reinforced Parts - Gloves!";
+			mes "ประเภท : ชุดเกราะ. ไม่มีวันถูกทำลาย !";
+			mes "ลดความเสียหายจากมอนส์เตอร์ขนาดเล็ก และ ขนาดกลาง ลง 10 เปอร์เซนต์!";
+			mes "ลดความเสียหายจากมอนสเตอร์ขนาดใหญ่ลง 10 เปอร์เซนต์ เมื่ออัพเกรดตั้งแต่ +7 ขึ้นไป !";
+			mes "ลดความเสียหายจากมอนส์เตอร์ขนาดเล็ก และ ขนาดกลาง ลง 5 เปอร์เซนต์ เมื่ออัพเกรดตั้งแต่ +9 ขึ้นไป !";
+			next;
+			mes "[Production-Type Charleston]";
+			mes "น้ำหนัก : 300 ";
+			mes "เลเวลที่ต้องการ : 100";
+			mes "^FF0000สำหรับอาชีพ : Mechanic !^000000";
+			mes "^FF0000ราคา : 3999999 Zeny^000000";
+			next;
+			mes "[Production-Type Charleston]";
+			mes "คุณต้องการซื้อ ^FF0000Reinforced Parts - Gloves^000000 ?";
+			next;
+			switch(select("ขอคิดดูก่อน","ต้องการ"))
+			{
+				case 1:
+					mes "[Production-Type Charleston]";
+					mes "โปรดใช้เวลาของคุณคิดให้อย่างรอบคอบ.";
+					close2;
+					cutin "dalle01.bmp",255;
+					end;
+				case 2:
+					if (Zeny >= 3999999) {
+						set Zeny, Zeny - 3999999;
+						mes "[Production-Type Charleston]";
+						mes "ขอบคุณมาก !";
+						getitem 15111,1;
+						close;
+					} else {
+						mes "[Production-Type Charleston]";
+						mes "คุณมีจำนวนเงินไม่เพียงพอสำหรับการซื้อสินค้าจากโรงงานของเรา.";
+						close2;
+						cutin "dalle01.bmp",255;
+						end;
+					}
+			}
+		case 3:
+			mes "[Production-Type Charleston]";
+			mes "Strength Supplement Equipment!";
+			mes "ATK+ 5%!";
+			mes "เพิ่ม ATK 1% ทุกๆ การอัพเกรด 4 ระดับ !";
+			next;
+			mes "[Production-Type Charleston]";
+			mes "น้ำหนัก : 200 ";
+			mes "เลเวลที่ต้องการ : 100";
+			mes "^FF0000สำหรับอาชีพ : Mechanic !^000000";
+			mes "^FF0000ราคา : 3999999 Zeny^000000";
+			next;
+			mes "[Production-Type Charleston]";
+			mes "คุณต้องการซื้อ ^FF0000Strength Supplement Equipment^000000 ?";
+			next;
+			switch(select("ขอคิดดูก่อน","ต้องการ"))
+			{
+				case 1:
+					mes "[Production-Type Charleston]";
+					mes "โปรดใช้เวลาของคุณคิดให้อย่างรอบคอบ.";
+					close2;
+					cutin "dalle01.bmp",255;
+					end;
+				case 2:
+					if (Zeny >= 3999999) {
+						set Zeny, Zeny - 3999999;
+						mes "[Production-Type Charleston]";
+						mes "ขอบคุณมาก !";
+						getitem 15110,1;
+						close;
+					} else {
+						mes "[Production-Type Charleston]";
+						mes "คุณมีจำนวนเงินไม่เพียงพอสำหรับการซื้อสินค้าจากโรงงานของเรา.";
+						close2;
+						cutin "dalle01.bmp",255;
+						end;
+					}
+			}
+		case 4:
+			mes "[Production-Type Charleston]";
+			mes "เมื่อต้องการอัพเกรด ";
+			mes "ต้องการ ^FF00001 Pile Bunker^000000";
+			mes "^FF0000300 Dented Steel Plate^000000";
+			mes "^FF000015 Broken Engine^000000 คุณมีสิ่งนี้มาหรือเปล่า ?.";
+			next;
+			switch(select("อัพเกรด ^0000FFPile Bunker S^000000","อัพเกรด ^0000FFPile Bunker P^000000","อัพเกรด ^0000FFPile Bunker T^000000"))
+			{
+				case 1:
+					mes "[Production-Type Charleston]";
+					mes "Pile Bunker S!!!";
+					mes "ประเภท : Mace";
+					mes "พลังโจมตี : 400";
+					mes "ทุกๆ ระดับการอัพเกรด 2 ระดับ จะเพิ่ม ASPD 1%";
+					next;
+					mes "[Production-Type Charleston]";
+					mes "น้ำหนัก : 300";
+					mes "เลเวลของอาวุธ : 4";
+					mes "เลเวลที่ต้องการ : 130";
+					next;
+					mes "[Production-Type Charleston]";
+					mes "คุณต้องการอัพเกรด ^FF0000Pile Bunker S^000000 ?";
+					next;
+					switch(select("ขอคิดดูก่อน","ต้องการ"))
+					{
+						case 1:
+							mes "[Production-Type Charleston]";
+							mes "โปรดใช้เวลาของคุณคิดให้อย่างรอบคอบ.";
+							close2;
+							cutin "dalle01.bmp",255;
+							end;
+						case 2:
+							if (countitem(1549) == 1) && (countitem(6751) > 299) && (countitem(6750) > 14) {
+								specialeffect2 EF_REPAIRWEAPON;
+								progressbar "ffff00",5;
+								set .@pileS_ran,rand(1,10);
+								if (.@piles_ran < 5) {
+									specialeffect2 EF_REFINEOK;
+									delitem 1549,1; // Pile Bunker
+									delitem 6751,300; //Crushed Can Iron Plate
+									delitem 6750,15; //Failed Engine
+									getitem 16030,1; //Pile Bunker S
+									close2;
+									cutin "dalle01.bmp",255;
+									end;
+								} else {
+									specialeffect2 EF_REFINEFAIL;
+									delitem 1549,1; // Pile Bunker
+									delitem 6751,300; //Crushed Can Iron Plate
+									delitem 6750,15; //Failed Engine
+									close2;
+									cutin "dalle01.bmp",255;
+									end;
+								}
+							} else {
+								mes "[Production-Type Charleston]";
+								mes "ฉันคิดว่าคุณมีอุปกรณ์ไม่เพียงพอ !";
+								close2;
+								cutin "dalle01.bmp",255;
+								end;
+							}
+					}
+				case 2:
+					mes "[Production-Type Charleston]";
+					mes "Pile Bunker P!!!";
+					mes "ประเภท : Mace";
+					mes "พลังโจมตี : 450";
+					mes "ทุกๆ ระดับการอัพเกรดจะเพิ่ม ATK 5";
+					next;
+					mes "[Production-Type Charleston]";
+					mes "น้ำหนัก : 400";
+					mes "เลเวลของอาวุธ : 4";
+					mes "เลเวลที่ต้องการ : 130";
+					next;
+					mes "[Production-Type Charleston]";
+					mes "คุณต้องการอัพเกรด ^FF0000Pile Bunker P^000000 ?";
+					next;
+					switch(select("ขอคิดดูก่อน","ต้องการ"))
+					{
+						case 1:
+							mes "[Production-Type Charleston]";
+							mes "โปรดใช้เวลาของคุณคิดให้อย่างรอบคอบ.";
+							close2;
+							cutin "dalle01.bmp",255;
+							end;
+						case 2:
+							if (countitem(1549) == 1) && (countitem(6751) > 299) && (countitem(6750) > 14) {
+								specialeffect2 EF_REPAIRWEAPON;
+								progressbar "ffff00",5;
+								set .@pileS_ran,rand(1,10);
+								if (.@piles_ran < 5) {
+									specialeffect2 EF_REFINEOK;
+									delitem 1549,1; // Pile Bunker
+									delitem 6751,300; //Crushed Can Iron Plate
+									delitem 6750,15; //Failed Engine
+									getitem 16031,1; //Pile Bunker P
+									close2;
+									cutin "dalle01.bmp",255;
+									end;
+								} else {
+									specialeffect2 EF_REFINEFAIL;
+									delitem 1549,1; // Pile Bunker
+									delitem 6751,300; //Crushed Can Iron Plate
+									delitem 6750,15; //Failed Engine
+									close2;
+									cutin "dalle01.bmp",255;
+									end;
+								}
+							} else {
+								mes "[Production-Type Charleston]";
+								mes "ฉันคิดว่าคุณมีอุปกรณ์ไม่เพียงพอ !";
+								close2;
+								cutin "dalle01.bmp",255;
+								end;
+							}
+					}
+				case 3:
+					mes "[Production-Type Charleston]";
+					mes "Pile Bunker T!!!";
+					mes "ประเภท : Mace";
+					mes "พลังโจมตี : 400";
+					mes "ทุกๆ ระดับการอัพเกรด จะลดการใช้ SP 1%";
+					next;
+					mes "[Production-Type Charleston]";
+					mes "น้ำหนัก : 350";
+					mes "เลเวลของอาวุธ : 4";
+					mes "เลเวลที่ต้องการ : 130";
+					next;
+					mes "[Production-Type Charleston]";
+					mes "คุณต้องการอัพเกรด ^FF0000Pile Bunker T^000000 ?";
+					next;
+					switch(select("ขอคิดดูก่อน","ต้องการ"))
+					{
+						case 1:
+							mes "[Production-Type Charleston]";
+							mes "โปรดใช้เวลาของคุณคิดให้อย่างรอบคอบ.";
+							close2;
+							cutin "dalle01.bmp",255;
+							end;
+						case 2:
+							if (countitem(1549) == 1) && (countitem(6751) > 299) && (countitem(6750) > 14) {
+								specialeffect2 EF_REPAIRWEAPON;
+								progressbar "ffff00",5;
+								set .@pileS_ran,rand(1,10);
+								if (.@piles_ran < 5) {
+									specialeffect2 EF_REFINEOK;
+									delitem 1549,1; // Pile Bunker
+									delitem 6751,300; //Crushed Can Iron Plate
+									delitem 6750,15; //Failed Engine
+									getitem 16032,1; //Pile Bunker T
+									close2;
+									cutin "dalle01.bmp",255;
+									end;
+								} else {
+									specialeffect2 EF_REFINEFAIL;
+									delitem 1549,1; // Pile Bunker
+									delitem 6751,300; //Crushed Can Iron Plate
+									delitem 6750,15; //Failed Engine
+									close2;
+									cutin "dalle01.bmp",255;
+									end;
+								}
+							} else {
+								mes "[Production-Type Charleston]";
+								mes "ฉันคิดว่าคุณมีอุปกรณ์ไม่เพียงพอ !";
+								close2;
+								cutin "dalle01.bmp",255;
+								end;
+							}
+					}
+			}
+	}
+}
+
+verus04,69,109,4	script	Production-Type Charleston#verus2	10053,{
+	if ( checkweight(1201,1) == 0 )
+	{
+		mes "[Production-Type Charleston]";
+		mes "คุณมีรายการไอเท็มที่มากจนเกินไปในช่องเก็บของ. โปรดโยนรายการไอเท็มบางส่วนทิ้งหรือนำไปฝากไว้ที่คราฟร่าแล้วลองใหม่อีกครั้ง.";
+		close;
+	}
+	if ( MaxWeight - Weight < 1000 )
+	{
+		mes "[Production-Type Charleston]";
+		mes "คุณกำลังแบกน้ำหนักที่มากจนเกินไป. โปรดลดน้ำหนักและลองใหม่อีกครั้ง.";
+		close;
+	}
+	
+	if ( countitem(6752) < 10 )
+	{
+		mes "[Production-Type Charleston]";
+		mes "สำหรับการแลกอุปกรณ์ คุณจำเป็นที่จะต้องมี "+ getitemname(6752) +" จำนวน 10 อัน";
+		close;
+	}
+	
+	setarray .@jobs$[0],"Mechanic";
+	set .@job, select("ยกเลิกการสนทนา:ฉันนำของบางอย่างมาแลกเปลี่ยนสินค้า")-2;
+	
+	if ( .@job == -1 )
+	{
+		mes "[Production-Type Charleston]";
+		mes "โปรดกลับมาหากคุณเปลี่ยนใจ";
+		close;
+	}
+	
+	mes "[Production-Type Charleston]";
+	mes "รายการเหล่านี้มีไว้สำหรับ "+ .@jobs$[.@job] +"";
+	mes "คุณต้องการที่จะแลก ?";
+	next;
+	switch(.@job)
+	{
+		case 0:
+			setarray .@items[0],20733,22044,2996,20732,22043,2995;
+			set .@i, select("ข้ายังไม่ต้องการที่จะแลก:Reinforced Parts - Engine [1]:Reinforced Part - Booster [1]:Reinforced Part - Gun Barrel [1]:VIT Supplement Equipment [1]:AGI Supplement Equipment [1]:DEX Supplement Equipment [1]")-2;
+			break;
+	}
+	
+	if ( .@i == -1 )
+	{
+		mes "[Production-Type Charleston]";
+		mes "โปรดกลับมาหากคุณเปลี่ยนใจ";
+		close;
+	}
+	
+	if (countitem(6752) < 10) {
+		mes "[Production-Type Charleston]";
+		mes "ฉันไม่ได้บอกคุณหรือว่าคุณจะต้องมี 10 "+ getitemname(6752) +" ที่เพียงพอต่อการแลกเปลี่ยน ?";
+		close;
+	}
+	
+	delitem 6752,10;
+	getitem .@items[.@i],1;
+	mes "[Production-Type Charleston]";
+	mes "ขอบคุณสำหรับการแลกเปลี่ยนรายการนี้มีไว้สำหรับอาชีพ "+ .@jobs$[.@job] +" เท่านั้น. โปรดกลับมาอีกครั้งหากคุณมี "+ getitemname(6752) +"";
+	close;
+	
+}
+
+verus04,71,106,4	script	Production-Type Charleston#verus3	10053,{
+	mes "[Production-Type Charleston]";
+	mes "โรงงาน Charleston ของเราได้มีการเสริมความสามารถให้กับอุปกรณ์ให้ดียิ่งขึ้น. หากคุณมีรายการสินค้าที่ตรงกับทางเราต้องการโปรดบอกกับฉัน.";
+	next;
+	switch(select("บอกฉันเกี่ยวกับข้อมูลของเรื่องเหล่านีั","ฉันต้องการเสริมความสามารถของอุปกรณ์","ฉันต้องการที่จะรีเซ็ตความสามารถของอุปกรณ์"))
+	{
+		case 1:
+			mes "[Production-Type Charleston]";
+			mes "คุณจะต้องมี 1 อุปกรณ์สำหรับการเสริมความสามารถ, และ 1 Charleston Parts และ เงินจำนวน 100,000 zeny.";
+			next;
+			mes "[Production-Type Charleston]";
+			mes "อุปกรณ์ที่จะสามารถนำมาเสริมความสามารถ, จะต้องมีระดับการอัพเกรดอยู่ที่ ^ff0000+9^000000 หรือ มากกว่าเท่านั้น จึงจะสามารถได้รับความสามารถเสริมที่ยอดเยี่ยมกว่าเดิม.";
+			mes "หากอุปกรณ์ต่ำกว่า ^ff0000+9^000000 จะได้รับความสามารถเสริมตามปกติ";
+			next;
+			mes "[Production-Type Charleston]";
+			mes "และ อีกหนึ่งสิ่งที่ไม่ควรลืม, ระหว่างการเสริมความสามารถมีโอกาศที่อุปกรณ์เหล่านั้นจะถูกทำลาย.";
+			close;
+		case 2:
+			set @charleston_enchant,1;
+			break;
+		case 3:
+			set @charleston_enchant,2;
+			break;
+	}
+	
+	if ( Zeny < 100000 || countitem(6752) == 0 )
+	{
+		mes "[Production-Type Charleston]";
+		mes "ฉันไม่ได้บอกคุณหรือว่าคุณจะต้องมี 1 Charleston Parts และ เงินจำนวน 100,000 zeny";
+		close;
+	}
+	
+	mes "[Production-Type Charleston]";
+	mes "โอเค, ดังนั้นหากคุณพร้อมแล้วก่อนที่ฉันจะเริ่มทำ, คุณจะต้องเลือกรายการอุปกรณ์ให้ฉันในสิ่งที่คุณต้องการเพิ่มความสามารถ.";
+	next;
+	
+	set .@i, select("รอสักครู่... ฉันยังไม่ได้สวมใส่อุปกรณ์:ชุดเกราะ:ผ้าคลุม:รองเท้า:เครื่องประดับ")-2;
+	
+	if ( .@i == -1 )
+	{
+		mes "[Production-Type Charleston]";
+		mes "โปรดกลับมาอีกครั้งหลังจากคุณได้ทำการจัดเตรียมอุปกรณ์เรียบร้อยแล้ว.";
+		close;
+	}
+	
+	setarray .@parts[0], EQI_ARMOR, EQI_GARMENT, EQI_SHOES, EQI_ACC_L;
+	set .@part, .@parts[.@i];
+	
+	if ( !getequipisequiped(.@part) )
+	{
+		mes "[Production-Type Charleston]";
+		mes "โปรดกลับมาอีกครั้งหลังจากคุณได้ทำการจัดเตรียมอุปกรณ์เรียบร้อยแล้ว.";
+		close;
+	}
+	
+	set .@equip_id, getequipid(.@part);
+	set @charleston_equip, .@part;
+	
+	/*
+		วิธีการตั้งแต่ละประเภท
+		L_Socket,<ประเภทของออฟชั่น>,<ประเภทออฟชั่นพิเศษเมื่อระดับการอัพเกรดถึง 9>,<จำนวนสล็อตที่จะสามารถออฟชั่นได้>
+		
+		ในส่วนการตั้งค่าออฟชั่นของประดับ
+		L_Socket,<ประเภทของออฟชั่น>,<ให้ใส่ 0 เนื่องจากไม่สามารถที่จะอัพเกรดได้>,<จำนวนสล็อตที่จะสามารถออฟชั่นได้>
+	*/
+	
+	// Types : [1]ATK [2]CRIT [3]EVA [4]Healer [5]Spell 1 [6]Assist 1 [7]Assist 2 [8]STR [9]Range [10]Physical [11]Spell 2
+	switch(.@part)
+	{
+		case EQI_ARMOR:
+			switch(.@equip_id)
+			{
+				case 15110:
+					callsub L_Socket,1,4,1;
+				case 15111:
+					callsub L_Socket,1,4,1;
+			}
+			break;
+		case EQI_GARMENT:
+			switch(.@equip_id)
+			{
+				case 20732:
+					callsub L_Socket,1,2,1;
+				case 20733:
+					callsub L_Socket,1,2,1;
+			}
+			break;
+		case EQI_SHOES:
+			switch(.@equip_id)
+			{
+				case 22043:
+					callsub L_Socket,1,2,1;
+				case 22044:
+					callsub L_Socket,1,2,1;
+			}
+			break;
+		case EQI_ACC_L:
+			switch(.@equip_id)
+			{
+				case 2995:
+					callsub L_Socket,6,0,2;
+				case 2996:
+					callsub L_Socket,6,0,2;
+			}
+			break;
+	}
+	mes "[Production-Type Charleston]";
+	mes "ดูเหมือนรายการนี้ไม่ได้อยู่ในรายชื่ออุปกรณ์ที่สามารถเสริมความสามารถได้";
+	set @charleston_equip,0;
+	close;
+	
+L_Socket:
+	
+	set .@select, @charleston_enchant;
+	set .@types, getarg(0);
+	.@specials = getarg(1);
+	.@allows = getarg(2);
+	set .@part, @charleston_equip;
+	set .@equip_id, getequipid(.@part);
+	set .@equip_name$, getitemname(.@equip_id);
+	set .@equip_refine, getequiprefinerycnt(.@part);
+	setarray .@equip_card[0], getequipcardid(.@part,0),getequipcardid(.@part,1),getequipcardid(.@part,2),getequipcardid(.@part,3);
+	set @charleston_equip,0;
+	set @charleston_enchant,0;
+	
+	if ( .@select == 1 )
+	{
+		if ( .@equip_refine >= 9 && .@specials > 0 )
+		{
+			if ( .@types < 1 || .@types > 11 || .@specials > 11 )
+			{
+				mes "[Production-Type Charleston]";
+				mes "อืมมม... ฉันคิดว่ามันเกิดข้อผิดพลาดบางอย่าง.";
+				close;
+			}
+			setarray .@types$[1],"ATK Type","Critical Type","Evasion Type","Healer Type","Spell Ability 1","Assist Ability 1","Assist Ability 2","Strength Type","Range Type"," Physical Type","Spell Ability 2";
+			
+			mes "[Production-Type Charleston]";
+			mes "นี่เป็นการเสริมความสามารถพิเศษให้กับอุปกรณ์. ในกรณีนี้คุณจะได้รับการเสริมความสามารถใหม่.ที่คุณสามารถที่จะเลือกความสามารถได้.";
+			next;
+			switch(select(.@types$[.@types],.@types$[.@specials]))
+			{
+				case 1:
+					break;
+				case 2:
+					set .@types, .@specials;
+					break;
+			}
+		}
+		
+		if ( .@equip_card[3] == 0 && .@allows < 4 )
+		{
+			set .@slot,4;
+			mes "[Production-Type Charleston]";
+			mes "กำลังเสริมสร้างความสามารถ. ในการดำเนินการนี้จะไม่ได้รับผลเสียหายใดๆ. คุณต้องการที่จะดำเนินการต่อหรือไม่ ?";
+		}
+		else if ( .@equip_card[2] == 0 && .@allows < 3 )
+		{
+			set .@slot,3;
+			mes "[Production-Type Charleston]";
+			mes "กำลังเสริมสร้างความสามารถที่สอง. ความสามารถก่อนหน้านี้จะไม่ได้รับผลกระทบใดๆ.";
+			next;
+			mes "[Production-Type Charleston]";
+			mes "แต่การเสริมความสามารถครั้งที่สองมีโอกาศที่จะล้มเหลวในขณะดำเนินการ. คุณต้องการที่จะดำเนินการต่อหรือไม่ ?";
+		}
+		else if ( .@equip_card[1] == 0 && .@allows < 2 )
+		{
+			set .@slot,2;
+			mes "[Production-Type Charleston]";
+			mes "กำลังเสริมความสามารถที่ระดับที่สาม. ซึ่งครั้งนี้เป็นขั้นตอนการเสริมความสามารถระดับสุดท้าย แต่อย่าลืมว่า, ^990000ขั้นตอนนี้มีโอกาศที่อุปกรณ์จะถูกทำลายและความสามารถทั้งหมดที่ผ่านมาจะถูกลบออกไปด้วยเช่นกัน^000000. ต้องการทำต่อหรือไม่ ?";
+		}
+		else
+		{
+			mes "[Production-Type Charleston]";
+			mes "อุปกรณ์นี้ได้รับการเสริมความสามารถที่ระดับสูงสุดแล้ว. เป็นไปไม่ได้ที่จะเสริมความสามารถอีกครั้ง.";
+			close;
+		}
+		next;
+		
+		if(select("ฉันจะกลับมาใหม่ในภายหลัง.:ดำเนินการต่อ!") == 1) {
+			mes "[Production-Type Charleston]";
+			mes "ถ้าหากคุณเปลี่ยนใจ, โปรดกลับมาหาเราอีกครั้ง.";
+			close;
+		}
+		
+		switch(.@types)
+		{
+			case 1:	// ATTACK
+				if (.@slot == 4) set .@i, rand(1,525);
+				else if (.@slot == 3) set .@i, rand(301,655);
+				else if (.@slot == 2) set .@i, rand(451,750);
+				else
+				{
+					mes "[Production-Type Charleston]";
+					mes "เกิดข้อผิดพลาดบางอย่างที่ไม่ทราบสาเหตุ.";
+					close;
+				}
+				
+				if (.@i < 101) set .@enchant,4700; 		//Strength1
+				else if (.@i < 201) set .@enchant,4811; //Fighting_Spirit1
+				else if (.@i < 301) set .@enchant,4819; //Atk1
+				else if (.@i < 351) set .@enchant,4701; //Strength2
+				else if (.@i < 401) set .@enchant,4810; //Fighting_Spirit2
+				else if (.@i < 451) set .@enchant,4766; //Atk2
+				else if (.@i < 476) set .@enchant,4702; //Strength3
+				else if (.@i < 501) set .@enchant,4809; //Fighting_Spirit3
+				else if (.@i < 526) set .@enchant,4767; //Atk3
+				else if (.@i < 626) set .@enchant,0;
+				else if (.@i < 641) set .@enchant,4703; //Strength4
+				else if (.@i < 656) set .@enchant,4808; //Fighting_Spirit4
+				else if (.@i < 661) set .@enchant,4704; //Strength5
+				else if (.@i < 666) set .@enchant,4820; //Fighting_Spirit5
+				else if (.@i < 668) set .@enchant,4705; //Strength6
+				else if (.@i < 670) set .@enchant,4821; //Fighting_Spirit6
+				else set .@enchant,9;
+				break;
+				
+			case 2: //Critical
+			    if (.@slot == 4) set .@i, rand(1,470);
+				else if (.@slot == 3) set .@i, rand(201,610);
+				else if (.@slot == 2) set .@i, rand(381,750);
+				else {
+					mes "[Production-Type Charleston]";
+					mes "เกิดข้อผิดพลาดบางอย่างที่ไม่ทราบสาเหตุ.";
+					close;
+				}
+				
+				if (.@i < 101) set .@enchant,4750; 		//Luck1
+				else if (.@i < 201) set .@enchant,4700; //Strength1
+				else if (.@i < 261) set .@enchant,4751; //Luck2
+				else if (.@i < 321) set .@enchant,4701; //Strength2
+				else if (.@i < 351) set .@enchant,4752; //Luck3
+				else if (.@i < 381) set .@enchant,4702; //Strength3
+				else if (.@i < 411) set .@enchant,4764; //Critical5
+				else if (.@i < 441) set .@enchant,4818; //Sharp1
+				else if (.@i < 471) set .@enchant,4752; //Luck3
+				else if (.@i < 571) set .@enchant,0;
+				else if (.@i < 586) set .@enchant,4753; //Luck4
+				else if (.@i < 601) set .@enchant,4754; //Luck5
+				else if (.@i < 606) set .@enchant,4765; //Critical7
+				else if (.@i < 611) set .@enchant,4817; //Sharp2
+				else if (.@i < 616) set .@enchant,4703; //Strength4
+				else if (.@i < 618) set .@enchant,4816; //Sharp3
+				else set .@enchant,9;
+				break;
+				
+			case 3: //Evasion
+			    if (.@slot == 4) set .@i, rand(1,525);
+				else if (.@slot == 3) set .@i, rand(301,670);
+				else if (.@slot == 2) set .@i, rand(451,800);
+				else {
+					mes "[Production-Type Charleston]";
+					mes "เกิดข้อผิดพลาดบางอย่างที่ไม่ทราบสาเหตุ.";
+					close;
+				}
+				
+			    if (.@i < 101) set .@enchant,4859; 		//Evasion1
+				else if (.@i < 201) set .@enchant,4750; //Luck1
+				else if (.@i < 301) set .@enchant,4730; //Agility1
+				else if (.@i < 351) set .@enchant,4860; //Evasion3
+				else if (.@i < 401) set .@enchant,4751; //Luck2
+				else if (.@i < 451) set .@enchant,4731; //Agility2
+				else if (.@i < 476) set .@enchant,4731; //Agility2
+				else if (.@i < 501) set .@enchant,4752; //Luck3
+				else if (.@i < 526) set .@enchant,4732; //Agility3
+				else if (.@i < 626) set .@enchant,0;
+				else if (.@i < 641) set .@enchant,4762; //Evasion6
+				else if (.@i < 656) set .@enchant,4753; //Luck4
+				else if (.@i < 671) set .@enchant,4733; //Agility4
+				else if (.@i < 676) set .@enchant,4763; //Evasion12
+				else if (.@i < 681) set .@enchant,4754; //Luck5
+				else if (.@i < 683) set .@enchant,4734; //Agility5
+				else set .@enchant,9;
+				break;
+				
+		case 4: //Healer
+			    if (.@slot == 4) set .@i, rand(1,375);
+				else if (.@slot == 3) set .@i, rand(201,535);
+				else if (.@slot == 2) set .@i, rand(301,650);
+				else {
+					mes "[Production-Type Charleston]";
+					mes "เกิดข้อผิดพลาดบางอย่างที่ไม่ทราบสาเหตุ.";
+					close;
+				}
+				
+			    if (.@i < 101) set .@enchant,4710; 		//Inteligence1
+				else if (.@i < 201) set .@enchant,4720; //Dexterity1
+				else if (.@i < 251) set .@enchant,4711; //Inteligence2
+				else if (.@i < 301) set .@enchant,4721; //Dexterity2
+				else if (.@i < 326) set .@enchant,4805; //Heal_Amount2
+				else if (.@i < 351) set .@enchant,4712; //Inteligence3
+				else if (.@i < 376) set .@enchant,4722; //Dexterity3
+				else if (.@i < 476) set .@enchant,0;
+				else if (.@i < 491) set .@enchant,4760; //Matk1
+				else if (.@i < 506) set .@enchant,4850; //Heal_Amount3
+				else if (.@i < 521) set .@enchant,4713; //Inteligence4
+				else if (.@i < 536) set .@enchant,4723; //Dexterity4
+				else if (.@i < 541) set .@enchant,4761; //Matk2
+				else if (.@i < 546) set .@enchant,4851; //Heal_Amount4
+				else if (.@i < 548) set .@enchant,4806; //Matk3
+				else if (.@i < 550) set .@enchant,4852; //Heal_Amount5
+				else set .@enchant,9;
+				break;
+				
+		case 5: //Spell 1
+			    if (.@slot == 4) set .@i, rand(1,600);
+				else if (.@slot == 3) set .@i, rand(401,760);
+				else if (.@slot == 2) set .@i, rand(401,766);
+				else {
+					mes "[Production-Type Charleston]";
+					mes "เกิดข้อผิดพลาดบางอย่างที่ไม่ทราบสาเหตุ.";
+					close;
+				}
+				
+			    if (.@i < 101) set .@enchant,4710; 		//Inteligence1
+				else if (.@i < 201) set .@enchant,4720; //Dexterity1
+				else if (.@i < 301) set .@enchant,4795; //HP100
+				else if (.@i < 401) set .@enchant,4815; //Spell1
+				else if (.@i < 451) set .@enchant,4711; //Inteligence2
+				else if (.@i < 501) set .@enchant,4721; //Dexterity2
+				else if (.@i < 551) set .@enchant,4796; //HP200
+				else if (.@i < 601) set .@enchant,4814; //Spell2
+				else if (.@i < 701) set .@enchant,0;
+				else if (.@i < 716) set .@enchant,4712; //Inteligence3
+				else if (.@i < 731) set .@enchant,4722; //Dexterity3
+				else if (.@i < 746) set .@enchant,4797; //HP300
+				else if (.@i < 761) set .@enchant,4813; //Spell3
+				else if (.@i < 763) set .@enchant,4713; //Inteligence4
+				else if (.@i < 765) set .@enchant,4723; //Dexterity4
+				else if (.@i < 767) set .@enchant,4812; //Spell4
+				else set .@enchant,9;
+				break;
+				
+		case 6: //Assist 1
+			    if (.@slot == 4) set .@i, rand(1,520);
+				else if (.@slot == 3) set .@i, rand(321,720);
+				else if (.@slot == 2) set .@i, rand(521,850);
+				else {
+					mes "[Production-Type Charleston]";
+					mes "เกิดข้อผิดพลาดบางอย่างที่ไม่ทราบสาเหตุ.";
+					close;
+				}
+				
+			    if (.@i < 81)  set .@enchant,4792;		//Def6
+				else if (.@i < 161) set .@enchant,4787; //Mdef4
+				else if (.@i < 241) set .@enchant,4801; //SP100
+				else if (.@i < 321) set .@enchant,4796; //HP200
+				else if (.@i < 371) set .@enchant,4700; //Strength1
+				else if (.@i < 421) set .@enchant,4720; //Dexterity1
+				else if (.@i < 471) set .@enchant,4730; //Agility1
+				else if (.@i < 521) set .@enchant,4740; //Vitality1
+				else if (.@i < 621) set .@enchant,0;
+				else if (.@i < 646) set .@enchant,4793; //Def9
+				else if (.@i < 671) set .@enchant,4788; //Mdef6
+				else if (.@i < 696) set .@enchant,4802; //SP150
+				else if (.@i < 721) set .@enchant,4797; //HP300
+				else if (.@i < 731) set .@enchant,4701; //Strength2
+				else if (.@i < 741) set .@enchant,4721; //Dexterity2
+				else if (.@i < 751) set .@enchant,4731; //Agility2
+				else set .@enchant,9;
+				break;
+				
+		case 7: //Assist 2
+			    if (.@slot == 4) set .@i, rand(1,520);
+				else if (.@slot == 3) set .@i, rand(321,720);
+				else if (.@slot == 2) set .@i, rand(521,850);
+				else {
+					mes "[Production-Type Charleston]";
+					mes "เกิดข้อผิดพลาดบางอย่างที่ไม่ทราบสาเหตุ.";
+					close;
+				}
+				
+			    if (.@i < 81)  set .@enchant,4792;		//Def6
+				else if (.@i < 161) set .@enchant,4787; //Mdef4
+				else if (.@i < 241) set .@enchant,4801; //SP100
+				else if (.@i < 321) set .@enchant,4796; //HP200
+				else if (.@i < 371) set .@enchant,4710; //Inteligence1
+				else if (.@i < 421) set .@enchant,4720; //Dexterity1
+				else if (.@i < 471) set .@enchant,4730; //Agility1
+				else if (.@i < 521) set .@enchant,4740; //Vitality1
+				else if (.@i < 621) set .@enchant,0;
+				else if (.@i < 646) set .@enchant,4793; //Def9
+				else if (.@i < 671) set .@enchant,4788; //Mdef6
+				else if (.@i < 696) set .@enchant,4802; //SP150
+				else if (.@i < 721) set .@enchant,4797; //HP300
+				else if (.@i < 731) set .@enchant,4711; //Inteligence2
+				else if (.@i < 741) set .@enchant,4721; //Dexterity2
+				else if (.@i < 751) set .@enchant,4741; //Vitality2
+				else set .@enchant,9;
+				break;
+				
+		case 8: //Strength
+			    if (.@slot == 4) set .@i, rand(1,525);
+				else if (.@slot == 3) set .@i, rand(301,685);
+				else if (.@slot == 2) set .@i, rand(451,800);
+				else {
+					mes "[Production-Type Charleston]";
+					mes "เกิดข้อผิดพลาดบางอย่างที่ไม่ทราบสาเหตุ.";
+					close;
+				}
+				
+			    if (.@i < 101) set .@enchant,4740;		//Vitality1
+				else if (.@i < 201) set .@enchant,4797; //HP300
+				else if (.@i < 301) set .@enchant,4791; //Def3
+				else if (.@i < 351) set .@enchant,4741; //Vitality2
+				else if (.@i < 401) set .@enchant,4798; //HP400
+				else if (.@i < 451) set .@enchant,4792; //Def6
+				else if (.@i < 476) set .@enchant,4742; //Vitality3
+				else if (.@i < 501) set .@enchant,4793; //Def9
+				else if (.@i < 526) set .@enchant,4799; //HP500
+				else if (.@i < 626) set .@enchant,0;
+				else if (.@i < 641) set .@enchant,4742; //Vitality3
+				else if (.@i < 656) set .@enchant,4743; //Vitality4
+				else if (.@i < 671) set .@enchant,4794; //Def12
+				else if (.@i < 688) set .@enchant,4744; //Vitality5
+				else set .@enchant,9;
+				break;
+				
+		case 9: //Range
+			    if (.@slot == 4) set .@i, rand(1,470);
+				else if (.@slot == 3) set .@i, rand(201,610);
+				else if (.@slot == 2) set .@i, rand(321,750);
+				else {
+					mes "[Production-Type Charleston]";
+					mes "เกิดข้อผิดพลาดบางอย่างที่ไม่ทราบสาเหตุ.";
+					close;
+				}
+				
+			    if (.@i < 101) set .@enchant,4750;		//Luck1
+				else if (.@i < 201) set .@enchant,4720; //Dexterity1
+				else if (.@i < 261) set .@enchant,4751; //Luck2
+				else if (.@i < 321) set .@enchant,4721; //Dexterity2
+				else if (.@i < 351) set .@enchant,4752; //Luck3
+				else if (.@i < 381) set .@enchant,4722; //Dexterity3
+				else if (.@i < 411) set .@enchant,4764; //Critical5
+				else if (.@i < 441) set .@enchant,4832; //Expert_Archer1
+				else if (.@i < 471) set .@enchant,4753; //Luck4
+				else if (.@i < 571) set .@enchant,0;
+				else if (.@i < 586) set .@enchant,4723; //Dexterity4
+				else if (.@i < 601) set .@enchant,4833; //Expert_Archer2
+				else if (.@i < 606) set .@enchant,4765; //Critical7
+				else if (.@i < 611) set .@enchant,4834; //Expert_Archer3
+				else if (.@i < 616) set .@enchant,4724; //Dexterity5
+				else if (.@i < 618) set .@enchant,4835; //Expert_Archer4
+				else set .@enchant,9;
+				break;
+				
+		case 10: //Physical
+			    if (.@slot == 4) set .@i, rand(1,600);
+				else if (.@slot == 3) set .@i, rand(401,800);
+				else if (.@slot == 2) set .@i, rand(601,930);
+				else {
+					mes "[Production-Type Charleston]";
+					mes "เกิดข้อผิดพลาดบางอย่างที่ไม่ทราบสาเหตุ.";
+					close;
+				}
+				
+			    if (.@i < 101) set .@enchant,4791; //Def3
+				else if (.@i < 201) set .@enchant,4730; //Agility1
+				else if (.@i < 301) set .@enchant,4750; //Luck1
+				else if (.@i < 401) set .@enchant,4795; //HP100
+				else if (.@i < 451) set .@enchant,4792; //Def6
+				else if (.@i < 501) set .@enchant,4731; //Agility2
+				else if (.@i < 551) set .@enchant,4751; //Luck2
+				else if (.@i < 601) set .@enchant,4796; //HP200
+				else if (.@i < 701) set .@enchant,0;
+				else if (.@i < 726) set .@enchant,4793; //Def9
+				else if (.@i < 751) set .@enchant,4732; //Agility3
+				else if (.@i < 776) set .@enchant,4752; //Luck3
+				else if (.@i < 801) set .@enchant,4797; //HP300
+				else if (.@i < 816) set .@enchant,4733; //Agility4
+				else if (.@i < 831) set .@enchant,4753; //Luck4
+				else if (.@i < 833) set .@enchant,4807; //Atk_Speed1
+				else set .@enchant,9;
+				break;
+				
+		case 11: //Spell 2
+			    if (.@slot == 4) set .@i, rand(1,600);
+				else if (.@slot == 3) set .@i, rand(401,760);
+				else if (.@slot == 2) set .@i, rand(401,766);
+				else {
+					mes "[Production-Type Charleston]";
+					mes "เกิดข้อผิดพลาดบางอย่างที่ไม่ทราบสาเหตุ.";
+					close;
+				}
+				
+			    if (.@i < 101) set .@enchant,4711; //Inteligence2
+				else if (.@i < 201) set .@enchant,4721; //Dexterity2
+				else if (.@i < 301) set .@enchant,4796; //HP200
+				else if (.@i < 401) set .@enchant,4814; //Spell2
+				else if (.@i < 451) set .@enchant,4712; //Inteligence3
+				else if (.@i < 501) set .@enchant,4722; //Dexterity3
+				else if (.@i < 551) set .@enchant,4760; //Matk1
+				else if (.@i < 601) set .@enchant,4813; //Spell3
+				else if (.@i < 701) set .@enchant,0;
+				else if (.@i < 716) set .@enchant,4713; //Inteligence4
+				else if (.@i < 731) set .@enchant,4723; //Dexterity4
+				else if (.@i < 746) set .@enchant,4761; //Matk2
+				else if (.@i < 761) set .@enchant,4812; //Spell4
+				else if (.@i < 763) set .@enchant,4714; //Inteligence5
+				else if (.@i < 765) set .@enchant,4724; //Dexterity5
+				else if (.@i < 767) set .@enchant,4806; //Matk3
+				else set .@enchant,9;
+				break;
+				
+		default:
+			mes "[Production-Type Charleston]";
+			mes "ฉันคิดว่า ฉันเป็นคนผิดนะ...";
+			close;
+		}
+		
+		if ( callfunc("F_IsEquipIDHack", .@part, .@equip_id) || callfunc("F_IsEquipRefineHack", .@part, .@equip_refine) || callfunc("F_IsEquipCardHack", .@part, .@equip_card[0], .@equip_card[1], .@equip_card[2], .@equip_card[3]) )
+			close;
+		
+		if ( .@equip_card[3] == 0 && .@allows < 4 )
+		{
+			set .@equip_card[3],.@enchant;
+		}
+		else if ( .@equip_card[2] == 0 && .@allows < 3 )
+		{
+			set .@equip_card[2],.@enchant;
+			if ( .@enchant == 0 ) 
+			{
+				set .@equip_card[3],0;
+			}
+		} 
+		else if ( .@equip_card[1] == 0 && .@allows < 2 ) 
+		{
+			set .@equip_card[1],.@enchant;
+			if ( .@enchant == 0 ) 
+			{
+				set .@equip_card[2],0;
+				set .@equip_card[3],0;
+			}
+		}
+		else
+		{
+			mes "[Production-Type Charleston]";
+			mes "ฉันคิดว่า ฉันมีข้อจำกัดในการเสริมความสามารถขึ้นมา.";
+			close;
+		}
+		
+		if ( Zeny < 100000 || countitem(6752) == 0 ) {
+			mes "[Production-Type Charleston]";
+			mes "ฉันไม่สามารถที่จะดำเนินการใดๆ ได้หากคุณไม่มีค่าธรรมเนียมให้กับฉัน.";
+			close;
+		}
+		
+		delitem 6752,1;
+		set Zeny, Zeny-100000;
+		delequip .@part;
+		
+		if ( .@enchant == 9 )
+		{
+			specialeffect2 EF_SUI_EXPLOSION;
+			mes "[Production-Type Charleston]";
+			mes "โอ้ นี่!";
+ 			mes "ฉัน... ฉันขอโทษแต่ฉันคิดว่าอุปกรณ์นี้ได้ถูกทำลายลงไปแล้ว.";
+			close;
+		}
+		
+		if ( .@enchant == 0 )
+		{
+			specialeffect2 EF_SHIELDCHARGE;
+			mes "[Production-Type Charleston]";
+			mes "เนื่องจากความสมดุลของความสามารถเสริมเกิดข้อผิดพลาด, ความสามารถทั้งหมดถูกทำลาย. แต่อุปกรณ์ยังคงปลอดภัย.";
+		}
+		else
+		{
+			specialeffect2 EF_REPAIRWEAPON;
+			mes "[Production-Type Charleston]";
+			mes "การเสริมความสามารถสำเร็จไปได้ด้วยดี รายการไอเท็ม ^990000"+ .@equip_name$ +"^000000 สล็อตที่ "+ .@slot +".";
+		}
+		
+		getitem2 .@equip_id,1,1,.@equip_refine,0,.@equip_card[0],.@equip_card[1],.@equip_card[2],.@equip_card[3];
+		close;
+	}
+	else if ( .@select == 2 )
+	{
+		if ( Zeny < 100000 || countitem(6752) == 0 )
+		{
+			mes "[Production-Type Charleston]";
+			mes "คุณจำเป็นที่จะต้องจ่ายค่าบริการหากคุณต้องการที่จะใช้บริการจากฉัน.";
+			close;
+		}
+		
+		specialeffect2 EF_REPAIRWEAPON;
+		mes "[Production-Type Charleston]";
+		mes "ได้ทำการรีเซ็ตความสามารถเสริมออกเรียบร้อยแล้ว.";
+		delitem 6752,1;
+		set Zeny, Zeny-100000;
+		delequip .@part;
+		
+		for( set .@i,0; .@i<4; set .@i,.@i+1 )
+		{
+			if ( .@equip_card[.@i] >= 4700 )
+				set .@equip_card[.@i],0;
+		}
+		
+		getitem2 .@equip_id,1,1,.@equip_refine,0,.@equip_card[0],.@equip_card[1],.@equip_card[2],.@equip_card[3];
+		close;
+	}
+}

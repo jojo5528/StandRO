@@ -1,0 +1,38 @@
+//===== Developers Script ===================================
+//= Server Rate
+//===== Current Version =====================================
+//= 1.0
+//===== Description =========================================
+//= Server Rate
+//===== Additional Comments =================================
+//= 1.0 Start Version
+//= 1.1 Edit By Ragnarok PVP GVG
+//===========================================================
+
+wonderworld,143,136,4	script	Warp Elu & Ori	571,{
+
+mes "เราจะพาท่านไปที่แมพ ล่า Elu Ori";
+mes "โปรดเลือกสถานที่ต่างๆที่จะไป";
+next;
+menu 
+"- ล่า Elu Ori Map 1 [ "+getmapusers("gl_prison")+" ]",eluoir1,
+"- ล่า Elu Ori Map 2 [ "+getmapusers("gl_cas02")+" ]",eluoir2,
+"- ยกเลิก",cancel;
+
+eluoir1:
+warp "gl_prison",0,0;
+announce "[ระบบ] ขณะนี้ คุณ [ "+strcharinfo(0)+" ] ได้เข้าสู่  ห้อง ล่า Elu Ori Map 1 แล้วจ้า ขณะนี้มีผู้เล่นทั้งหมด [ "+getmapusers("gl_prison")+" ] คน",0,0x66FF00;
+close;
+
+eluoir2:
+warp "gl_cas02",0,0;
+announce "[ระบบ] ขณะนี้ คุณ [ "+strcharinfo(0)+" ] ได้เข้าสู่  ล่า Elu Ori Map 2 แล้วจ้า ขณะนี้มีผู้เล่นทั้งหมด [ "+getmapusers("gl_cas02")+" ] คน",0,0x66FF00;
+close;
+
+cancel:
+close;
+
+OnInit:
+waitingroom "วาปล่า Elu Ori",0;
+end; 
+}

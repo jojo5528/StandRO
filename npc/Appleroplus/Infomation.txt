@@ -1,0 +1,32 @@
+-	script	infomations	-1,{
+
+cutin "line",3;
+mes "สวัสดีค่ะยินดีต้อนรับสู่ Server Apple-ro นะค่ะ";
+mes "หากต้องการทราบกลุ่มหรือการเข้ากลุ่มต่างๆ ของเรา";
+mes "เชิญเลือกเมนูที่คุณต้องการได้เลยนะค่ะ^_^";
+next;
+menu 
+"กลุ่ม Line",exp_g,
+"ยกเลิก",cancel_g;
+
+
+exp_g:
+mes "Line ID : Gm Apple-ro";
+mes "เข้ากลุ่ม Line <URL>คลิกเลยจ้า<INFO> http://line.me/R/ti/g/2mSQGj3HW_</INFO></URL>";
+mes "หรือลิงค์กลุ่ม Line : http://line.me/R/ti/g/2mSQGj3HW_";
+mes "หรือ แอด Line GM เดียวดึงเข้ากลุ่มค่ะ";
+close;
+
+
+cancel_g:
+mes "ยินดีให้บริการค่ะ";
+close;
+OnInit:
+waitingroom "Line : Gm Apple-ro",0;
+end;
+}
+//==============================================
+//ที่ตั้งNPC
+//==============================================
+start_a01,53,88,5	duplicate(infomations)	กลุ่ม Line คลิ๊ก#01	833
+//==============================================

@@ -1,0 +1,316 @@
+//===== Developers Script ===================================
+//= Server Rate
+//===== Current Version =====================================
+//= 1.0
+//===== Description =========================================
+//= Server Rate
+//===== Additional Comments =================================
+//= 1.0 Start Version
+//= 1.1 Edit By Ragnarok PVP GVG
+//===========================================================
+
+wonderworld,161,131,4	script	วาปบอสตามแมพ	725,{
+
+mes "เราจะพาท่านไปที่แมพล่า Boss ทั่วไปเดิมๆ";
+mes "โปรดเลือกสถานที่ต่างๆที่จะไป";
+next;
+menu 
+"Amonra",Amonra,
+"Assassin Cross Eremes",AssassinCrossEremes,
+"Atroce",Atroce,
+"White Lady",Bacsojin,
+"Baphomet",Baphomet,
+"Beelzebub",Beelzebub,
+"Boitata",Boitata,
+"Champion Chen",ChampionChen,
+"Clown Alphoccio",ClownAlphoccio,
+"Creator Flamel",CreatorFlamel,
+"Dark Lord",DarkLord,
+"Dark Snake Lord",DarkSnakeLord,
+"Detardeurus",Detardeurus,
+"Doppelganger",Doppelganger,
+"Dracula",Dracula,
+"Drake",Drake,
+"Eddga",Eddga,
+"Fallen Bishop",FallenBishop,
+"Garm",Garm,
+"Gloom Under Night",GloomUnderNight,
+"Gold Queen Scaraba",GoldQueenScaraba,
+"Golden Thief Bug",GoldenThiefBug,
+"Gopinich",Gopinich,
+"Gypsy Trentini",GypsyTrentini,
+"High Priest Magaleta",HighPriestMagaleta,
+"High Wizard Katrinn",HighWizardKatrinn,
+"Ifrit",Ifrit,
+"Incantation Samurai",IncantationSamurai,
+"Kiel D-01",KielD01,
+"Knight of Windstorm",KnightofWindstorm,
+"Kraken",Kraken,
+"Lady Tanee",LadyTanee,
+"Leak",Leak,
+"Lord Knight Seyren",LordKnightSeyren,
+"Lord of Death",LordofDeath,
+"Maya",Maya,
+"Mistress",Mistress,
+"Moonlight Flower",MoonlightFlower,
+"Nightmare Amon Ra",NightmareAmonRa,
+"Orc Hero",OrcHero,
+"Orc Lord",OrcLord,
+"Osiris",Osiris,
+"Paladin Randel",PaladinRandel,
+"Pharaoh",Pharaoh,
+"Phreeoni",Phreeoni,
+"Professor Celia",ProfessorCelia,
+"Queen Scaraba",QueenScaraba,
+"RSX-0806",RSX0806,
+"Sniper Shecil",SniperShecil,
+"Stalker Gertie",StalkerGertie,
+"Tao Gunka",TaoGunka,
+"Time Holder",TimeHolder,
+"Turtle General",TurtleGeneral,
+"Valkyrie Randgris",ValkyrieRandgris,
+"Vesper",Vesper,
+"Whitesmith Harword",WhitesmithHarword,
+"Wounded Morroc",WoundedMorroc,
+"Egnigem Cenia",EgnigemCenia,
+"ยกเลิก",cancel;
+
+Amonra:
+warp "moc_pryd06",0,0;
+close;
+
+AssassinCrossEremes:
+warp "lhz_dun03",0,0;
+close;
+
+Atroce:
+warp "ra_fild03",0,0;
+close;
+
+Bacsojin:
+warp "lou_dun03",0,0;
+close;
+
+Baphomet:
+warp "prt_maze03",0,0;
+close;
+
+Beelzebub:
+warp "abbey03",0,0;
+close;
+
+Boitata:
+warp "bra_dun02",0,0;
+close;
+
+ChampionChen:
+warp "lhz_dun04",0,0;
+close;
+
+ClownAlphoccio:
+warp "lhz_dun04",0,0;
+close;
+
+CreatorFlamel:
+warp "lhz_dun04",0,0;
+close;
+
+DarkLord:
+warp "gl_chyard",0,0;
+close;
+
+DarkSnakeLord:
+warp "gon_dun03",0,0;
+close;
+
+Detardeurus:
+warp "abyss_03",0,0;
+close;
+
+Doppelganger:
+warp "gef_dun02",0,0;
+close;
+
+Dracula:
+warp "gef_dun01",0,0;
+close;
+
+Drake:
+warp "treasure02",0,0;
+close;
+
+Eddga:
+warp "pay_fild10",0,0;
+close;
+
+FallenBishop:
+warp "abbey02",0,0;
+close;
+
+Garm:
+warp "xmas_fild01",0,0;
+close;
+
+GloomUnderNight:
+warp "ra_san05",0,0;
+close;
+
+GoldQueenScaraba:
+warp "dic_dun03",0,0;
+close;
+
+GoldenThiefBug:
+warp "prt_sewb4",0,0;
+close;
+
+Gopinich:
+warp "mosk_dun03",0,0;
+close;
+
+GypsyTrentini:
+warp "lhz_dun04",0,0;
+close;
+
+HighPriestMagaleta:
+warp "lhz_dun03",0,0;
+close;
+
+HighWizardKatrinn:
+warp "lhz_dun03",0,0;
+close;
+
+Ifrit:
+warp "thor_v03",0,0;
+close;
+
+IncantationSamurai:
+warp "ama_dun03",0,0;
+close;
+
+KielD01:
+warp "kh_dun02",0,0;
+close;
+
+KnightofWindstorm:
+warp "xmas_dun02",0,0;
+close;
+
+Kraken:
+warp "iz_dun05",0,0;
+close;
+
+LadyTanee:
+warp "ayo_dun02",0,0;
+close;
+
+Leak:
+warp "dew_dun01",0,0;
+close;
+
+LordKnightSeyren:
+warp "lhz_dun03",0,0;
+close;
+
+LordofDeath:
+warp "niflheim",0,0;
+close;
+
+Maya:
+warp "anthell02",0,0;
+close;
+
+Mistress:
+warp "mjolnir_04",0,0;
+close;
+
+MoonlightFlower:
+warp "pay_dun04",0,0;
+close;
+
+NightmareAmonRa:
+warp "moc_prydn2",0,0;
+close;
+
+OrcHero:
+warp "gef_fild03",0,0;
+close;
+
+OrcLord:
+warp "gef_fild10",0,0;
+close;
+
+Osiris:
+warp "moc_pryd04",0,0;
+close;
+
+PaladinRandel:
+warp "lhz_dun04",0,0;
+close;
+
+Pharaoh:
+warp "in_sphinx5",0,0;
+close;
+
+Phreeoni:
+warp "moc_fild17",0,0;
+close;
+
+ProfessorCelia:
+warp "lhz_dun04",0,0;
+close;
+
+QueenScaraba:
+warp "dic_dun02",0,0;
+close;
+
+RSX0806:
+warp "ein_dun02",0,0;
+close;
+
+SniperShecil:
+warp "lhz_dun03",0,0;
+close;
+
+StalkerGertie:
+warp "lhz_dun04",0,0;
+close;
+
+TaoGunka:
+warp "beach_dun",0,0;
+close;
+
+TimeHolder:
+warp "c_tower3_",0,0;
+close;
+
+TurtleGeneral:
+warp "tur_dun04",0,0;
+close;
+
+ValkyrieRandgris:
+warp "odin_tem03",0,0;
+close;
+
+Vesper:
+warp "jupe_core",0,0;
+close;
+
+WhitesmithHarword:
+warp "lhz_dun03",0,0;
+close;
+
+WoundedMorroc:
+warp "moc_fild22",0,0;
+close;
+
+EgnigemCenia:
+warp "lhz_dun02",0,0;
+close;
+
+cancel:
+close;
+
+OnInit:
+//waitingroom "ล่าบอสตามแมพ",0;
+end; 
+}

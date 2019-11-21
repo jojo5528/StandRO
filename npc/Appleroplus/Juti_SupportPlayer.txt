@@ -1,0 +1,83 @@
+//= Support Player
+//===== Current Version: ======================================
+//= 1.0
+//===== Description: ========================================= 
+//= ระบบช่วยเหลือผู้เล่น
+//===== Additional Comments: ================================= 
+//= 1.0 Start Version
+//==========================================================
+
+-	script	Supportpy	-1,{
+
+	mes "^FF0000[ Support Player ]^000000";
+	mes "สวัสดีท่าน ^0000FF"+strcharinfo(0)+"^000000 มีอะไรให้ข้าช่วย";
+	next;
+	switch(select("เช็คข้อมูลผู้เล่นอื่น","ออก")) 
+	{
+	
+	
+	case 1:
+		/*if(1){	
+		mes "^FF0000[ Support Player ]^000000";
+		mes "ระบบนี้ถูกปิดการใช่งานค่ะ";
+		break;
+		}*/
+		mes "^FF0000[ Support Player ]^000000";
+		mes "ค่าตรวจสอบครั้งละ 10000 Zeny";
+		mes "ตกลงมั้ย";
+		next;
+		if(select("ตกลง:แพงไม่เอาละ")-1)
+			break;
+		if(Zeny < 10000)
+		{
+			mes "^FF0000[ Support Player ]^000000";
+			mes "ไหนละเงินค่าดู ไม่มีก๊ไปซะ";
+			break;
+		}
+		mes "^FF0000[ Support Player ]^000000";
+		mes "ใส่ชื่อคนที่ต้องการดู";
+		next;
+		input @namepy$;
+		if(!getcharid(0,@namepy$))
+		{
+			mes "^FF0000[ Support Player ]^000000";
+			mes "ไม่มีผู้เล่นชื่อนี้ หรือ ผู้เล่นนี้ไม่ได้ ออนไลน์อยู่";
+			break;
+		}
+		mes "^FF0000[ Support Player ]^000000";
+		mes "ต้องการดูอะไรละ";
+		next;
+		set Zeny,zeny-10000;
+		switch(select("ของในตัว:ในรถเข็น:ในคาฟ่า:เช็คสเตตัส")){
+		case 1:
+			charcommand "#itemlist "+ @namepy$;
+			break;
+		case 2:
+			charcommand "#cartlist "+ @namepy$;
+			break;
+		case 3:
+			charcommand "#storagelist "+ @namepy$;
+			break;
+		case 4:
+			charcommand "#stats "+ @namepy$;
+			break;
+		}
+		mes "^FF0000[ Support Player ]^000000";
+		mes "เรียบร้อย ดูซะให้เต็มตา";
+		break;	
+
+	case 2:
+		mes "^FF0000[ Support Player ]^000000";
+		mes "แล้วเจอกัน";
+		break;
+	}
+	close;
+OnInit: 
+waitingroom "ตรวจสอบข้อมูลผู้เล่น",0;
+end;
+}
+
+
+wonderworld,183,135,4	duplicate(Supportpy)	ตรวจสอบข้อมูลผู้เล่น#01	790
+
+

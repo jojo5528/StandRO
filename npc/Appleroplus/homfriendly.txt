@@ -1,0 +1,11 @@
+-	script	homfriendly	-1,{
+
+mes "ได้เพิ่มการ สนิทสนม ของโฮมุนคุณเรียบร้อยแล้ว";
+atcommand "@homfriendly 1000";
+close;
+OnInit:
+waitingroom "เพิ่มความสนิทสนมโฮมุน",0;
+end;
+}
+
+wonderworld,169,147,5	duplicate(homfriendly)	เพิ่มสนิทสนมโฮมูน#01	891

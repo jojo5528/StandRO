@@ -1,0 +1,93 @@
+-	script	FishingHole	-1,{
+
+//Fishing rod
+set .@Rod,2764;
+//Fishing Lure
+set .@Lure,2775;
+//Auto-Fish
+set .@Auto,1;
+//Auto-Fish on Fail
+set .@AutoFail,1;
+Fish:
+	if (isequipped(.@Rod)) && (isequipped(.@Lure)){
+		specialeffect EF_BUBBLE,"Fishing Hole";
+		soundeffect "fishing_wait.wav",0;
+		dispbottom "[ระบบ] กำลังเริ่มตกปลา";
+		set .@fcast,15;
+			if (isequipped(2550)) { //Fisher's Muffler
+				set .@fcast,.@fcast - 2;
+			}
+			if (isequipped(2443)) { //Fisher's Boots
+				set .@fcast,.@fcast - 2;
+			}
+			if (isequipped(2764)) { //Fishing Pole
+				set .@fcast,.@fcast - 3;
+			}
+			if (isequipped(2775)) { //Fishing Lure
+				set .@fcast,.@fcast - 1;
+			}
+		progressbar "ffffff",.@fcast;
+		if (rand(1,300) == 2){ //โอกาศ 1ใน 400
+		getitem 61001,1; //Fish with Blue Back
+		specialeffect2 EF_TEMP_OK;
+		specialeffect2 410;
+		//soundeffectall "fishing_m_success.wav",0,strcharinfo(3);
+		soundeffect "fishing_m_success.wav",0;
+		mapannounce strcharinfo(3),"ว้าว...ยินดีด้วย คุณ  [ "+strcharinfo(0)+" ] ได้รับ Cash Coin จากการตกปลา",bc_map,"0x66FF99";
+		if(.@Auto==1){
+		goto Fish;}else{
+		end;}
+		}
+			if (rand(1,6) == 1) ||(rand(1,6) == 3) || (rand(1,6) == 6){
+			setarray .@Catch[0],579,908,909,963,956,6049,918,960,910,938,624,35050,35051,35052,35053,35054,35055,35056,991,717,713,962,943,514,512,35057;// List of Junk/Other
+			set .@CatchRand,.@Catch[rand(getarraysize(.@Catch))];
+			getitem .@CatchRand,1;
+			}
+			else {
+			soundeffect "fishing_m_failure.wav",0;
+			dispbottom "[Fishing] ว้าแย่จังเลย...คุณดูเหมือนคุณตกไม่ได้อะไรเลย";
+			if(.@AutoFail == 1){
+			goto Fish;} else{
+			end;}
+			}
+		if (rand(1,700) == 3){ //โอกาศ 1ใน 1000
+		setarray .@Rare[0],61006,61007,61008,61012;
+		set .@RareCatch, .@Rare[rand(getarraysize(.@Rare))];
+		getitem .@RareCatch,1; //Reward
+		specialeffect2 410;
+		soundeffect "fishing_m_success.wav",0;
+		mapannounce strcharinfo(3),"ว้าวว้าวว้าว...ยินดีด้วย คุณ [ "+strcharinfo(0)+" ] ได้รับ "+getitemname(.@RareCatch)+" จากการตกปลา",bc_map,"0x66FF99";
+		}
+		if(.@Auto == 1){
+		goto Fish;} else{
+		end;}
+		}
+	else {
+	dispbottom "[ระบบ] คุณจำเป็นต้องมีเบ็ดตกปลาและเหยื่อตกปลาก่อน...";
+	end;
+	}
+}
+
+
+wonderworld,182,39,0	duplicate(FishingHole)	จุดตกปลา#01	844
+wonderworld,180,39,0	duplicate(FishingHole)	จุดตกปลา#02	844
+wonderworld,178,39,0	duplicate(FishingHole)	จุดตกปลา#03	844
+wonderworld,176,39,0	duplicate(FishingHole)	จุดตกปลา#04	844
+wonderworld,174,39,0	duplicate(FishingHole)	จุดตกปลา#05	844
+wonderworld,172,39,0	duplicate(FishingHole)	จุดตกปลา#06	844
+wonderworld,170,39,0	duplicate(FishingHole)	จุดตกปลา#07	844
+wonderworld,168,39,0	duplicate(FishingHole)	จุดตกปลา#08	844
+wonderworld,166,39,0	duplicate(FishingHole)	จุดตกปลา#09	844
+wonderworld,164,39,0	duplicate(FishingHole)	จุดตกปลา#10	844
+wonderworld,162,39,0	duplicate(FishingHole)	จุดตกปลา#11	844
+
+
+
+wonderworld,182,36,1	duplicate(FishingHole)	น้องปลาน้อย#01	2070
+wonderworld,178,36,1	duplicate(FishingHole)	น้องปลาน้อย#03	2070
+wonderworld,174,36,1	duplicate(FishingHole)	น้องปลาน้อย#05	2070
+wonderworld,170,36,1	duplicate(FishingHole)	น้องปลาน้อย#07	2070
+wonderworld,166,36,1	duplicate(FishingHole)	น้องปลาน้อย#09	2070
+
+
+wonderworld,164,54,6	shop	ขายของตกปลา	735,2764:10000000,2775:10000000,2550:10000000,2443:10000000

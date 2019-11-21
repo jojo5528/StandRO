@@ -1,0 +1,50 @@
+//==============================================
+// - Script By : แม่มดน้อยจอมป่วน
+// - Script City : Thailand 
+// - Script Support Server : Hercules & rAthena
+//==============================================
+-	script	Agit_Event_Apple	-1,{
+	end;
+
+Oninit:
+	//เริ่มจากอาทิตย์ จันทร์ อังคาร พุธ พฤหััส ศุกร์ เสาร์
+	setarray $DAY[0],1,1,0,1,0,0,1;
+
+end;
+	
+OnClock2100:	//เวลาเปิด มหาสงครามศักดิ์สิทธิ์ The War of Emperium
+OnClock2200:	//เปิดปิด มหาสงครามศักดิ์สิทธิ์ The War of Emperium
+
+OnAgitInit:
+	// การตรวจสอบเวลาเริ่มต้น
+	if(	$DAY[gettime(DT_DAYOFWEEK)] && (gettime(DT_HOUR)>=21 && gettime(DT_HOUR)<22)) {
+		if (!agitcheck()){
+			AgitStart;
+			announce "[ระบบ] : ขณะนี้ มหาสงครามศักดิ์สิทธิ์ The War of Emperium ได้เริ่มขึ้นแล้ว",16;
+			set .counter,0;
+			initnpctimer;
+		}
+	}
+
+	// การตรวจสอบเวลาสิ้นสุด
+	if ( $DAY[gettime(DT_DAYOFWEEK)] &&  (gettime(DT_HOUR)==22)) {
+		if (agitcheck()) {
+			AgitEnd;
+			announce "[ระบบ] : ขณะนี้ มหาสงครามศักดิ์สิทธิ์ The War of Emperium ได้จบลงแล้ว",16;
+			set .counter,0;
+			stopnpctimer;
+		}
+	}
+end;
+
+OnTimer1000:
+	set .counter,.counter+1;
+	if((.counter == 1800 || .counter == 2400 || ( .counter >= 3000 && .counter <= 3540)) && .counter%60 == 0){ //30นาที 40นาที 50นาที ผ่านไป
+		announce "[ระบบ] : ขณะนี้ มหาสงครามศักดิ์สิทธิ์ The War of Emperium เหลือเวลาอีก "+((3600-.counter)/60)+" นาที จะจบลงแล้ว",16;
+	}else if(.counter > 3540){ //วินาที
+		announce "[ระบบ] : ขณะนี้ มหาสงครามศักดิ์สิทธิ์ The War of Emperium เหลือเวลาอีก "+(3600-.counter)+" วินาที จะจบลงแล้ว",16;
+	}
+	initnpctimer;
+	end;
+}
+

@@ -1,0 +1,27 @@
+-	script	EXEEE	-1,{
+OnInit:
+set .time, 10;
+setarray .map$, 
+//กำหนดแผนที่
+"job_knt";
+end;
+	
+OnPCDieEvent:
+getmapxy( .@map$, .@x, .@y, 0 );
+for ( set .@i, 0; .@i < getarraysize(.map$); set .@i, .@i+1 ) {
+if ( .@map$ == .map$[.@i] ) {
+sleep2 1000;
+//สุ่มเกิดในแผนที่
+warp "SavePoint",0,0;
+break;
+}
+}
+//close;
+}
+
+-	script	Die Message	-1,{
+OnPCDieEvent:
+//ข้อความที่จะแสดงว่าตายเหมือนผู้เล่นพิมเอง
+message strcharinfo(0),"เดี๋ยวมรึงเจอตูแน่!!!";
+emotion e_omg,2;
+}

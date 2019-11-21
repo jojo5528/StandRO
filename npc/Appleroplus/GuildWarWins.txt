@@ -1,0 +1,20 @@
+//==============================================
+// - Script By : M-Ro Online
+// - Script City : Thailand 
+// - Script Support Server : Hercules & rAthena
+//==============================================
+-	script	guildwarwins	-1,{
+OnNPCKillEvent:
+setarray .mobid[0],
+1288,
+3300;
+for (set .@c, 0; .@c < getarraysize(.mobid); set .@c, .@c + 1){
+if (killedrid == .mobid[.@c]){
+soundeffect "guildwarwins.wav",0;
+//getitem 608,1;  //==== √À— ‰Õ‡∑Á¡ <itemid>,<®”π«π> 
+//getitem 607,1;  //==== √À— ‰Õ‡∑Á¡ <itemid>,<®”π«π> 
+//getitem 61003,1; //==== √À— ‰Õ‡∑Á¡ <itemid>,<®”π«π> 
+}
+}
+end;
+}

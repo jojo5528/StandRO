@@ -1,0 +1,65 @@
+//==============================================
+// - Script By : M-Ro Online
+// - Script City : Thailand 
+// - Script Support Server : Hercules & rAthena
+//==============================================
+-	script	PlayBoxTimer2	-1,{
+OnClock0009:
+OnClock0109:
+OnClock0209:
+OnClock0309:
+OnClock0409:
+OnClock0509:
+OnClock0609:
+OnClock0709:
+OnClock0809:
+OnClock0909:
+OnClock1009:
+OnClock1109:
+OnClock1209:
+OnClock1309:
+OnClock1409:
+OnClock1509:
+OnClock1609:
+OnClock1709:
+OnClock1809:
+OnClock1909:
+OnClock2009:
+OnClock2109:
+OnClock2209:
+OnClock2309:
+set $@PB_Count2,0;
+announce "[กิจกรรม Watermelon] : ขณะนี้ Watermelon ได้เกิดขึ้นที่เมืองหลวง จำนวน 20 ตัว มีเวลาในการกำจัด 5 นาที !!",0;
+monster "wonderworld",0,0,"Watermelon",3042,20,"PlayBoxTimer2::OnBox2";
+initnpctimer;
+end;
+
+OnBox2:
+//getitem 6439,1;
+set $@PB_Count2,$@PB_Count2+1;
+announce "[กิจกรรม Watermelon] : Watermelon [ "+$@PB_Count2+"/20 ] ถูกพบโดยคุณ [ "+strcharinfo(0)+" ]",0;
+end;
+
+OnTimer60000:
+if($@PB_Count2==30){ stopnpctimer; set $@PB_Count2,0; }
+announce "[กิจกรรม Watermelon] : มีเวลาในการกำจัดอีก 4 นาที",0;
+end;
+OnTimer120000:
+if($@PB_Count2==30){ stopnpctimer; set $@PB_Count2,0; }
+announce "[กิจกรรม Watermelon] : มีเวลาในการกำจัดอีก 3 นาที",0;
+end;
+OnTimer180000:
+if($@PB_Count2==30){ stopnpctimer; set $@PB_Count2,0; }
+announce "[กิจกรรม Watermelon] : มีเวลาในการกำจัดอีก 2 นาที",0;
+end;
+OnTimer240000:
+if($@PB_Count2==30){ stopnpctimer; set $@PB_Count2,0; }
+announce "[กิจกรรม Watermelon] : มีเวลาในการกำจัดอีก 1 นาที",0;
+end;
+OnTimer300000:
+announce "[กิจกรรม Watermelon] : หมดเวลากิจกรรมแล้ว",0;
+stopnpctimer;
+set $@PB_Count2,0;
+killmonsterall "wonderworld";
+end;
+}

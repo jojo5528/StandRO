@@ -1,0 +1,73 @@
+wonderworld,183,139,4	script	Card Boss Informations	852,{
+
+
+	for ( set .@i, 0; .@i < getarraysize(.Monster); set .@i, .@i+1 )
+		set .@menu$, .@menu$+ getmonsterinfo(.Monster[.@i],MOB_NAME) +":";
+	set .@i, (select(.@menu$)-1);
+
+	mes "^FF0000ª×èÍºÍÊ : "+ getmonsterinfo(.Monster[.@i],MOB_NAME) +"^000000";
+	if ( getmobdrops(.Monster[.@i]) )
+	{
+		.@count = $@MobDrop_count;
+		copyarray .@item[0],$@MobDrop_item[0],.@count;
+		copyarray .@rate[0],$@MobDrop_rate[0],.@count;
+
+		for( .@j = 0; .@j < .@count; .@j++ )
+		{
+			mes (.@j+1) + ".<ITEM>" + getitemname(.@item[.@j]) + "<INFO>"+ .@item[.@j] +"</INFO></ITEM> " + .@rate[.@j]/100 + ((.@rate[.@j]%100 < 10) ? ".0":".") + .@rate[.@j]%100 + "%";
+		}
+		
+	}
+	end;
+	
+OnInit:
+	setarray .Monster[0],2529,
+						 2532,
+						 2533,
+						 2534,
+						 2535,
+						 3097,
+						 3091,
+						 3073,
+						 3148,
+						 3149,
+						 3145,
+						 3146,
+						 3190,
+						 3150,
+						 3151,
+						 3450,
+						 3449,
+						 3427,
+						 3426,
+						 3428,
+						 3429,
+						 3430,
+						 3505,
+						 3332,
+						 3346,
+						 3658,
+						 3659,
+						 3621,
+						 2996,
+						 2997,
+						 3801,
+						 1885,
+	                     2068,
+						 3242,
+	                     3243,
+	                     3245,
+	                     3220,
+	                     3221,
+	                     3222,
+	                     3223,
+	                     3224,
+	                     3225,
+	                     3240,
+	                     3241,
+	                     3244,
+	                     3246
+						 ;
+	waitingroom "àªç¤¢Í§µ¡¨Ò¡ºÍÊ",0;
+	end;
+}

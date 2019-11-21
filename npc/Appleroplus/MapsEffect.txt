@@ -1,0 +1,14 @@
+//==============================================
+// - Script By : M-Ro Online
+// - Script City : Thailand 
+// - Script Support Server : Hercules & rAthena
+//==============================================
+wonderworld	mapflag	sakura
+//wonderworld	mapflag	fireworks
+start_a01	mapflag	snow
+//wonderworld	mapflag	snow
+//wonderworld	mapflag	clouds
+//wonderworld	mapflag	clouds2
+
+wonderworld	mapflag	nobranch
+wonderworld	mapflag	nodrop

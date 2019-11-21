@@ -1,0 +1,23 @@
+/*
+	Script : Exp Kill (1.0)
+	Release : 2012/05/29
+	By : ReadyGo
+	From : ro-basic.com
+	
+	Description : เมื่อฆ่าผู้เล่นแล้วจะได้รับค่าประสบการณ์
+*/
+-	script	Exp Kill	-1,{
+OnPCKillEvent:
+	set .@rate, 5;	// Exp ที่ได้ (%)
+	
+	set .@baseexp, (NextBaseExp/100)*.@rate;
+	set .@jobexp, (NextJobExp/100)*.@rate;
+	if ( .@baseexp || .@jobexp ) {
+		getexp .@baseexp, .@jobexp;
+		if ( .@baseexp )
+			dispbottom "[ExpKill] ได้รับ BaseExp: "+.@baseexp+"  ( "+.@rate+"% )";
+		if ( .@jobexp )
+			dispbottom "[ExpKill] ได้รับ JobExp: "+.@jobexp+"  ( "+.@rate+"% )";
+	}
+//	close;
+}

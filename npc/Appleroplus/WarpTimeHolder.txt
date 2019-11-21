@@ -1,0 +1,32 @@
+//===== Developers Script ===================================
+//= Server Rate
+//===== Current Version =====================================
+//= 1.0
+//===== Description =========================================
+//= Server Rate
+//===== Additional Comments =================================
+//= 1.0 Start Version
+//= 1.1 Edit By Ragnarok PVP GVG
+//===========================================================
+
+wonderworld,29,163,4	script	ดัน Timeholder	11044,{
+
+mes "เราจะพาท่านไปแมพ Timeholder";
+mes "^ff0000บอสโหด^000000";
+next;
+menu 
+"ดัน Timeholder [ "+getmapusers("c_tower1")+" ]",Timeholder,
+"ยกเลิก",cancel;
+
+Timeholder:
+warp "c_tower1",235,220;
+close;
+
+
+cancel:
+close;
+
+OnInit:
+waitingroom "Timeholder",0;
+end; 
+}

@@ -1,0 +1,26 @@
+-	script	Reduce	FAKE_NPC,{
+
+OnScripts:
+
+	switch(select("ลดเลือดบอสทั้งหมด:คืนค่า"))
+	{
+		case 1: donpcevent strnpcinfo(0) +"::OnRe"; end;
+		case 2: donpcevent strnpcinfo(0) +"::OnDefault"; end;
+	}
+	end;
+
+OnRe:
+	setbattleflag("mvp_hp_rate",20);
+	atcommand "@reloadmobdb";
+	end;
+	
+OnDefault:
+	setbattleflag("mvp_hp_rate",100);
+	atcommand "@reloadmobdb";
+	end;
+	
+	
+OnInit:
+	bindatcmd "r",strnpcinfo(3) +"::OnScripts",99,99;
+	end;
+}
