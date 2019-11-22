@@ -1,5 +1,5 @@
 -	script	Visible2	-1,{
-end;
+	end;
 
 OnInit:
 	enablenpc "BuffsSupports#01";
@@ -99,13 +99,12 @@ OnAgitStart:
 //==============================================
 -	script	BuffsSupports	-1,{
 	
-	set .@delay, 3;	// ดีเลย์การใช้งาน (วินาที)
+	set .@delay, 5;	// ดีเลย์การใช้งาน (วินาที)
 	set .@cast, 0;	// ระยะเวลาร่าย (วินาที)
 	
-	if ( gettimetick(2)-@delay_heal < .@delay )
+	if(gettimetick(2)-@delay_heal < .@delay )
 		dispbottom "[ระบบ] โปรดรออีก "+(.@delay-(gettimetick(2)-@delay_heal))+" วินาทีถึงจะใช้งานได้อีกครั้งนะค่ะ";
-	else
-	{
+	else{
 		progressbar "0x007000", .@cast;
 		soundeffect "buff.wav",0;
 		
@@ -113,9 +112,9 @@ OnAgitStart:
 
 		//ข้อความที่ต้องการให้NPCพูด
 		//npctalk "ท่านได้รับพลังพิเศษจากเทพอาธีน่าแล้ว";
+		
 		//เช็คไอเทมที่เสียหายถ้ามีซ่อมให้ทันที
-		if (getbrokenid(1) > 0) 
-		{ 
+		if(getbrokenid(1)>0){
 			atcommand "@repairall";
 		}
 		
@@ -147,26 +146,24 @@ OnAgitStart:
 		sc_start SC_INCREASEAGI,1800000,10;
 		sc_start 41,1800000,10; //กอเรีย
 		sc_start 40,1800000,10; // MAGNIFICAT เร่ง
-		sc_start4 SC_POEMBRAGI,1000*60*5,5,70,90,10;
-		sc_start4 SC_SERVICE4U,1000*60*5,5,40,40,1;
+		sc_start4 SC_POEMBRAGI,600000,5,70,90,10;//BAGI
+		sc_start4 SC_SERVICE4U,600000,5,40,40,1;//SP
 		
 		//เพิ่มHPและSP 100%
-		percentheal 100,100; 
+		percentheal 100,100;
 		
 		//==============================================
 		//เอฟเฟกเพิ่มความสวยงาม
 		specialeffect2 509;
 		specialeffect 509;
 		//==============================================
-		dispbottom "คุณได้อยู่ในสถานะ ( A Poem of Bragi & Service for You ) เป็นเวลา 3 นาที ไม่สามารถใช้ใน PvP ได้ ";
+		dispbottom "คุณได้อยู่ในสถานะ ( A Poem of Bragi & Service for You ) เป็นเวลา 10 นาที ไม่สามารถใช้ใน PvP ได้ ";
 		//==============================================
 		
 		//ส่องไอเทมปริศนาที่มีในตัวทั้งหมด
 		getinventorylist;
-		for(set @i, 0; @i < @inventorylist_count; set @i, @i + 1) 
-		{
-			if (@inventorylist_identify[@i] == 1) 
-				continue;
+		for(set @i,0; @i<@inventorylist_count; set @i,@i+1){
+			if(@inventorylist_identify[@i] == 1)	continue;
 			delitem2 @inventorylist_id[@i],1,0,0,0,0,0,0,0;
 			getitem @inventorylist_id[@i],1;
 		}
@@ -184,7 +181,6 @@ wonderworld,75,100,4	duplicate(BuffsSupports)	BuffsSupports#04	894
 wonderworld,24,140,4	duplicate(BuffsSupports)	BuffsSupports#05	894
 //morocc,133,57,4	duplicate(BuffsSupports)	BuffsSupports#06	894
 start_a01,58,68,4	duplicate(BuffsSupports)	BuffsSupports#07	894
-
 
 // Duplicates (Renewal)
 //============================================================
@@ -204,13 +200,12 @@ mora,55,152,4	duplicate(BuffsSupports)	BuffsSupports#mora	894
 //==============================================
 -	script	BuffsSupportswar	-1,{
 	
-	set .@delay, 3;	// ดีเลย์การใช้งาน (วินาที)
+	set .@delay, 5;	// ดีเลย์การใช้งาน (วินาที)
 	set .@cast, 1;	// ระยะเวลาร่าย (วินาที)
 	
-	if ( gettimetick(2)-@delay_heal < .@delay )
+	if(gettimetick(2)-@delay_heal < .@delay)
 		dispbottom "[ระบบ] โปรดรออีก "+(.@delay-(gettimetick(2)-@delay_heal))+" วินาทีถึงจะใช้งานได้อีกครั้งนะค่ะ";
-	else 
-	{
+	else {
 		progressbar "0x007000", .@cast;
 		soundeffect "buff.wav",0;
 		
@@ -218,9 +213,9 @@ mora,55,152,4	duplicate(BuffsSupports)	BuffsSupports#mora	894
 
 		//ข้อความที่ต้องการให้NPCพูด
 		//npctalk "ท่านได้รับพลังพิเศษจากเทพอาธีน่าแล้ว";
+		
 		//เช็คไอเทมที่เสียหายถ้ามีซ่อมให้ทันที
-		if (getbrokenid(1) > 0)
-		{
+		if(getbrokenid(1)>0){
 			atcommand "@repairall"; 
 		}
 		
@@ -262,16 +257,15 @@ mora,55,152,4	duplicate(BuffsSupports)	BuffsSupports#mora	894
 		//เอฟเฟกเพิ่มความสวยงาม
 		specialeffect2 509;
 		specialeffect 509;
+		
 		//==============================================
 		dispbottom "ช่วงเวลาวอไม่สามารถรับสถานะ ( A Poem of Bragi & Service for You ) ได้";
 		//==============================================
 		
 		//ส่องไอเทมปริศนาที่มีในตัวทั้งหมด
 		getinventorylist;
-		for(set @i, 0; @i < @inventorylist_count; set @i, @i + 1)
-		{
-			if (@inventorylist_identify[@i] == 1) 
-				continue;
+		for(set @i,0;@i<@inventorylist_count;set @i,@i+1){
+			if(@inventorylist_identify[@i] == 1)	continue;
 			delitem2 @inventorylist_id[@i],1,0,0,0,0,0,0,0;
 			getitem @inventorylist_id[@i],1;
 		}

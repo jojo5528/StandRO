@@ -1,63 +1,63 @@
 morocc	mapflag	nodrop
 -	script	boss_b	-1,{
 
-mes "[ Boss Room ]";
-mes "ท่านผู้กล้าขอเชิญท่านสู่Map Boss";
-mes "มี ค่าบริการ 1 TCG ท่านต้องการไปไหม";
-menu 
-"^0033FFห้อง^000000 ^CC00CC1^000000 ^ff0000Boss Lab4^000000 [ "+getmapusers("bossnia_01")+"] คน",Lgo1,
-"^0033FFห้อง^000000 ^CC00CC2^000000 ^ff0000Boss ทั่วไปตามแมพอย่างละ 1 ตัว^000000  [ "+getmapusers("bossnia_02")+"] คน",Lgo2,
-"^0033FFห้อง^000000 ^CC00CC3^000000 ^ff0000Boss ทั่วไปตามแมพอย่างละ 3 ตัว^000000  [ "+getmapusers("boss_a01")+"] คน",Lgo3,
-"^0033FFห้อง^000000 ^CC00CC4^000000 ^ff0000New Boss KRO JRO^000000 [ "+getmapusers("boss_a02")+"] คน",Lgo4,
-"ยกเลิก",no01;
+	mes "[ Boss Room ]";
+	mes "ท่านผู้กล้าขอเชิญท่านสู่Map Boss";
+	mes "มี ค่าบริการ 1 TCG ท่านต้องการไปไหม";
+	menu 
+	"^0033FFห้อง^000000 ^CC00CC1^000000 ^ff0000Boss Lab4^000000 [ "+getmapusers("bossnia_01")+"] คน",Lgo1,
+	"^0033FFห้อง^000000 ^CC00CC2^000000 ^ff0000Boss ทั่วไปตามแมพอย่างละ 1 ตัว^000000  [ "+getmapusers("bossnia_02")+"] คน",Lgo2,
+	"^0033FFห้อง^000000 ^CC00CC3^000000 ^ff0000Boss ทั่วไปตามแมพอย่างละ 3 ตัว^000000  [ "+getmapusers("boss_a01")+"] คน",Lgo3,
+	"^0033FFห้อง^000000 ^CC00CC4^000000 ^ff0000New Boss KRO JRO^000000 [ "+getmapusers("boss_a02")+"] คน",Lgo4,
+	"ยกเลิก",no01;
 
-Lgo1:
-sc_end SC_POEMBRAGI;
-sc_end SC_SERVICE4U;
-if(countitem(7227)<1) goto Q1;
-delitem 7227,1;
-warp "bossnia_01",0,0;
-announce "[ระบบ] ขณะนี้ คุณ [ "+strcharinfo(0)+" ] ได้เข้าสู่  ห้อง 1 < Boss Lab4 > แล้วจ้า ขณะนี้มีผู้เล่นทั้งหมด [ "+getmapusers("bossnia_01")+" ] คน",0,0x66FF00;
-close;
+	Lgo1:
+	sc_end SC_POEMBRAGI;
+	sc_end SC_SERVICE4U;
+	if(countitem(7227)<1) goto Q1;
+	delitem 7227,1;
+	warp "bossnia_01",0,0;
+	announce "[ระบบ] ขณะนี้ คุณ [ "+strcharinfo(0)+" ] ได้เข้าสู่  ห้อง 1 < Boss Lab4 > แล้วจ้า ขณะนี้มีผู้เล่นทั้งหมด [ "+getmapusers("bossnia_01")+" ] คน",0,0x66FF00;
+	close;
 
-Lgo2:
-sc_end SC_POEMBRAGI;
-sc_end SC_SERVICE4U;
-if(countitem(7227)<1) goto Q1;
-delitem 7227,1;
-warp "bossnia_02",0,0;
-announce "[ระบบ] ขณะนี้ คุณ [ "+strcharinfo(0)+" ] ได้เข้าสู่  ห้อง 2 < Boss ทั่วไปตามแมพอย่างละ 1 ตัว > แล้วจ้า ขณะนี้มีผู้เล่นทั้งหมด [ "+getmapusers("bossnia_02")+" ] คน",0,0x66FF00;
-close;
+	Lgo2:
+	sc_end SC_POEMBRAGI;
+	sc_end SC_SERVICE4U;
+	if(countitem(7227)<1) goto Q1;
+	delitem 7227,1;
+	warp "bossnia_02",0,0;
+	announce "[ระบบ] ขณะนี้ คุณ [ "+strcharinfo(0)+" ] ได้เข้าสู่  ห้อง 2 < Boss ทั่วไปตามแมพอย่างละ 1 ตัว > แล้วจ้า ขณะนี้มีผู้เล่นทั้งหมด [ "+getmapusers("bossnia_02")+" ] คน",0,0x66FF00;
+	close;
 
-Lgo3:
-sc_end SC_POEMBRAGI;
-sc_end SC_SERVICE4U;
-if(countitem(7227)<1) goto Q1;
-delitem 7227,1;
-warp "boss_a01",0,0;
-announce "[ระบบ] ขณะนี้ คุณ [ "+strcharinfo(0)+" ] ได้เข้าสู่  ห้อง 3 < Boss ทั่วไปตามแมพอย่างละ 3 ตัว > แล้วจ้า ขณะนี้มีผู้เล่นทั้งหมด [ "+getmapusers("boss_a01")+" ] คน",0,0x66FF00;
-close;
+	Lgo3:
+	sc_end SC_POEMBRAGI;
+	sc_end SC_SERVICE4U;
+	if(countitem(7227)<1) goto Q1;
+	delitem 7227,1;
+	warp "boss_a01",0,0;
+	announce "[ระบบ] ขณะนี้ คุณ [ "+strcharinfo(0)+" ] ได้เข้าสู่  ห้อง 3 < Boss ทั่วไปตามแมพอย่างละ 3 ตัว > แล้วจ้า ขณะนี้มีผู้เล่นทั้งหมด [ "+getmapusers("boss_a01")+" ] คน",0,0x66FF00;
+	close;
 
-Lgo4:
-sc_end SC_POEMBRAGI;
-sc_end SC_SERVICE4U;
-if(countitem(7227)<1) goto Q1;
-delitem 7227,1;
-warp "boss_a02",0,0;
-announce "[ระบบ] ขณะนี้ คุณ [ "+strcharinfo(0)+" ] ได้เข้าสู่ ห้อง 4 < New Boss KRO JRO > แล้วจ้า ขณะนี้มีผู้เล่นทั้งหมด [ "+getmapusers("boss_a02")+" ] คน",0,0x66FF00;
-close;
+	Lgo4:
+	sc_end SC_POEMBRAGI;
+	sc_end SC_SERVICE4U;
+	if(countitem(7227)<1) goto Q1;
+	delitem 7227,1;
+	warp "boss_a02",0,0;
+	announce "[ระบบ] ขณะนี้ คุณ [ "+strcharinfo(0)+" ] ได้เข้าสู่ ห้อง 4 < New Boss KRO JRO > แล้วจ้า ขณะนี้มีผู้เล่นทั้งหมด [ "+getmapusers("boss_a02")+" ] คน",0,0x66FF00;
+	close;
 
-no01:
-mes "โอกาศหน้าเชิญใหม่";
-close; 
+	no01:
+	mes "โอกาศหน้าเชิญใหม่";
+	close; 
 
-Q1:
-mes "ขออภัยค่ะคุณมี TCG ไม่เพียงพอต่อการใช้บริการค่ะ";
-close;
-	
-//OnInit:
-//Waitingroom "ไปล่าบอสกันเถอะ" , 0;
-end;
+	Q1:
+	mes "ขออภัยค่ะคุณมี TCG ไม่เพียงพอต่อการใช้บริการค่ะ";
+	close;
+		
+	//OnInit:
+	//Waitingroom "ไปล่าบอสกันเถอะ" , 0;
+	end;
 }
 
 wonderworld,164,131,4	duplicate(boss_b)	Bossnia#01	734
@@ -81,8 +81,6 @@ bossnia_01,0,0,0,0	monster	Sniper Shecil	1650,2,0,0,1
 bossnia_01,0,0,0,0	monster	Stalker Gertie	2239,2,0,0,1
 bossnia_01,0,0,0,0	monster	Whitesmith Harword	2111,2,0,0,1
 bossnia_01,0,0,0,0	monster	Paladin Randel	2235,2,0,0,1
-
-
 
 bossnia_02,0,0,0,0	monster	Baphomet	1039,1,0,0,1
 bossnia_02,0,0,0,0	monster	Osiris	1038,1,0,0,1
