@@ -46,8 +46,7 @@ OnInit:
 	set .cash_bonus_item_id,0;
 	set .cash_bonus_item_amount,0;
 
-	while (1)
-	{
+	while (1){
 		query_sql "SELECT `card_id`,`amount`,`user_id` FROM `truemoney` WHERE `status` = 1 ORDER BY RAND()",.card_id,.card_amount,.card_account_id;
 		sleep 500;
 		if (getarraysize(.card_id) > 0) {
